@@ -1,5 +1,5 @@
 {% block header %}
-{% include template ~ "/layout/main_header.tpl" %}
+{% include template ~ "/layout/main_header_tutoring.tpl" %}
 {% endblock %}
 
 {% block body %}
@@ -15,5 +15,5 @@
         </div> <!-- end of #row" -->
         </div> <!-- end of #container" -->
     {% endif %}
-    {% include template ~ "/layout/main_footer.tpl" %}
+    {% include template ~ "/layout/main_footer_tutoring.tpl" %}
 {% endblock %}

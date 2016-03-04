@@ -8,15 +8,42 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="" class="navbar-brand">
-              <span>TUTOR</span>
+            <a href="#" class="navbar-brand">
+              <span>TUTOR</span><br>
               <span>VIRTUAL</span>
             </a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="menuone">
-            <ul class="nav navbar-nav">
+            <ul class="nav navbar-nav x-navbar__menu">
+                {% if _u.status != 5 %}
                 {{ menu }}
+                {% else %}
+                <li class="text-center">
+                  <a href="#">
+                    <span class="badge">5</span>
+                    <span class="fa fa-user"></span>Perfil
+                  </a>
+                </li>
+                <li class="text-center">
+                  <a href="#">
+                    <span class="badge">5</span>
+                    <span class="fa fa-bell"></span>Alertas
+                  </a>
+                </li>
+                <li class="text-center">
+                  <a href="#">
+                    <span class="badge">5</span>
+                    <span class="fa fa-calendar"></span>Citas
+                  </a>
+                </li>
+                <li class="text-center">
+                  <a href="#">
+                    <span class="badge">5</span>
+                    <span class="fa fa-comment"></span>Mensajes
+                  </a>
+                </li>
+                {% endif %}
             </ul>
            {% if _u.logged == 1 %}
            <ul class="nav navbar-nav navbar-right">
