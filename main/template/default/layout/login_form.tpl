@@ -1,6 +1,8 @@
 {% if login_form %}
     <div id="login_block" class="panel panel-default">
-        <div class="panel-heading">{{ 'LoginEnter' | get_lang }}</div>
+        <div class="panel-heading">
+          <strong>{{ 'LoginEnter' | get_lang }}</strong>
+        </div>
         <div class="panel-body">
         {{ login_language_form }}
 

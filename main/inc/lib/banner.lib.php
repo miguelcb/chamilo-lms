@@ -22,12 +22,11 @@ function get_tabs($courseId = null)
     $navigation = array();
 
     // Campus Homepage
-    $navigation[SECTION_CAMPUS]['url'] = api_get_path(WEB_PATH).'index.php';
-    $navigation[SECTION_CAMPUS]['title'] = get_lang('CampusHomepage');
-    $navigation[SECTION_CAMPUS]['key'] = 'homepage';
+    // $navigation[SECTION_CAMPUS]['url'] = api_get_path(WEB_PATH).'index.php';
+    // $navigation[SECTION_CAMPUS]['title'] = get_lang('CampusHomepage');
+    // $navigation[SECTION_CAMPUS]['key'] = 'homepage';
 
     // My Courses
-
     if (api_is_allowed_to_create_course()) {
         // Link to my courses for teachers
         $navigation['mycourses']['url'] = api_get_path(WEB_PATH).'user_portal.php?nosession=true';
