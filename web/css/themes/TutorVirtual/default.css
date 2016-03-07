@@ -1,0 +1,50 @@
+body { background: #eee url(images/bg.png) no-repeat fixed; }
+footer {
+  padding-bottom: 15px;
+  background-color: #fff;
+}
+
+.x-header { padding: 0; }
+.x-navbar {
+  min-height: 100px;
+  margin-top: 0;
+  padding: 18px 0;
+  border: 0;
+  background: #59b25f; /* Old browsers */
+  background: -moz-linear-gradient(left, #59b25f 0%, #729919 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(left, #59b25f 0%, #729919 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right, #59b25f 0%, #729919 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#59b25f', endColorstr='#729919', GradientType=1 ); /* IE6-9 */
+}
+.x-navbar .navbar-nav  > li > a {
+  color: #eee;
+  font-size: 12px;
+}
+.x-navbar .navbar-nav > .active > a,
+.x-navbar .navbar-nav > .active > a:focus,
+.x-navbar .navbar-nav > .active> a:hover {
+  font-weight: bold;
+  background-color: transparent;
+}
+.x-navbar .navbar-header .navbar-brand {
+  height: auto;
+  padding: 8px 15px;
+  font-size: 24px;
+  line-height: 1;
+  color: #fff;
+}
+.x-navbar .x-navbar__menu a {
+  position: relative;
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+.x-navbar .x-navbar__menu a .fa {
+  display: block;
+  font-size: 32px;
+}
+.x-navbar .x-navbar__menu a .badge {
+  position: absolute;
+  color: #337ab7;
+  background-color: #fff;
+  border: 1px solid;
+}
