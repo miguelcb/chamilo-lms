@@ -54,66 +54,12 @@
         {% endif %}
     {% endblock %}
         <header class="x-header">
-            <div class="extra-header">{{ header_extra_content }}</div>
-            <section id="main" class="container">
-                {% if plugin_header_main %}
-                <div class="row">
-                    <div class="col-lg-12">
-                        {{ plugin_header_main }}
-                    </div>
-                </div>
-                {% endif %}
-                <div class="row">
-                    <div class="col-lg-3">
-                        <div class="logo">
-                            {{ logo }}
-                        </div>
-                    </div>
-                    <div class="col-lg-9">
-                        <div class="col-sm-4">
-                            {% if plugin_header_left is not null %}
-                            <div id="plugin_header_left">
-                                {{ plugin_header_left }}
-                            </div>
-                            {% endif %}
-                        </div>
-                        <div class="col-sm-4">
-                            {% if plugin_header_center is not null %}
-                            <div id="plugin_header_center">
-                                {{ plugin_header_center }}
-                            </div>
-                            {% endif %}
-                        </div>
-                        <div class="col-sm-4">
-                            {% if plugin_header_right is not null %}
-                            <div id="plugin_header_right">
-                                {{ plugin_header_right }}
-                            </div>
-                            {% endif %}
-                            <div class="section-notifications">
-                                <ul id="notifications" class="nav nav-pills pull-right">
-                                    {{ notification_menu }}
-                                </ul>
-                            </div>
-                            {{ accessibility }}
-                        </div>
-                    </div>
-                </div>
-            </section>
             <section id="menu-bar">
                 {# menu #}
                 {% block menu %}
-                {% include template ~ "/layout/menu.tpl" %}
+                {% include template ~ "/layout/menu_tutoring.tpl" %}
                 {% endblock %}
             </section>
-            <!-- <section id="breadcrumb-bar">
-                <div class="container">
-                    {# breadcrumb #}
-                    {% block breadcrumb %}
-                    {{ breadcrumb }}
-                    {% endblock %}
-                </div>
-            </section> -->
         </header>
     <div id="top_main_content" class="container">
     <div class="row">
