@@ -1,6 +1,20 @@
 {% if show_footer == true %}
     {% include template ~ "/layout/footer_tutoring.tpl" %}
 {% endif %}
+    <div class="modal fade" id="profile-modal" tabindex="-1" role="dialog" aria-labelledby="profile-modal-label">
+      <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+          <div class="modal-header x-modal-header">
+            <h4 class="modal-title" id="profile-modal-label">Perfil</h4>
+          </div>
+          <div class="modal-body"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">{{ 'Close' | get_lang }}</button>
+            <button type="button" class="btn btn-primary">{{ 'Save' | get_lang }}</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
     {# Global modal, load content by AJAX call to href attribute on anchor tag with 'ajax' class #}
     <div class="modal fade" id="global-modal" tabindex="-1" role="dialog" aria-labelledby="global-modal-title" aria-hidden="true">

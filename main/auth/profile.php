@@ -41,7 +41,7 @@ $(document).ready(function() {
     var canvas = "";
     var imageWidth = "";
     var imageHeight = "";
-    
+
     $("input:file").change(function() {
         var oFReader = new FileReader();
         oFReader.readAsDataURL(document.getElementById("picture_form").files[0]);
@@ -70,7 +70,7 @@ $(document).ready(function() {
             });
         };
     });
-    
+
     $("#cropButton").on("click", function() {
         var canvas = $image.cropper("getCroppedCanvas");
         var dataUrl = canvas.toDataURL();
@@ -203,6 +203,19 @@ $form->addRule('username', get_lang('ThisFieldIsRequired'), 'required');
 $form->addRule('username', get_lang('UsernameWrong'), 'username');
 $form->addRule('username', get_lang('UserTaken'), 'username_available', $user_data['username']);
 
+//    PSEUDONYM
+$form->addElement(
+    'text',
+    'pseudonym',
+    'Seudónimo',
+    array(
+        'id' => 'pseudonym',
+        'maxlength' => 8,
+        'size' => USERNAME_MAX_LENGTH,
+    )
+);
+$form->addRule('pseudonym', get_lang('ThisFieldIsRequired'), 'required');
+
 //    OFFICIAL CODE
 if (CONFVAL_ASK_FOR_OFFICIAL_CODE) {
     $form->addElement('text', 'official_code', get_lang('OfficialCode'), array('size' => 40));
@@ -241,12 +254,10 @@ if (is_profile_editable() && api_get_setting('openid_authentication') == 'true')
 
 //    PHONE
 $form->addElement('text', 'phone', get_lang('Phone'), array('size' => 20));
-if (api_get_setting('profile', 'phone') !== 'true') {
-    $form->freeze('phone');
-}
 $form->applyFilter('phone', 'stripslashes');
 $form->applyFilter('phone', 'trim');
 $form->applyFilter('phone', 'html_filter');
+$form->addRule('phone', get_lang('ThisFieldIsRequired'), 'required');
 
 //  PICTURE
 if (is_profile_editable() && api_get_setting('profile', 'picture') == 'true') {
@@ -263,7 +274,7 @@ if (is_profile_editable() && api_get_setting('profile', 'picture') == 'true') {
                     . '<label for="cropImage" id="labelCropImage" class="col-sm-2 control-label"></label>'
                         . '<div class="col-sm-8">'
                             . '<div id="cropImage" class="cropCanvas">'
-                                . '<img id="previewImage" >'
+                                . '<img id="previewImage" src="'.($user_data['picture_uri'] != '' ? UserManager::getUserPicture(api_get_user_id(), USER_IMAGE_SIZE_ORIGINAL) : '').'">'
                             . '</div>'
                             . '<div>'
                                 . '<button class="btn btn-primary hidden" name="cropButton" id="cropButton"><em class="fa fa-crop"></em> '.get_lang('CropYourPicture').'</button>'
@@ -284,108 +295,6 @@ if (is_profile_editable() && api_get_setting('profile', 'picture') == 'true') {
         $allowed_picture_types
     );
 }
-
-//    LANGUAGE
-$form->addElement('select_language', 'language', get_lang('Language'));
-if (api_get_setting('profile', 'language') !== 'true') {
-    $form->freeze('language');
-}
-
-//THEME
-if (is_profile_editable() && api_get_setting('user_selected_theme') == 'true') {
-    $form->addElement('SelectTheme', 'theme', get_lang('Theme'));
-    if (api_get_setting('profile', 'theme') !== 'true') {
-        $form->freeze('theme');
-    }
-    $form->applyFilter('theme', 'trim');
-}
-
-//    EXTENDED PROFILE  this make the page very slow!
-if (api_get_setting('extended_profile') == 'true') {
-    $width_extended_profile = 500;
-    //    MY COMPETENCES
-    $form->addHtmlEditor(
-        'competences',
-        get_lang('MyCompetences'),
-        false,
-        false,
-        array(
-            'ToolbarSet' => 'Profile',
-            'Width' => $width_extended_profile,
-            'Height' => '130',
-        )
-    );
-    //    MY DIPLOMAS
-    $form->addHtmlEditor(
-        'diplomas',
-        get_lang('MyDiplomas'),
-        false,
-        false,
-        array(
-            'ToolbarSet' => 'Profile',
-            'Width' => $width_extended_profile,
-            'Height' => '130',
-        )
-    );
-    // WHAT I AM ABLE TO TEACH
-    $form->addHtmlEditor(
-        'teach',
-        get_lang('MyTeach'),
-        false,
-        false,
-        array(
-            'ToolbarSet' => 'Profile',
-            'Width' => $width_extended_profile,
-            'Height' => '130',
-        )
-    );
-
-    //    MY PRODUCTIONS
-    $form->addElement('file', 'production', get_lang('MyProductions'));
-    if ($production_list = UserManager::build_production_list(api_get_user_id(), '', true)) {
-        $form->addElement('static', 'productions_list', null, $production_list);
-    }
-    //    MY PERSONAL OPEN AREA
-    $form->addHtmlEditor(
-        'openarea',
-        get_lang('MyPersonalOpenArea'),
-        false,
-        false,
-        array(
-            'ToolbarSet' => 'Profile',
-            'Width' => $width_extended_profile,
-            'Height' => '350',
-        )
-    );
-    // openarea is untrimmed for maximum openness
-    $form->applyFilter(array('competences', 'diplomas', 'teach', 'openarea'), 'stripslashes');
-    $form->applyFilter(array('competences', 'diplomas', 'teach'), 'trim');
-}
-
-//    PASSWORD, if auth_source is platform
-if (is_platform_authentication() &&
-    is_profile_editable() &&
-    api_get_setting('profile', 'password') == 'true'
-) {
-    $form->addElement('password', 'password0', array(get_lang('Pass'), get_lang('Enter2passToChange')), array('size' => 40));
-    $form->addElement('password', 'password1', get_lang('NewPass'), array('id'=> 'password1', 'size' => 40));
-
-    $checkPass = api_get_setting('allow_strength_pass_checker');
-    if ($checkPass == 'true') {
-        $form->addElement('label', null, '<div id="password_progress"></div>');
-    }
-    $form->addElement('password', 'password2', get_lang('Confirmation'), array('size' => 40));
-    //    user must enter identical password twice so we can prevent some user errors
-    $form->addRule(array('password1', 'password2'), get_lang('PassTwo'), 'compare');
-    if (CHECK_PASS_EASY_TO_FIND) {
-        $form->addRule('password1', get_lang('CurrentPasswordEmptyOrIncorrect'), 'callback', 'api_check_password');
-    }
-}
-
-$extraField = new ExtraField('user');
-$return = $extraField->addElements($form, api_get_user_id());
-
-$jquery_ready_content = $return['jquery_ready_content'];
 
 // the $jquery_ready_content variable collects all functions that
 // will be load in the $(document).ready javascript function
@@ -502,7 +411,7 @@ if ($form->validate()) {
     if ($user &&
         (!empty($user_data['password0']) &&
         !empty($user_data['password1'])) ||
-        (!empty($user_data['password0']) && 
+        (!empty($user_data['password0']) &&
         api_get_setting('profile', 'email') == 'true')
     ) {
         $passwordWasChecked = true;
@@ -675,7 +584,7 @@ if ($form->validate()) {
     //Fixing missing variables
     $available_values_to_modify = array_merge(
         $available_values_to_modify,
-        array('competences', 'diplomas', 'openarea', 'teach', 'openid')
+        array('competences', 'diplomas', 'openarea', 'teach', 'openid', 'pseudonym')
     );
 
     // build SQL query
