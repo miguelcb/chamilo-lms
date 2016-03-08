@@ -1417,6 +1417,7 @@ function _api_format_user($user, $add_password = false)
 
     $attributes = array(
         'phone',
+        'pseudonym',
         'picture_uri',
         'official_code',
         'status',

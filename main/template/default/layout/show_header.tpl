@@ -1,4 +1,4 @@
-{% include template ~ "/layout/main_header.tpl" %}
+{% include template ~ "/layout/main_header_tutoring.tpl" %}
 {#
     show_header and show_footer templates are only called when using the
     Display::display_header and Display::display_footer

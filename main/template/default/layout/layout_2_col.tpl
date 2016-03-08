@@ -11,7 +11,7 @@
     {% endif %}
 
 	{#  Right column #}
-	<div class="col-md-3 menu-column {% if _u.logged  == 0 %}pull-right{% endif %}">
+	<div class="col-md-{% if _u.logged  == 0 %}4{% else %}3{% endif %} menu-column {% if _u.logged  == 0 %}pull-right{% endif %}">
         {% if plugin_menu_top %}
             <div id="plugin_menu_top">
                 {{plugin_menu_top}}

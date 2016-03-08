@@ -4,6 +4,11 @@ footer {
   background-color: #fff;
 }
 
+.x-modal-header {
+  background-image: url(images/bg.png);
+  color: #ffffff;
+}
+
 .x-header { padding: 0; }
 .x-navbar {
   min-height: 100px;

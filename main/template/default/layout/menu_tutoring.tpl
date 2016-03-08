@@ -8,7 +8,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="/index.php" class="navbar-brand">
+            <a href="{{  _p.web }}" class="navbar-brand">
               <span>TUTOR</span><br>
               <span>VIRTUAL</span>
             </a>
@@ -20,7 +20,7 @@
                 {{ menu }}
                 {% else %}
                 <li class="text-center">
-                  <a href="#">
+                  <a href="javascript:void(0)" data-toggle="ajax-modal" data-target="#profile-modal" data-source="{{ _p.web_main }}auth/profile_tutoring.php">
                     <span class="badge">5</span>
                     <span class="fa fa-user"></span>Perfil
                   </a>
