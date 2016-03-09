@@ -2,18 +2,20 @@
     {% include template ~ "/layout/footer_tutoring.tpl" %}
 {% endif %}
     <div class="modal fade" id="profile-modal" tabindex="-1" role="dialog" aria-labelledby="profile-modal-label">
-      <div class="modal-dialog modal-sm" role="document">
-        <div class="modal-content">
-          <div class="modal-header x-modal-header">
-            <h4 class="modal-title" id="profile-modal-label">Perfil</h4>
-          </div>
-          <div class="modal-body"></div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">{{ 'Close' | get_lang }}</button>
-            <button type="button" class="btn btn-primary">{{ 'Save' | get_lang }}</button>
+      <form action="{{ _p.web_main }}auth/profile_tutoring.php" method="POST" data-parsley-validate data-parsley-errors-messages-disabled data-parsley-ajax="true" data-parsley-ajax-success="parsleyAjaxClose">
+        <div class="modal-dialog modal-sm" role="document">
+          <div class="modal-content">
+            <div class="modal-header x-modal-header">
+              <h4 class="modal-title" id="profile-modal-label">Perfil</h4>
+            </div>
+            <div class="modal-body" id="profile-modal-update"></div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">{{ 'Close' | get_lang }}</button>
+              <button type="submit" class="btn btn-success">{{ 'Save' | get_lang }}</button>
+            </div>
           </div>
         </div>
-      </div>
+      </form>
     </div>
 
     {# Global modal, load content by AJAX call to href attribute on anchor tag with 'ajax' class #}

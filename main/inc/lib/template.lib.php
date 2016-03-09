@@ -676,7 +676,8 @@ class Template
             'mediaelement/build/mediaelement-and-player.min.js',
             'jqueryui-timepicker-addon/dist/jquery-ui-timepicker-addon.min.js',
             'imagemap-resizer/js/imageMapResizer.min.js',
-            'jquery.scrollbar/jquery.scrollbar.min.js'
+            'jquery.scrollbar/jquery.scrollbar.min.js',
+            'parsleyjs/dist/parsley.min.js'
         ];
 
         if (api_get_setting('include_asciimathml_script') == 'true') {
