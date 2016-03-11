@@ -35,7 +35,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['sec_token'])) {
         }, array_keys($POST), array_values($POST))),
         api_get_user_id()
     );
-    echo $sql;
     Database::query($sql);
 
     $userInfo = api_get_user_info();
@@ -75,5 +74,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['sec_token'])) {
 <div class="alert alert-info">
     asdasda <strong>dasdasd</strong> adas
 </div>
-
-

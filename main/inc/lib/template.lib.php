@@ -927,11 +927,13 @@ class Template
         $this->assign('menu', $menu);
 
         // Setting notifications
-        $count_unread_message = 0;
-        if (api_get_setting('allow_message_tool') == 'true') {
-            // get count unread message and total invitations
-            $count_unread_message = MessageManager::get_number_of_messages(true);
-        }
+        // $count_unread_message = 0;
+        // if (api_get_setting('allow_message_tool') == 'true') {
+        //     // get count unread message and total invitations
+        //     $count_unread_message = MessageManager::get_number_of_messages(true);
+        // }
+        $count_unread_message = MessageManager::get_number_of_messages(true);
+        $this->assign('count_unread_message', $count_unread_message);
 
         $total_invitations = 0;
         if (api_get_setting('allow_social_tool') == 'true') {

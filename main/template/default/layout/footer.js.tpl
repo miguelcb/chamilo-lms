@@ -137,7 +137,6 @@
       })
       .on('form:submit', function(e) {
         var $sup = this.$element;
-        console.log($sup.serialize());
         $.ajax({
           url: $sup.attr('action'),
           method: $sup.attr('method'),
@@ -147,6 +146,6 @@
         return false;
       });
 
-      window.parsleyAjaxClose = function(f) { f.parent().modal('hide'); };
+      window.parsleyAjaxClose = function(f) { f.closest('.modal').modal('hide'); };
   });
 </script>

@@ -3,6 +3,15 @@ footer {
   padding-bottom: 15px;
   background-color: #fff;
 }
+.modal-content { border-radius: 0;  }
+.modal-footer { background-color: #eee; }
+.bg-login {
+  background: #333 url(images/bg-inicio-sesion.jpg) no-repeat center top;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -ms-background-size: cover;
+  background-size: cover;
+}
 
 .x-modal-header {
   background-image: url(images/bg.png);

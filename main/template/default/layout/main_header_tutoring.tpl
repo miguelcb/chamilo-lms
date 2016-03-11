@@ -37,7 +37,7 @@
 
 {% if show_header == true %}
 
-<div id="page-wrap"><!-- page section -->
+<div id="page-wrap" class="{% if _u.logged  == 0 %}bg-login{% endif %}"><!-- page section -->
     {# Bug and help notifications #}
     {% block help_notifications %}
     <ul id="navigation" class="notification-panel">
