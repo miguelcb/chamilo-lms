@@ -11,6 +11,7 @@ api_block_anonymous_users();
 
 $table_message   = Database::get_main_table(TABLE_MESSAGE);
 $api_get_user_id = api_get_user_id();
+
 $sql = "SELECT m.id, m.user_sender_id, CONCAT(u.username) user_sender,  m.title, m.send_date, m.msg_status
         FROM $table_message m
         INNER JOIN user u ON u.id = m.user_sender_id
@@ -18,10 +19,9 @@ $sql = "SELECT m.id, m.user_sender_id, CONCAT(u.username) user_sender,  m.title,
         ORDER BY m.send_date DESC";
 
 $result = Database::query($sql);
-
 ?>
 <div class="row" id="inbox">
-    <?php if (Database::num_rows($result)): ?>
+    <?php if (Database::num_rows($result) > 0): ?>
     <div class="col-md-4">
         <ul class="list-group messages-tutoring">
             <li class="list-group-item">
