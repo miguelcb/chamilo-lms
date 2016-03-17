@@ -935,6 +935,9 @@ class Template
         $count_unread_message = MessageManager::get_number_of_messages(true);
         $this->assign('count_unread_message', $count_unread_message);
 
+        $count_unread_news = 5;
+        $this->assign('count_unread_news', $count_unread_news);
+
         $total_invitations = 0;
         if (api_get_setting('allow_social_tool') == 'true') {
             $number_of_new_messages_of_friend = SocialManager::get_message_number_invitation_by_user_id(

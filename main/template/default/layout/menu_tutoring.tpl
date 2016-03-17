@@ -25,15 +25,9 @@
                   </a>
                 </li>
                 <li class="text-center">
-                  <a href="#">
-                    <span class="badge">5</span>
-                    <span class="fa fa-bell"></span>Alertas
-                  </a>
-                </li>
-                <li class="text-center">
-                  <a href="#">
-                    <span class="badge">5</span>
-                    <span class="fa fa-calendar"></span>Citas
+                  <a href="javascript:void(0)" data-toggle="ajax-modal" data-target="#news-modal" data-source="{{ _p.web_main }}course_info/news.php">
+                    <span class="badge">{{ count_unread_news }}</span>
+                    <span class="fa fa-bell"></span>Novedades
                   </a>
                 </li>
                 <li class="text-center">
