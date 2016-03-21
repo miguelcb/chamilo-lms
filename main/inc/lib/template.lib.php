@@ -676,7 +676,8 @@ class Template
             'mediaelement/build/mediaelement-and-player.min.js',
             'jqueryui-timepicker-addon/dist/jquery-ui-timepicker-addon.min.js',
             'imagemap-resizer/js/imageMapResizer.min.js',
-            'jquery.scrollbar/jquery.scrollbar.min.js'
+            'jquery.scrollbar/jquery.scrollbar.min.js',
+            'parsleyjs/dist/parsley.min.js'
         ];
 
         if (api_get_setting('include_asciimathml_script') == 'true') {
@@ -926,11 +927,16 @@ class Template
         $this->assign('menu', $menu);
 
         // Setting notifications
-        $count_unread_message = 0;
-        if (api_get_setting('allow_message_tool') == 'true') {
-            // get count unread message and total invitations
-            $count_unread_message = MessageManager::get_number_of_messages(true);
-        }
+        // $count_unread_message = 0;
+        // if (api_get_setting('allow_message_tool') == 'true') {
+        //     // get count unread message and total invitations
+        //     $count_unread_message = MessageManager::get_number_of_messages(true);
+        // }
+        $count_unread_message = MessageManager::get_number_of_messages(true);
+        $this->assign('count_unread_message', $count_unread_message);
+
+        $count_unread_news = 5;
+        $this->assign('count_unread_news', $count_unread_news);
 
         $total_invitations = 0;
         if (api_get_setting('allow_social_tool') == 'true') {

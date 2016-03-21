@@ -107,7 +107,45 @@
           $modal.find('.modal-body').html(view);
           $modal.modal('show');
         });
-
     });
+
+    $('[data-parsley-ajax=true]')
+      .parsley()
+      .on('field:error', function() {
+        this.$element.parent()
+          .removeClass('has-success')
+          .addClass('has-error');
+
+        this.$element.next()
+          .removeClass('glyphicon-ok')
+          .addClass('glyphicon-remove');
+
+        this.$element.next().next()
+          .html('<span class="text-danger">' + this.options.errorMessage + '</span>');
+      })
+      .on('field:success', function() {
+        this.$element.parent()
+          .removeClass('has-error')
+          .addClass('has-success');
+
+        this.$element.next()
+          .removeClass('glyphicon-remove')
+          .addClass('glyphicon-ok');
+
+        this.$element.next().next()
+          .empty();
+      })
+      .on('form:submit', function(e) {
+        var $sup = this.$element;
+        $.ajax({
+          url: $sup.attr('action'),
+          method: $sup.attr('method'),
+          data: $sup.serialize()
+        })
+          .done(function() { window[$sup.attr('data-parsley-ajax-success')]($sup); });
+        return false;
+      });
+
+      window.parsleyAjaxClose = function(f) { f.closest('.modal').modal('hide'); };
   });
 </script>

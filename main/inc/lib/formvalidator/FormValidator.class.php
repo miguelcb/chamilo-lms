@@ -31,7 +31,7 @@ class FormValidator extends HTML_QuickForm
         $method = 'post',
         $action = '',
         $target = '',
-        $attributes = array(),
+        $attributes = [],
         $layout = self::LAYOUT_HORIZONTAL,
         $trackSubmit = true
     ) {
@@ -84,7 +84,7 @@ class FormValidator extends HTML_QuickForm
             $renderer->setElementTemplate($templateBottom, 'submit_fixed_in_bottom');
 
             //When you want to group buttons use something like this
-            /* $group = array();
+            /* $group = [];
               $group[] = $form->createElement('button', 'mark_all', get_lang('MarkAll'));
               $group[] = $form->createElement('button', 'unmark_all', get_lang('UnmarkAll'));
               $form->addGroup($group, 'buttons_in_action');
@@ -176,7 +176,7 @@ EOT;
      * @param bool   $required	(optional)	Is the form-element required (default=true)
      * @param array  $attributes (optional)	List of attributes for the form-element
      */
-    public function addText($name, $label, $required = true, $attributes = array())
+    public function addText($name, $label, $required = true, $attributes = [])
     {
         $this->addElement('text', $name, $label, $attributes);
         $this->applyFilter($name, 'trim');
@@ -197,7 +197,7 @@ EOT;
      * @param bool   $required
      * @param array  $attributes
      */
-    public function addDateRangePicker($name, $label, $required = true, $attributes = array())
+    public function addDateRangePicker($name, $label, $required = true, $attributes = [])
     {
         $this->addElement('date_range_picker', $name, $label, $attributes);
         $this->addElement('hidden', $name.'_start');
@@ -248,7 +248,7 @@ EOT;
      *
      * @return HTML_QuickForm_textarea
      */
-    public function addTextarea($name, $label, $attributes = array())
+    public function addTextarea($name, $label, $attributes = [])
     {
         return $this->addElement('textarea', $name, $label, $attributes);
     }
@@ -271,7 +271,7 @@ EOT;
         $style = 'default',
         $size = 'default',
         $class = null,
-        $attributes = array(),
+        $attributes = [],
         $createElement = false
     ) {
         if ($createElement) {
@@ -352,7 +352,7 @@ EOT;
      *
      * @return HTML_QuickForm_button
      */
-    public function addButtonCreate($label, $name = 'submit', $createElement = false, $attributes = array())
+    public function addButtonCreate($label, $name = 'submit', $createElement = false, $attributes = [])
     {
         return $this->addButton(
             $name,
@@ -417,7 +417,7 @@ EOT;
      *
      * @return HTML_QuickForm_button
      */
-    public function addButtonSend($label, $name = 'submit', $createElement = false, $attributes = array())
+    public function addButtonSend($label, $name = 'submit', $createElement = false, $attributes = [])
     {
         return $this->addButton(
             $name,
@@ -454,7 +454,7 @@ EOT;
      * @param array $attributes Additional attributes
      * @return HTML_QuickForm_button
      */
-    public function addButtonNext($label, $name = 'submit',$attributes = array())
+    public function addButtonNext($label, $name = 'submit',$attributes = [])
     {
         return $this->addButton($name, $label, 'arrow-right', 'primary', null, null, $attributes);
     }
@@ -535,7 +535,7 @@ EOT;
         $style = 'default';
         $size = 'default';
         $class = null;
-        $attributes = array();
+        $attributes = [];
 
         if ($createElement) {
             return $this->createElement(
@@ -658,7 +658,7 @@ EOT;
      *
      * @return HTML_QuickForm_checkbox
      */
-    public function addCheckBox($name, $label, $text = '', $attributes = array())
+    public function addCheckBox($name, $label, $text = '', $attributes = [])
     {
         return $this->addElement('checkbox', $name, $label, $text, $attributes);
     }
@@ -671,9 +671,9 @@ EOT;
      *
      * @return HTML_QuickForm_group
      */
-    public function addCheckBoxGroup($name, $label, $options = array(), $attributes = array())
+    public function addCheckBoxGroup($name, $label, $options = [], $attributes = [])
     {
-        $group = array();
+        $group = [];
         foreach ($options as $value => $text) {
             $attributes['value'] = $value;
             $group[] = $this->createElement('checkbox', $value, null, $text, $attributes);
@@ -690,9 +690,9 @@ EOT;
      *
      * @return HTML_QuickForm_radio
      */
-    public function addRadio($name, $label, $options = array(), $attributes = array())
+    public function addRadio($name, $label, $options = [], $attributes = [])
     {
-        $group = array();
+        $group = [];
         foreach ($options as $key => $value) {
             $group[] = $this->createElement('radio', null, null, $value, $key, $attributes);
         }
@@ -708,7 +708,7 @@ EOT;
      *
      * @return HTML_QuickForm_select
      */
-    public function addSelect($name, $label, $options = array(), $attributes = array())
+    public function addSelect($name, $label, $options = [], $attributes = [])
     {
         return $this->addElement('select', $name, $label, $options, $attributes);
     }
@@ -737,7 +737,7 @@ EOT;
      * @param string $label
      * @param array  $attributes
      */
-    public function addFile($name, $label, $attributes = array())
+    public function addFile($name, $label, $attributes = [])
     {
         $this->addElement('file', $name, $label, $attributes);
     }
@@ -759,7 +759,7 @@ EOT;
      * @param array  $config (optional) Configuration settings for the online editor.
      * @param bool   $style
      */
-    public function addHtmlEditor($name, $label, $required = true, $fullPage = false, $config = array(), $style = false)
+    public function addHtmlEditor($name, $label, $required = true, $fullPage = false, $config = [], $style = false)
     {
         $config['rows'] = isset($config['rows']) ? $config['rows'] : 15;
         $config['cols'] = isset($config['cols']) ? $config['cols'] : 80;
@@ -1001,7 +1001,7 @@ EOT;
         $reset = null;
         $result = new FormValidator($form_name, $form_method, $form_action, $form_target, $form_attributes, $form_track_submit);
 
-        $defaults = array();
+        $defaults = [];
         foreach ($form_data['items'] as $item) {
             $name = $item['name'];
             $type = isset($item['type']) ? $item['type'] : 'text';
@@ -1056,7 +1056,7 @@ EOT;
      * @param type $required Optional. Is the form-element required (default=true)
      * @param type $attributes Optional. List of attributes for the form-element
      */
-    public function addUrl($name, $label, $required = true, $attributes = array())
+    public function addUrl($name, $label, $required = true, $attributes = [])
     {
         $this->addElement('url', $name, $label, $attributes);
         $this->applyFilter($name, 'trim');

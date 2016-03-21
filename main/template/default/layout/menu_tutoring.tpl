@@ -21,29 +21,25 @@
                 {% else %}
                 <li class="text-center">
                   <a href="javascript:void(0)" data-toggle="ajax-modal" data-target="#profile-modal" data-source="{{ _p.web_main }}auth/profile_tutoring.php">
-                    <span class="badge">5</span>
                     <span class="fa fa-user"></span>Perfil
                   </a>
                 </li>
                 <li class="text-center">
-                  <a href="#">
-                    <span class="badge">5</span>
-                    <span class="fa fa-bell"></span>Alertas
+                  <a href="javascript:void(0)" data-toggle="ajax-modal" data-target="#news-modal" data-source="{{ _p.web_main }}course_info/news.php">
+                    <span class="badge">{{ count_unread_news }}</span>
+                    <span class="fa fa-bell"></span>Novedades
                   </a>
                 </li>
                 <li class="text-center">
-                  <a href="#">
-                    <span class="badge">5</span>
-                    <span class="fa fa-calendar"></span>Citas
-                  </a>
-                </li>
-                <li class="text-center">
-                  <a href="#">
-                    <span class="badge">5</span>
+                  <a href="javascript:void(0)" data-toggle="ajax-modal" data-target="#messages-modal" data-source="{{ _p.web_main }}messages/inbox_tutoring.php">
+                    <span class="badge">{{ count_unread_message }}</span>
                     <span class="fa fa-comment"></span>Mensajes
                   </a>
                 </li>
                 {% endif %}
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a style="padding: 8px 0;" href="http://utp.edu.pe"><img src="{{ _p.web }}/web/css/themes/TutorVirtual/images/utp-blanco.png" alt="" height="48"></a></li>
             </ul>
            {% if _u.logged == 1 %}
            <ul class="nav navbar-nav navbar-right">
