@@ -1,7 +1,7 @@
 <?php
 /* For licensing terms, see /license.txt */
 
-require_once '../inc/global.inc.php';
+require_once '../../../inc/global.inc.php';
 
 //api_protect_course_script(true);
 api_block_anonymous_users();
@@ -14,19 +14,14 @@ $table_forum_post           = Database::get_course_table(TABLE_FORUM_POST);
 $table_calendar_event       = Database::get_course_table(TABLE_AGENDA);
 $table_document             = Database::get_course_table(TABLE_DOCUMENT);
 // TEMPORAL SOLUTION WHEN MIGRATE TO NEW TOOLS CHANGES THE TOOLS NAMES
-require_once '../tutoring/constants.inc.php';
+require_once '../../constants.inc.php';
 $TOOL_REVIEW_PRACTICE = TOOL_REVIEW_PRACTICE;
 $TOOL_ASK             = TOOL_ASK;
 $TOOL_APPOINMENT      = TOOL_APPOINTMENT;
-$INTERVAL_DAYS_NEWS   = INTERVAL_DAYS_NEWS;
 
 $course_news = [];
 $sql         = "SELECT * FROM $table_course_user WHERE user_id = $user_id";
 $courses     = Database::query($sql);
-
-function pretty_print($v) {
-    print('<pre>'.print_r($v, true).'</pre>');
-}
 
 while($course = Database::fetch_assoc($courses)) {
     $c_id = $course['c_id'];
