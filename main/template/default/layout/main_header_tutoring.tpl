@@ -61,8 +61,8 @@
                 {% endblock %}
             </section>
         </header>
-    <div id="top_main_content" class="container">
-    <div class="row">
+    <div id="top_main_content" class="{% if _u.logged  == 0 %}container{% else %}container-fluid{% endif %}">
+    <div class="row" style="margin-top: 24px;">
     {# course navigation links/shortcuts need to be activated by the admin #}
     {% include template ~ "/layout/course_navigation.tpl" %}
 {% endif %}

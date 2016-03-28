@@ -10,6 +10,3 @@
 define('TOOL_REVIEW_PRACTICE', 'document');
 define('TOOL_ASK', 'forum_thread');
 define('TOOL_APPOINTMENT', 'calendar_event');
-
-// Interval days to consider news
-define('INTERVAL_DAYS_NEWS', 7);

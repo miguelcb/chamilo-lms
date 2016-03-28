@@ -3,7 +3,7 @@
 {% endif %}
     <div class="modal fade" id="profile-modal" tabindex="-1" role="dialog" aria-labelledby="profile-modal-label" aria-hidden="true">
         <div class="modal-dialog modal-sm" role="document">
-          <form action="{{ _p.web_main }}auth/profile_tutoring.php" method="POST" data-parsley-validate data-parsley-errors-messages-disabled data-parsley-ajax="true" data-parsley-ajax-success="parsleyAjaxClose">
+          <form action="{{ _p.web_main }}tutoring/alumn/profile.php" method="POST" data-parsley-validate data-parsley-errors-messages-disabled data-parsley-ajax="true" data-parsley-ajax-success="parsleyAjaxClose">
             <div class="modal-content">
               <div class="modal-header x-modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="{{ 'Close' | get_lang }}">

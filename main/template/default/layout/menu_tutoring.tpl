@@ -20,18 +20,18 @@
                 {{ menu }}
                 {% else %}
                 <li class="text-center">
-                  <a href="javascript:void(0)" data-toggle="ajax-modal" data-target="#profile-modal" data-source="{{ _p.web_main }}auth/profile_tutoring.php">
+                  <a href="javascript:void(0)" data-toggle="ajax-modal" data-target="#profile-modal" data-source="{{ _p.web_main }}tutoring/alumn/profile.php">
                     <span class="fa fa-user"></span>Perfil
                   </a>
                 </li>
                 <li class="text-center">
-                  <a href="javascript:void(0)" data-toggle="ajax-modal" data-target="#news-modal" data-source="{{ _p.web_main }}course_info/news.php">
+                  <a href="javascript:void(0)" data-toggle="ajax-modal" data-target="#news-modal" data-source="{{ _p.web_main }}tutoring/alumn/course/news.php">
                     <span class="badge">{{ count_unread_news }}</span>
                     <span class="fa fa-bell"></span>Novedades
                   </a>
                 </li>
                 <li class="text-center">
-                  <a href="javascript:void(0)" data-toggle="ajax-modal" data-target="#messages-modal" data-source="{{ _p.web_main }}messages/inbox_tutoring.php">
+                  <a href="javascript:void(0)" data-toggle="ajax-modal" data-target="#messages-modal" data-source="{{ _p.web_main }}tutoring/alumn/message/inbox.php">
                     <span class="badge">{{ count_unread_message }}</span>
                     <span class="fa fa-comment"></span>Mensajes
                   </a>

@@ -5,7 +5,7 @@
  */
 $cidReset = true;
 
-require_once '../inc/global.inc.php';
+require_once '../../../inc/global.inc.php';
 
 api_block_anonymous_users();
 
@@ -63,7 +63,7 @@ $result = Database::query($sql);
         $('.messages-tutoring__item').removeClass('active');
         $sup.addClass('active');
         $.ajax({
-            url: '<?php echo api_get_path(WEB_CODE_PATH).'messages/view_message_tutoring.php'; ?>',
+            url: '<?php echo api_get_path(WEB_CODE_PATH).'tutoring/alumn/message/view.php'; ?>',
             data: { id: $sup.attr('data-message-id') }
         })
             .done(function(view) {
@@ -76,7 +76,7 @@ $result = Database::query($sql);
         var $sup = $(this);
 
         $.ajax({
-            url: '<?php echo api_get_path(WEB_CODE_PATH); ?>messages/inbox.php',
+            url: '<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/message/inbox.php',
             data: { action: 'deleteone', id: $sup.attr('data-message-delete-id') }
         })
             .done(function() {
@@ -89,7 +89,7 @@ $result = Database::query($sql);
         if (!window.confirm('¿Eliminar todos los mensajes?')) return false;
 
         $.ajax({
-            url: '<?php echo api_get_path(WEB_CODE_PATH); ?>messages/inbox.php',
+            url: '<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/message/inbox.php',
             data: {
                 action: 'delete',
                 id: $.map($('[data-message-delete-id]'), function(m) {

@@ -14,7 +14,7 @@ use Chamilo\UserBundle\Entity\User;
 use ChamiloSession as Session;
 
 $cidReset = true;
-require_once '../inc/global.inc.php';
+require_once '../../inc/global.inc.php';
 
 $_SESSION['this_section'] = $this_section;
 
