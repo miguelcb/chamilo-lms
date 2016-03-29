@@ -49,6 +49,20 @@
         </div>
     </div>
 
+    <div class="modal fade" id="subscribe-modal" tabindex="-1" role="dialog" aria-labelledby="subscribe-modal-label" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header x-modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="{{ 'Close' | get_lang }}">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <h4 class="modal-title" id="subscribe-modal-label">Suscribirte a una tutoría</h4>
+            </div>
+            <div class="modal-body" id="subscribe-modal-update"></div>
+          </div>
+        </div>
+    </div>
+
     {# Global modal, load content by AJAX call to href attribute on anchor tag with 'ajax' class #}
     <div class="modal fade" id="global-modal" tabindex="-1" role="dialog" aria-labelledby="global-modal-title" aria-hidden="true">
         <div class="modal-dialog modal-lg">
