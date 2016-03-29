@@ -97,6 +97,13 @@ footer {
   color: #fff;
 }
 #courses-tutoring .carousel-indicators .fa-plus.active { background-color: transparent; }
+.course-tutoring {}
+.course-tutoring__nav a {
+  color: #fff;
+  text-decoration: none;
+}
+.course-tutoring__nav .bg-orange { background-color: #e67e22; }
+.course-tutoring__nav .bg-violet { background-color: #9b59b6; }
 
 #nav-tools { margin: 8px 0; }
 #nav-tools li { display: inline-block; }

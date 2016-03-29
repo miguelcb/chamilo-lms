@@ -39,19 +39,19 @@ $indicators = Database::query($sql);
       <div class="carousel-inner" role="listbox">
         <?php $counter = 0; ?>
         <?php while($course = Database::fetch_assoc($courses)): ?>
-            <div class="item <?php echo $counter == 0 ? 'active' : ''; ++$counter; ?>">
+            <div class="course-tutoring item <?php echo $counter == 0 ? 'active' : ''; ++$counter; ?>">
                 <div class="container">
                     <h2 class="text-center"><?php echo $course['title']; ?></h2>
                     <p><?php echo $course['description']; ?></p>
-                    <ul class="list-unstyled text-center">
+                    <ul class="list-unstyled text-center course-tutoring__nav">
                         <li style="display: inline-block;">
-                            <a href="javascript:void(0)" class="fa fa-newspaper-o fa-icon-size fa-icon-size--medium fa-rounded fa-rounded--lg" style="background-color: #9B59B6; color: #fff; text-decoration: none;"></a>
+                            <a href="javascript:void(0)" class="fa fa-newspaper-o fa-icon-size fa-icon-size--medium fa-rounded fa-rounded--lg bg-violet" data-toggle="tooltip" data-placement="bottom" data-container="body" title="Actividades recientes"></a>
                         </li>
                         <li style="display: inline-block;">
-                            <a href="javascript:void(0)" class="fa fa-cog fa-icon-size fa-icon-size--medium fa-rounded fa-rounded--lg" style="background-color: #E67E22; color: #fff; text-decoration: none;"></a>
+                            <a href="javascript:void(0)" class="fa fa-cog fa-icon-size fa-icon-size--medium fa-rounded fa-rounded--lg bg-orange" data-toggle="tooltip" data-placement="bottom" data-container="body" title="Configuración de alertas"></a>
                         </li>
                         <li style="display: inline-block;">
-                            <a href="javascript:void(0)" class="fa fa-sign-out fa-icon-size fa-icon-size--medium fa-rounded fa-rounded--lg" style="color: #fff; text-decoration: none;"></a>
+                            <a href="javascript:void(0)" class="fa fa-sign-out fa-icon-size fa-icon-size--medium fa-rounded fa-rounded--lg" data-toggle="tooltip" data-placement="bottom" data-container="body" title="Cancelar suscripción"></a>
                         </li>
                     </ul>
                 </div>

@@ -269,11 +269,11 @@ function return_navigation_array()
     $possible_tabs = get_tabs();
 
     // Campus Homepage
-    if (api_get_setting('show_tabs', 'campus_homepage') == 'true') {
-        $navigation[SECTION_CAMPUS] = $possible_tabs[SECTION_CAMPUS];
-    } else {
-        $menu_navigation[SECTION_CAMPUS] = $possible_tabs[SECTION_CAMPUS];
-    }
+    // if (api_get_setting('show_tabs', 'campus_homepage') == 'true') {
+    //     $navigation[SECTION_CAMPUS] = $possible_tabs[SECTION_CAMPUS];
+    // } else {
+    //     $menu_navigation[SECTION_CAMPUS] = $possible_tabs[SECTION_CAMPUS];
+    // }
 
     if (api_get_user_id() && !api_is_anonymous()) {
         // My Courses
