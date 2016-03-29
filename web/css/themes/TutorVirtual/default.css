@@ -12,6 +12,24 @@ footer {
   -ms-background-size: cover;
   background-size: cover;
 }
+.fa-icon-size { font-size: 32px; }
+.fa-icon-size--medium { font-size: 24px; }
+.fa-icon-size--small { font-size: 16px; }
+.fa-rounded {
+  background-color: #e74c3c;
+  width: 48px;
+  height: 48px;
+  line-height: 48px;
+  text-align: center;
+  border-radius: 50%;
+  margin-bottom: 8px;
+  color: #fff;
+}
+.fa-rounded--lg {
+  width: 64px;
+  height: 64px;
+  line-height: 64px;
+}
 
 .x-modal-header {
   background-image: url(images/bg.png);
@@ -67,9 +85,25 @@ footer {
 #courses-tutoring { height: 400px; }
 #courses-tutoring .carousel-inner,
 #courses-tutoring .carousel-inner .item { height: 100%; }
-#courses-tutoring .carousel-control { width: 5%; }
+#courses-tutoring .carousel-control {
+  width: 5%;
+  background: none;
+}
 #courses-tutoring .carousel-control .glyphicon-chevron-left { margin-left: -15px; }
 #courses-tutoring .carousel-control .glyphicon-chevron-right { margin-right: -15px; }
+#courses-tutoring .carousel-indicators .fa-plus {
+  text-indent: 0;
+  border: 0;
+  color: #fff;
+}
+#courses-tutoring .carousel-indicators .fa-plus.active { background-color: transparent; }
+
+#nav-tools { margin: 8px 0; }
+#nav-tools li { display: inline-block; }
+#nav-tools a {
+  color: #fff;
+  text-decoration: none;
+}
 
 #ask {
   position: relative;
@@ -162,14 +196,11 @@ footer {
   font-weight: bold;
 }
 
-.fa-rounded {
-  background-color: #e74c3c;
-  width: 48px;
-  height: 48px;
-  line-height: 48px;
-  text-align: center;
-  border-radius: 50%;
-  margin-bottom: 8px;
-  font-size: 24px;
-  color: #fff;
+#hook-top {
+  position: fixed;
+  bottom: 54px;
+  right: 20px;
+  font-size: 32px;
+  text-decoration: none;
 }
+
