@@ -30,6 +30,28 @@ footer {
   height: 64px;
   line-height: 64px;
 }
+.fa-rounded--turquoise,
+.bg-turquoise { background-color: #1abc9c; }
+.fa-rounded--emerald,
+.bg-emerald { background-color: #2ecc71; }
+.fa-rounded--peter-river,
+.bg-river { background-color: #3498db; }
+.fa-rounded--amethyst,
+.bg-amethyst { background-color: #9b59b6; }
+.fa-rounded--wet-aslphalt,
+.bg-aslphalt { background-color: #34495e; }
+.fa-rounded--sun-flower,
+.bg-flower { background-color: #f1c40f; }
+.fa-rounded--carrot,
+.bg-carrot { background-color: #e67e22; }
+.fa-rounded--alizarin,
+.bg-alizarin { background-color: #e74c3c; }
+.fa-rounded--clouds,
+.bg-clouds { background-color: #ecf0f1; }
+.fa-rounded--concrete,
+.bg-concrete { background-color: #95a5a6; }
+.m0 { margin: 0; }
+.p0 { padding: 0; }
 
 .x-modal-header {
   background-image: url(images/bg.png);

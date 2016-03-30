@@ -112,15 +112,20 @@ while($course = Database::fetch_assoc($courses)) {
 <?php if (count($course_news) > 0): ?>
 <ul class="list-group">
     <?php foreach ($course_news as $c_id => $new): ?>
-    <li class="list-group-item active"><?php echo api_get_course_info_by_id($c_id)['title']; ?></li>
+    <li class="list-group-item active">
+        <h3 class="m0"><?php echo api_get_course_info_by_id($c_id)['title']; ?></h3 class="m0">
+    </li>
     <?php foreach($new as $tool): ?>
     <li class="list-group-item">
-        <h4 class="list-group-item-heading clearfix">
-            <span class="<?php echo $tool['icon']; ?> pull-left"></span>
-            <span class="pull-left">Se ha agregado un nuevo material</span>
-            <div class="pull-right small" style="padding: 0;"><?php echo api_convert_and_format_date($tool['date'], '%b %d') ?>
-        </h4>
-        <p class="list-group-item-text"><?php echo $tool['description']; ?></p>
+        <div class="media">
+            <div class="media-left">
+                <a href="javascript:void(0);"><span class="<?php echo $tool['icon']; ?> fa-icon-size--medium fa-rounded fa-rounded--peter-river pull-left"></span></a>
+            </div>
+            <div class="media-body">
+                <h4 class="media-heading">Se ha agregado un nuevo material <span class="pull-right small"><?php echo api_convert_and_format_date($tool['date'], '%b %d') ?></span></h4>
+                <p><?php echo $tool['description']; ?></p>
+            </div>
+        </div>
     </li>
     <?php endforeach; ?>
     <?php endforeach; ?>
