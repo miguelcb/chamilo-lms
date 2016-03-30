@@ -61,10 +61,7 @@ $courses = Database::query($sql);
         })
             .done(function(view) {
                 $.ajax({ url: '<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/subscribe.php' })
-                    .done(function(view) {
-                        console.log(view);
-                        $('#subscribe-modal-update').html(view);
-                    });
+                    .done(function(view) { window.location.reload(); });
             });
     });
 
@@ -80,10 +77,7 @@ $courses = Database::query($sql);
         })
             .done(function(view) {
                 $.ajax({ url: '<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/subscribe.php' })
-                    .done(function(view) {
-                        console.log(view);
-                        $('#subscribe-modal-update').html(view);
-                    });
+                    .done(function(view) { window.location.reload(); });
             });
     });
 </script>

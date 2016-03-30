@@ -17,7 +17,7 @@ $user_id = api_get_user_id();
 $table_course      = Database::get_main_table(TABLE_MAIN_COURSE);
 $table_course_user = Database::get_main_table(TABLE_MAIN_COURSE_USER);
 
-$sql = "SELECT * FROM $table_course c
+$sql = "SELECT c.* FROM $table_course c
         INNER JOIN $table_course_user cu ON cu.c_id = c.id AND cu.user_id = $user_id
         ORDER BY cu.sort ASC";
 
@@ -45,13 +45,13 @@ $indicators = Database::query($sql);
                     <p><?php echo $course['description']; ?></p>
                     <ul class="list-unstyled text-center course-tutoring__nav">
                         <li style="display: inline-block;">
-                            <a href="javascript:void(0)" class="fa fa-newspaper-o fa-icon-size fa-icon-size--medium fa-rounded fa-rounded--lg bg-violet" data-toggle="tooltip" data-placement="bottom" data-container="body" title="Actividades recientes"></a>
+                            <a href="javascript:void(0)" class="fa fa-newspaper-o fa-icon-size fa-icon-size--medium fa-rounded fa-rounded--lg bg-violet" data-toggle="ajax-modal" data-target="#recent-activities-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/recent_activities.php?cid=<?php echo $course['id']; ?>" data-toggle="tooltip" data-placement="bottom" data-container="body" title="Actividades recientes"></a>
                         </li>
                         <li style="display: inline-block;">
-                            <a href="javascript:void(0)" class="fa fa-cog fa-icon-size fa-icon-size--medium fa-rounded fa-rounded--lg bg-orange" data-toggle="tooltip" data-placement="bottom" data-container="body" title="Configuración de alertas"></a>
+                            <a href="javascript:void(0)" class="fa fa-cog fa-icon-size fa-icon-size--medium fa-rounded fa-rounded--lg bg-orange" data-toggle="ajax-modal" data-target="#alert-settings-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/alert_settings.php?cid=<?php echo $course['id']; ?>" data-toggle="tooltip" data-placement="bottom" data-container="body" title="Configuración de alertas"></a>
                         </li>
                         <li style="display: inline-block;">
-                            <a href="javascript:void(0)" class="fa fa-sign-out fa-icon-size fa-icon-size--medium fa-rounded fa-rounded--lg" data-toggle="tooltip" data-placement="bottom" data-container="body" title="Cancelar suscripción"></a>
+                            <a href="javascript:Course.unsubscribe('<?php echo $course['code']; ?>');" class="fa fa-sign-out fa-icon-size fa-icon-size--medium fa-rounded fa-rounded--lg" data-toggle="tooltip" data-placement="bottom" data-container="body" title="Cancelar suscripción"></a>
                         </li>
                     </ul>
                 </div>
@@ -160,6 +160,28 @@ $indicators = Database::query($sql);
     $.fn.boostrapPopover = $.fn.popover.noConflict();
     $('[data-toggle=tooltip]').boostrapTooltip();
     $('[data-toggle=popover]').boostrapPopover();
+
+    window.Course = (function($, $w) {
+        var _unsubscribe;
+        _unsubscribe = function(courseCode) {
+            if (!$w.confirm("Cancelar suscripción")) return;
+            $.ajax({
+                url: '<?php echo api_get_path(WEB_CODE_PATH); ?>auth/courses.php',
+                data: {
+                    action: 'unsubscribe',
+                    sec_token: '<?php echo Security::get_existing_token(); ?>',
+                    unsubscribe: courseCode
+                }
+            })
+                .done(function(view) {
+                    $.ajax({ url: '<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/subscribe.php' })
+                        .done(function(view) { $w.location.reload(); });
+                });
+        };
+        return {
+            unsubscribe: _unsubscribe
+        };
+    })(jQuery, window);
 </script>
 
 <?php Display::display_footer(); ?>
