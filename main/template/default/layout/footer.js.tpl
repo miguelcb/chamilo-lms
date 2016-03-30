@@ -99,7 +99,7 @@
     // Tool tip (in exercises)
     $('.boot-tooltip').tooltip({ placement: 'right' });
 
-    $('[data-toggle=ajax-modal]').click(function() {
+    $('[data-toggle=ajax-modal], [data-modal=ajax-modal]').click(function() {
       var $sup = $(this);
       $.ajax({ url: $sup.attr('data-source') })
         .done(function(view) {

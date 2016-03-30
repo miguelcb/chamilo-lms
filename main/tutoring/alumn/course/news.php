@@ -13,6 +13,7 @@ $table_course_tool          = Database::get_course_table(TABLE_TOOL_LIST);
 $table_forum_post           = Database::get_course_table(TABLE_FORUM_POST);
 $table_calendar_event       = Database::get_course_table(TABLE_AGENDA);
 $table_document             = Database::get_course_table(TABLE_DOCUMENT);
+$table_track_lastaccess     = Database::get_main_table(TABLE_STATISTIC_TRACK_E_LASTACCESS);
 // TEMPORAL SOLUTION WHEN MIGRATE TO NEW TOOLS CHANGES THE TOOLS NAMES
 require_once '../../constants.inc.php';
 $TOOL_REVIEW_PRACTICE = TOOL_REVIEW_PRACTICE;
@@ -37,10 +38,10 @@ while($course = Database::fetch_assoc($courses)) {
             FROM $table_course_item_property cip
             INNER JOIN $table_course_tool ct ON ct.c_id = cip.c_id AND ct.visibility = 1
             WHERE cip.tool IN ('$TOOL_REVIEW_PRACTICE', '$TOOL_ASK', '$TOOL_APPOINMENT') AND
-                  cip.lastedit_date > (SELECT tca.logout_course_date FROM track_e_course_access tca
-                                      WHERE tca.c_id = cip.c_id AND user_id = $user_id
-                                      ORDER BY logout_course_date DESC
-                                      LIMIT 1) AND
+                  cip.lastedit_date > (SELECT tla.access_date FROM $table_track_lastaccess tla
+                                       WHERE tla.c_id = cip.c_id AND tla.access_user_id = $user_id
+                                       ORDER BY tla.access_date DESC
+                                       LIMIT 1) AND
                   cip.visibility = 1 AND
                   cip.c_id = $c_id
             GROUP BY cip.tool
@@ -111,15 +112,20 @@ while($course = Database::fetch_assoc($courses)) {
 <?php if (count($course_news) > 0): ?>
 <ul class="list-group">
     <?php foreach ($course_news as $c_id => $new): ?>
-    <li class="list-group-item active"><?php echo api_get_course_info_by_id($c_id)['title']; ?></li>
+    <li class="list-group-item active">
+        <h3 class="m0"><?php echo api_get_course_info_by_id($c_id)['title']; ?></h3 class="m0">
+    </li>
     <?php foreach($new as $tool): ?>
     <li class="list-group-item">
-        <h4 class="list-group-item-heading clearfix">
-            <span class="<?php echo $tool['icon']; ?> pull-left"></span>
-            <span class="pull-left">Se ha agregado un nuevo material</span>
-            <div class="pull-right small" style="padding: 0;"><?php echo api_convert_and_format_date($tool['date'], '%b %d') ?>
-        </h4>
-        <p class="list-group-item-text"><?php echo $tool['description']; ?></p><?
+        <div class="media">
+            <div class="media-left">
+                <a href="javascript:void(0);"><span class="<?php echo $tool['icon']; ?> fa-icon-size--medium fa-rounded fa-rounded--peter-river pull-left"></span></a>
+            </div>
+            <div class="media-body">
+                <h4 class="media-heading">Se ha agregado un nuevo material <span class="pull-right small"><?php echo api_convert_and_format_date($tool['date'], '%b %d') ?></span></h4>
+                <p><?php echo $tool['description']; ?></p>
+            </div>
+        </div>
     </li>
     <?php endforeach; ?>
     <?php endforeach; ?>
