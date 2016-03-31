@@ -152,212 +152,253 @@ $indicators = Database::query($sql);
             <div class="text-uppercase">sacar cita</div>
         </header>
         <section class="container">
-            <ul class="tutors-appointments list-unstyled text-center" role="tablist">
-                <li role="presentation" class="active">
-                    <a href="#home" aria-controls="home" role="tab" data-toggle="tab">
-                        <img src="https://placeholdit.imgix.net/~text?txtsize=14&txt=72%C3%9772&w=72&h=72" alt="" class="img-circle" data-toggle="tooltip" data-container="body" title="John Doe">
-                    </a>
-                </li>
-                <li role="presentation">
-                    <a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">
-                        <img src="https://placeholdit.imgix.net/~text?txtsize=14&txt=72%C3%9772&w=72&h=72" alt="" class="img-circle" data-toggle="tooltip" data-container="body" title="Jane Doe">
-                    </a>
-                </li>
-                <li role="presentation">
-                    <a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">
-                        <img src="https://placeholdit.imgix.net/~text?txtsize=14&txt=72%C3%9772&w=72&h=72" alt="" class="img-circle" data-toggle="tooltip" data-container="body" title="Batman">
-                    </a>
-                </li>
-                <li role="presentation">
-                    <a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">
-                        <img src="https://placeholdit.imgix.net/~text?txtsize=14&txt=72%C3%9772&w=72&h=72" alt="" class="img-circle" data-toggle="tooltip" data-container="body" title="Robin">
-                    </a>
-                </li>
-            </ul>
+            <div class="row" style="padding: 32px 0;">
+                <div class="col-md-12">
+                    <ul class="tutors-appointments list-unstyled text-center" role="tablist">
+                        <li role="presentation" class="active">
+                            <a href="#home" aria-controls="home" role="tab" data-toggle="tab">
+                                <img src="https://placeholdit.imgix.net/~text?txtsize=14&txt=72%C3%9772&w=72&h=72" alt="" class="img-circle" data-toggle="tooltip" data-container="body" title="John Doe">
+                            </a>
+                        </li>
+                        <li role="presentation">
+                            <a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">
+                                <img src="https://placeholdit.imgix.net/~text?txtsize=14&txt=72%C3%9772&w=72&h=72" alt="" class="img-circle" data-toggle="tooltip" data-container="body" title="Jane Doe">
+                            </a>
+                        </li>
+                        <li role="presentation">
+                            <a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">
+                                <img src="https://placeholdit.imgix.net/~text?txtsize=14&txt=72%C3%9772&w=72&h=72" alt="" class="img-circle" data-toggle="tooltip" data-container="body" title="Batman">
+                            </a>
+                        </li>
+                        <li role="presentation">
+                            <a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">
+                                <img src="https://placeholdit.imgix.net/~text?txtsize=14&txt=72%C3%9772&w=72&h=72" alt="" class="img-circle" data-toggle="tooltip" data-container="body" title="Robin">
+                            </a>
+                        </li>
+                    </ul>
 
-            <div class="tab-content">
-                <div role="tabpanel" class="tab-pane fade active in" id="home">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <h3>Citas el: <span style="font-weight: normal;">Lunes, 1 de Enero</span></h3>
-                            <table class="table table-condensed table-striped table-hover">
-                                <tbody>
-                                    <tr>
-                                        <td><span class="fa fa-users" role="button" data-toggle="tooltip" data-container="body" data-placement="right" title="Presencial"></span> A las 13:45</td>
-                                        <td width="37" class="text-center">
-                                            <span class="fa fa-calendar-times-o" role="button" data-toggle="popover" data-trigger="hover" data-container="body" data-placement="left" title="¿Desea eliminar cita?" data-content="Para eliminar cita solo tiene que dar click en este boton"></span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><span class="fa fa-comment" role="button" data-toggle="tooltip" data-container="body" data-placement="right" title="Virtual"></span> A las 13:45</td>
-                                        <td width="37" class="text-center">
-                                            <span class="fa fa-calendar-times-o" role="button" data-toggle="popover" data-trigger="hover" data-container="body" data-placement="left" title="¿Desea eliminar cita?" data-content="Para eliminar cita solo tiene que dar click en este boton"></span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><span class="fa fa-comment" role="button" data-toggle="tooltip" data-container="body" data-placement="right" title="Virtual"></span> A las 14:30</td>
-                                        <td width="37" class="text-center">
-                                            <span class="fa fa-calendar-times-o" role="button" data-toggle="popover" data-trigger="hover" data-container="body" data-placement="left" title="¿Desea eliminar cita?" data-content="Para eliminar cita solo tiene que dar click en este boton"></span>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="text-center">
-                                <div class="datepicker-week">
-                                    <div class="datepicker-week__header clearfix">
-                                        <div class="pull-left" role="button">
-                                            <span class="fa fa-caret-left"></span>
-                                        </div>
-                                        <div class="datepicker-week__header__title text-uppercase">enero</div>
-                                        <div class="pull-right" role="button">
-                                            <span class="fa fa-caret-right"></span>
-                                        </div>
-                                    </div>
-                                    <table class="datepicker-week__body" role="grid" aria-labelledby="month">
-                                        <thead>
-                                            <tr id="weekdays">
-                                                <th id="Sunday" class="text-center" scope="col">
-                                                    <abbr title="Domingo">D</abbr>
-                                                </th>
-                                                <th id="Monday" class="text-center" scope="col">
-                                                    <abbr title="Lunes">L</abbr>
-                                                </th>
-                                                <th id="Tuesday" class="text-center" scope="col">
-                                                    <abbr title="Martes">M</abbr>
-                                                </th>
-                                                <th id="Wednesday" class="text-center" scope="col">
-                                                    <abbr title="Miercoles">X</abbr>
-                                                </th>
-                                                <th id="Thursday" class="text-center" scope="col">
-                                                    <abbr title="Jueves">J</abbr>
-                                                </th>
-                                                <th id="Friday" class="text-center" scope="col">
-                                                    <abbr title="Viernes">V</abbr>
-                                                </th>
-                                                <th id="Saturday" class="text-center" scope="col">
-                                                    <abbr title="Sabado">S</abbr>
-                                                </th>
-                                            </tr>
-                                        </thead>
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane fade active in" id="home">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <h3>Citas el: <span style="font-weight: normal;">Lunes, 1 de Enero</span></h3>
+                                    <table class="table table-condensed table-striped table-hover">
                                         <tbody>
                                             <tr>
-                                                <td class="text-mute" headers="Sunday" role="gridcell" aria-disabled="true">
-                                                    <span class="slds-day"></span>
-                                                </td>
-                                                <td headers="Monday" role="gridcell" aria-selected="false">
-                                                    <span class="slds-day">1</span>
-                                                </td>
-                                                <td headers="Tuesday" role="gridcell" aria-selected="false">
-                                                    <span class="slds-day">2</span>
-                                                </td>
-                                                <td headers="Wednesday" role="gridcell" aria-selected="false">
-                                                    <span class="slds-day">3</span>
-                                                </td>
-                                                <td headers="Thursday" role="gridcell" aria-selected="false">
-                                                    <span class="slds-day">4</span>
-                                                </td>
-                                                <td headers="Friday" role="gridcell" aria-selected="false">
-                                                    <span class="slds-day">5</span>
-                                                </td>
-                                                <td headers="Saturday" role="gridcell" aria-selected="false">
-                                                    <span class="slds-day">6</span>
+                                                <td><span class="fa fa-users" role="button" data-toggle="tooltip" data-container="body" data-placement="right" title="Presencial"></span> A las 13:45</td>
+                                                <td width="37" class="text-center">
+                                                    <span class="fa fa-calendar-times-o" role="button" data-toggle="popover" data-trigger="hover" data-container="body" data-placement="left" title="¿Desea eliminar cita?" data-content="Para eliminar cita solo tiene que dar click en este boton"></span>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td colspan="7"><hr></td>
-                                            </tr>
-                                            <tr>
-                                                <td role="button" data-toggle="ajax-modal" data-target="#appointment-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/register_appointment.php">
-                                                    <span>13:45</span>
-                                                </td>
-                                                <td class="active" role="button">
-                                                    <span>13:45</span>
-                                                </td>
-                                                <td role="button" data-toggle="ajax-modal" data-target="#appointment-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/register_appointment.php">
-                                                    <span>13:45</span>
-                                                </td>
-                                                <td role="button" data-toggle="ajax-modal" data-target="#appointment-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/register_appointment.php">
-                                                    <span>13:45</span>
-                                                </td>
-                                                <td role="button" data-toggle="ajax-modal" data-target="#appointment-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/register_appointment.php">
-                                                    <span>13:45</span>
-                                                </td>
-                                                <td role="button" data-toggle="ajax-modal" data-target="#appointment-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/register_appointment.php">
-                                                    <span>13:45</span>
-                                                </td>
-                                                <td role="button" data-toggle="ajax-modal" data-target="#appointment-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/register_appointment.php">
-                                                    <span>13:45</span>
+                                                <td><span class="fa fa-comment" role="button" data-toggle="tooltip" data-container="body" data-placement="right" title="Virtual"></span> A las 13:45</td>
+                                                <td width="37" class="text-center">
+                                                    <span class="fa fa-calendar-times-o" role="button" data-toggle="popover" data-trigger="hover" data-container="body" data-placement="left" title="¿Desea eliminar cita?" data-content="Para eliminar cita solo tiene que dar click en este boton"></span>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td role="button" data-toggle="ajax-modal" data-target="#appointment-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/register_appointment.php">
-                                                    <span>14:30</span>
+                                                <td><span class="fa fa-comment" role="button" data-toggle="tooltip" data-container="body" data-placement="right" title="Virtual"></span> A las 14:30</td>
+                                                <td width="37" class="text-center">
+                                                    <span class="fa fa-calendar-times-o" role="button" data-toggle="popover" data-trigger="hover" data-container="body" data-placement="left" title="¿Desea eliminar cita?" data-content="Para eliminar cita solo tiene que dar click en este boton"></span>
                                                 </td>
-                                                <td class="active" role="button">
-                                                    <span>14:30</span>
-                                                </td>
-                                                <td role="button" data-toggle="ajax-modal" data-target="#appointment-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/register_appointment.php">
-                                                    <span>14:30</span>
-                                                </td>
-                                                <td role="button" data-toggle="ajax-modal" data-target="#appointment-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/register_appointment.php">
-                                                    <span>14:30</span>
-                                                </td>
-                                                <td role="button" data-toggle="ajax-modal" data-target="#appointment-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/register_appointment.php">
-                                                    <span>14:30</span>
-                                                </td>
-                                                <td role="button" data-toggle="ajax-modal" data-target="#appointment-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/register_appointment.php">
-                                                    <span>14:30</span>
-                                                </td>
-                                                <td role="button" data-toggle="ajax-modal" data-target="#appointment-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/register_appointment.php">
-                                                    <span>14:30</span>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="text-center">
+                                        <div class="datepicker-week">
+                                            <div class="datepicker-week__header clearfix">
+                                                <div class="pull-left" role="button">
+                                                    <span class="fa fa-caret-left"></span>
+                                                </div>
+                                                <div class="datepicker-week__header__title text-uppercase">enero</div>
+                                                <div class="pull-right" role="button">
+                                                    <span class="fa fa-caret-right"></span>
+                                                </div>
+                                            </div>
+                                            <table class="datepicker-week__body" role="grid" aria-labelledby="month">
+                                                <thead>
+                                                    <tr id="weekdays">
+                                                        <th id="Sunday" class="text-center" scope="col">
+                                                            <abbr title="Domingo">D</abbr>
+                                                        </th>
+                                                        <th id="Monday" class="text-center" scope="col">
+                                                            <abbr title="Lunes">L</abbr>
+                                                        </th>
+                                                        <th id="Tuesday" class="text-center" scope="col">
+                                                            <abbr title="Martes">M</abbr>
+                                                        </th>
+                                                        <th id="Wednesday" class="text-center" scope="col">
+                                                            <abbr title="Miercoles">X</abbr>
+                                                        </th>
+                                                        <th id="Thursday" class="text-center" scope="col">
+                                                            <abbr title="Jueves">J</abbr>
+                                                        </th>
+                                                        <th id="Friday" class="text-center" scope="col">
+                                                            <abbr title="Viernes">V</abbr>
+                                                        </th>
+                                                        <th id="Saturday" class="text-center" scope="col">
+                                                            <abbr title="Sabado">S</abbr>
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="text-mute" headers="Sunday" role="gridcell" aria-disabled="true">
+                                                            <span class="slds-day"></span>
+                                                        </td>
+                                                        <td headers="Monday" role="gridcell" aria-selected="false">
+                                                            <span class="slds-day">1</span>
+                                                        </td>
+                                                        <td headers="Tuesday" role="gridcell" aria-selected="false">
+                                                            <span class="slds-day">2</span>
+                                                        </td>
+                                                        <td headers="Wednesday" role="gridcell" aria-selected="false">
+                                                            <span class="slds-day">3</span>
+                                                        </td>
+                                                        <td headers="Thursday" role="gridcell" aria-selected="false">
+                                                            <span class="slds-day">4</span>
+                                                        </td>
+                                                        <td headers="Friday" role="gridcell" aria-selected="false">
+                                                            <span class="slds-day">5</span>
+                                                        </td>
+                                                        <td headers="Saturday" role="gridcell" aria-selected="false">
+                                                            <span class="slds-day">6</span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="7"><hr></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td role="button" data-toggle="ajax-modal" data-target="#appointment-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/register_appointment.php">
+                                                            <span>13:45</span>
+                                                        </td>
+                                                        <td class="active" role="button">
+                                                            <span>13:45</span>
+                                                        </td>
+                                                        <td role="button" data-toggle="ajax-modal" data-target="#appointment-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/register_appointment.php">
+                                                            <span>13:45</span>
+                                                        </td>
+                                                        <td role="button" data-toggle="ajax-modal" data-target="#appointment-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/register_appointment.php">
+                                                            <span>13:45</span>
+                                                        </td>
+                                                        <td role="button" data-toggle="ajax-modal" data-target="#appointment-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/register_appointment.php">
+                                                            <span>13:45</span>
+                                                        </td>
+                                                        <td role="button" data-toggle="ajax-modal" data-target="#appointment-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/register_appointment.php">
+                                                            <span>13:45</span>
+                                                        </td>
+                                                        <td role="button" data-toggle="ajax-modal" data-target="#appointment-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/register_appointment.php">
+                                                            <span>13:45</span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td role="button" data-toggle="ajax-modal" data-target="#appointment-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/register_appointment.php">
+                                                            <span>14:30</span>
+                                                        </td>
+                                                        <td class="active" role="button">
+                                                            <span>14:30</span>
+                                                        </td>
+                                                        <td role="button" data-toggle="ajax-modal" data-target="#appointment-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/register_appointment.php">
+                                                            <span>14:30</span>
+                                                        </td>
+                                                        <td role="button" data-toggle="ajax-modal" data-target="#appointment-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/register_appointment.php">
+                                                            <span>14:30</span>
+                                                        </td>
+                                                        <td role="button" data-toggle="ajax-modal" data-target="#appointment-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/register_appointment.php">
+                                                            <span>14:30</span>
+                                                        </td>
+                                                        <td role="button" data-toggle="ajax-modal" data-target="#appointment-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/register_appointment.php">
+                                                            <span>14:30</span>
+                                                        </td>
+                                                        <td role="button" data-toggle="ajax-modal" data-target="#appointment-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/register_appointment.php">
+                                                            <span>14:30</span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td role="button" data-toggle="ajax-modal" data-target="#appointment-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/register_appointment.php">
+                                                            <span>15:15</span>
+                                                        </td>
+                                                        <td role="button" data-toggle="ajax-modal" data-target="#appointment-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/register_appointment.php">
+                                                            <span>15:15</span>
+                                                        </td>
+                                                        <td role="button" data-toggle="ajax-modal" data-target="#appointment-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/register_appointment.php">
+                                                            <span>15:15</span>
+                                                        </td>
+                                                        <td role="button" data-toggle="ajax-modal" data-target="#appointment-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/register_appointment.php">
+                                                            <span>15:15</span>
+                                                        </td>
+                                                        <td role="button" data-toggle="ajax-modal" data-target="#appointment-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/register_appointment.php">
+                                                            <span>15:15</span>
+                                                        </td>
+                                                        <td role="button" data-toggle="ajax-modal" data-target="#appointment-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/register_appointment.php">
+                                                            <span>15:15</span>
+                                                        </td>
+                                                        <td role="button" data-toggle="ajax-modal" data-target="#appointment-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/register_appointment.php">
+                                                            <span>15:15</span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td role="button" data-toggle="ajax-modal" data-target="#appointment-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/register_appointment.php">
+                                                            <span>16:00</span>
+                                                        </td>
+                                                        <td role="button" data-toggle="ajax-modal" data-target="#appointment-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/register_appointment.php">
+                                                            <span>16:00</span>
+                                                        </td>
+                                                        <td class="active" role="button">
+                                                            <span>16:00</span>
+                                                        </td>
+                                                        <td role="button" data-toggle="ajax-modal" data-target="#appointment-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/register_appointment.php">
+                                                            <span>16:00</span>
+                                                        </td>
+                                                        <td role="button" data-toggle="ajax-modal" data-target="#appointment-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/register_appointment.php">
+                                                            <span>16:00</span>
+                                                        </td>
+                                                        <td role="button" data-toggle="ajax-modal" data-target="#appointment-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/register_appointment.php">
+                                                            <span>16:00</span>
+                                                        </td>
+                                                        <td role="button" data-toggle="ajax-modal" data-target="#appointment-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/register_appointment.php">
+                                                            <span>16:00</span>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <h3>Citas con el tutor: <span>John Doe</span></h3>
+                                    <table class="table table-condensed table-striped table-hover">
+                                        <tbody>
+                                            <tr>
+                                                <td><span class="fa fa-users" role="button" data-toggle="tooltip" data-container="body" data-placement="right" title="Presencial"></span> A las 13:45</td>
+                                                <td width="37" class="text-center">
+                                                    <span class="fa fa-calendar-times-o" role="button" data-toggle="popover" data-trigger="hover" data-container="body" data-placement="left" title="¿Desea eliminar cita?" data-content="Para eliminar cita solo tiene que dar click en este boton"></span>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td role="button" data-toggle="ajax-modal" data-target="#appointment-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/register_appointment.php">
-                                                    <span>15:15</span>
-                                                </td>
-                                                <td role="button" data-toggle="ajax-modal" data-target="#appointment-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/register_appointment.php">
-                                                    <span>15:15</span>
-                                                </td>
-                                                <td role="button" data-toggle="ajax-modal" data-target="#appointment-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/register_appointment.php">
-                                                    <span>15:15</span>
-                                                </td>
-                                                <td role="button" data-toggle="ajax-modal" data-target="#appointment-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/register_appointment.php">
-                                                    <span>15:15</span>
-                                                </td>
-                                                <td role="button" data-toggle="ajax-modal" data-target="#appointment-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/register_appointment.php">
-                                                    <span>15:15</span>
-                                                </td>
-                                                <td role="button" data-toggle="ajax-modal" data-target="#appointment-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/register_appointment.php">
-                                                    <span>15:15</span>
-                                                </td>
-                                                <td role="button" data-toggle="ajax-modal" data-target="#appointment-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/register_appointment.php">
-                                                    <span>15:15</span>
+                                                <td><span class="fa fa-comment" role="button" data-toggle="tooltip" data-container="body" data-placement="right" title="Virtual"></span> A las 13:45</td>
+                                                <td width="37" class="text-center">
+                                                    <span class="fa fa-calendar-times-o" role="button" data-toggle="popover" data-trigger="hover" data-container="body" data-placement="left" title="¿Desea eliminar cita?" data-content="Para eliminar cita solo tiene que dar click en este boton"></span>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td role="button" data-toggle="ajax-modal" data-target="#appointment-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/register_appointment.php">
-                                                    <span>16:00</span>
+                                                <td><span class="fa fa-comment" role="button" data-toggle="tooltip" data-container="body" data-placement="right" title="Virtual"></span> A las 14:30</td>
+                                                <td width="37" class="text-center">
+                                                    <span class="fa fa-calendar-times-o" role="button" data-toggle="popover" data-trigger="hover" data-container="body" data-placement="left" title="¿Desea eliminar cita?" data-content="Para eliminar cita solo tiene que dar click en este boton"></span>
                                                 </td>
-                                                <td role="button" data-toggle="ajax-modal" data-target="#appointment-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/register_appointment.php">
-                                                    <span>16:00</span>
+                                            </tr>
+                                            <tr>
+                                                <td><span class="fa fa-users" role="button" data-toggle="tooltip" data-container="body" data-placement="right" title="Presencial"></span> A las 16:00</td>
+                                                <td width="37" class="text-center">
+                                                    <span class="fa fa-calendar-times-o" role="button" data-toggle="popover" data-trigger="hover" data-container="body" data-placement="left" title="¿Desea eliminar cita?" data-content="Para eliminar cita solo tiene que dar click en este boton"></span>
                                                 </td>
-                                                <td class="active" role="button">
-                                                    <span>16:00</span>
-                                                </td>
-                                                <td role="button" data-toggle="ajax-modal" data-target="#appointment-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/register_appointment.php">
-                                                    <span>16:00</span>
-                                                </td>
-                                                <td role="button" data-toggle="ajax-modal" data-target="#appointment-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/register_appointment.php">
-                                                    <span>16:00</span>
-                                                </td>
-                                                <td role="button" data-toggle="ajax-modal" data-target="#appointment-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/register_appointment.php">
-                                                    <span>16:00</span>
-                                                </td>
-                                                <td role="button" data-toggle="ajax-modal" data-target="#appointment-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/register_appointment.php">
-                                                    <span>16:00</span>
+                                            </tr>
+                                            <tr>
+                                                <td><span class="fa fa-comment" role="button" data-toggle="tooltip" data-container="body" data-placement="right" title="Virtual"></span> A las 16:00</td>
+                                                <td width="37" class="text-center">
+                                                    <span class="fa fa-calendar-times-o" role="button" data-toggle="popover" data-trigger="hover" data-container="body" data-placement="left" title="¿Desea eliminar cita?" data-content="Para eliminar cita solo tiene que dar click en este boton"></span>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -365,550 +406,513 @@ $indicators = Database::query($sql);
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <h3>Citas con el tutor: <span>John Doe</span></h3>
-                            <table class="table table-condensed table-striped table-hover">
-                                <tbody>
-                                    <tr>
-                                        <td><span class="fa fa-users" role="button" data-toggle="tooltip" data-container="body" data-placement="right" title="Presencial"></span> A las 13:45</td>
-                                        <td width="37" class="text-center">
-                                            <span class="fa fa-calendar-times-o" role="button" data-toggle="popover" data-trigger="hover" data-container="body" data-placement="left" title="¿Desea eliminar cita?" data-content="Para eliminar cita solo tiene que dar click en este boton"></span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><span class="fa fa-comment" role="button" data-toggle="tooltip" data-container="body" data-placement="right" title="Virtual"></span> A las 13:45</td>
-                                        <td width="37" class="text-center">
-                                            <span class="fa fa-calendar-times-o" role="button" data-toggle="popover" data-trigger="hover" data-container="body" data-placement="left" title="¿Desea eliminar cita?" data-content="Para eliminar cita solo tiene que dar click en este boton"></span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><span class="fa fa-comment" role="button" data-toggle="tooltip" data-container="body" data-placement="right" title="Virtual"></span> A las 14:30</td>
-                                        <td width="37" class="text-center">
-                                            <span class="fa fa-calendar-times-o" role="button" data-toggle="popover" data-trigger="hover" data-container="body" data-placement="left" title="¿Desea eliminar cita?" data-content="Para eliminar cita solo tiene que dar click en este boton"></span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><span class="fa fa-users" role="button" data-toggle="tooltip" data-container="body" data-placement="right" title="Presencial"></span> A las 16:00</td>
-                                        <td width="37" class="text-center">
-                                            <span class="fa fa-calendar-times-o" role="button" data-toggle="popover" data-trigger="hover" data-container="body" data-placement="left" title="¿Desea eliminar cita?" data-content="Para eliminar cita solo tiene que dar click en este boton"></span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><span class="fa fa-comment" role="button" data-toggle="tooltip" data-container="body" data-placement="right" title="Virtual"></span> A las 16:00</td>
-                                        <td width="37" class="text-center">
-                                            <span class="fa fa-calendar-times-o" role="button" data-toggle="popover" data-trigger="hover" data-container="body" data-placement="left" title="¿Desea eliminar cita?" data-content="Para eliminar cita solo tiene que dar click en este boton"></span>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <div role="tabpanel" class="tab-pane fade" id="profile">
-                    <div class="row">
-                        <div class="col-md-4">
-                        </div>
-                        <div class="col-md-4">
-                            <div class="text-center">
-                                <div class="datepicker-week">
-                                    <div class="datepicker-week__header clearfix">
-                                        <div class="pull-left" role="button">
-                                            <span class="fa fa-caret-left"></span>
-                                        </div>
-                                        <div class="datepicker-week__header__title text-uppercase">febrero</div>
-                                        <div class="pull-right" role="button">
-                                            <span class="fa fa-caret-right"></span>
+                        <div role="tabpanel" class="tab-pane fade" id="profile">
+                            <div class="row">
+                                <div class="col-md-4">
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="text-center">
+                                        <div class="datepicker-week">
+                                            <div class="datepicker-week__header clearfix">
+                                                <div class="pull-left" role="button">
+                                                    <span class="fa fa-caret-left"></span>
+                                                </div>
+                                                <div class="datepicker-week__header__title text-uppercase">febrero</div>
+                                                <div class="pull-right" role="button">
+                                                    <span class="fa fa-caret-right"></span>
+                                                </div>
+                                            </div>
+                                            <table class="datepicker-week__body" role="grid" aria-labelledby="month">
+                                                <thead>
+                                                    <tr id="weekdays">
+                                                        <th id="Sunday" class="text-center" scope="col">
+                                                            <abbr title="Domingo">D</abbr>
+                                                        </th>
+                                                        <th id="Monday" class="text-center" scope="col">
+                                                            <abbr title="Lunes">L</abbr>
+                                                        </th>
+                                                        <th id="Tuesday" class="text-center" scope="col">
+                                                            <abbr title="Martes">M</abbr>
+                                                        </th>
+                                                        <th id="Wednesday" class="text-center" scope="col">
+                                                            <abbr title="Miercoles">X</abbr>
+                                                        </th>
+                                                        <th id="Thursday" class="text-center" scope="col">
+                                                            <abbr title="Jueves">J</abbr>
+                                                        </th>
+                                                        <th id="Friday" class="text-center" scope="col">
+                                                            <abbr title="Viernes">V</abbr>
+                                                        </th>
+                                                        <th id="Saturday" class="text-center" scope="col">
+                                                            <abbr title="Sabado">S</abbr>
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="text-mute" headers="Sunday" role="gridcell" aria-disabled="true">
+                                                            <span class="slds-day"></span>
+                                                        </td>
+                                                        <td headers="Monday" role="gridcell" aria-selected="false">
+                                                            <span class="slds-day">1</span>
+                                                        </td>
+                                                        <td headers="Tuesday" role="gridcell" aria-selected="false">
+                                                            <span class="slds-day">2</span>
+                                                        </td>
+                                                        <td headers="Wednesday" role="gridcell" aria-selected="false">
+                                                            <span class="slds-day">3</span>
+                                                        </td>
+                                                        <td headers="Thursday" role="gridcell" aria-selected="false">
+                                                            <span class="slds-day">4</span>
+                                                        </td>
+                                                        <td headers="Friday" role="gridcell" aria-selected="false">
+                                                            <span class="slds-day">5</span>
+                                                        </td>
+                                                        <td headers="Saturday" role="gridcell" aria-selected="false">
+                                                            <span class="slds-day">6</span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="7"><hr></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td role="button">
+                                                            <span>13:45</span>
+                                                        </td>
+                                                        <td role="button">
+                                                            <span>13:45</span>
+                                                        </td>
+                                                        <td role="button">
+                                                            <span>13:45</span>
+                                                        </td>
+                                                        <td role="button">
+                                                            <span>13:45</span>
+                                                        </td>
+                                                        <td role="button">
+                                                            <span>13:45</span>
+                                                        </td>
+                                                        <td role="button">
+                                                            <span>13:45</span>
+                                                        </td>
+                                                        <td role="button">
+                                                            <span>13:45</span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td role="button">
+                                                            <span>14:30</span>
+                                                        </td>
+                                                        <td role="button">
+                                                            <span>14:30</span>
+                                                        </td>
+                                                        <td role="button">
+                                                            <span>14:30</span>
+                                                        </td>
+                                                        <td role="button">
+                                                            <span>14:30</span>
+                                                        </td>
+                                                        <td role="button">
+                                                            <span>14:30</span>
+                                                        </td>
+                                                        <td role="button">
+                                                            <span>14:30</span>
+                                                        </td>
+                                                        <td role="button">
+                                                            <span>14:30</span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td role="button">
+                                                            <span>15:15</span>
+                                                        </td>
+                                                        <td role="button">
+                                                            <span>15:15</span>
+                                                        </td>
+                                                        <td role="button">
+                                                            <span>15:15</span>
+                                                        </td>
+                                                        <td role="button">
+                                                            <span>15:15</span>
+                                                        </td>
+                                                        <td role="button">
+                                                            <span>15:15</span>
+                                                        </td>
+                                                        <td role="button">
+                                                            <span>15:15</span>
+                                                        </td>
+                                                        <td role="button">
+                                                            <span>15:15</span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td role="button">
+                                                            <span>16:00</span>
+                                                        </td>
+                                                        <td role="button">
+                                                            <span>16:00</span>
+                                                        </td>
+                                                        <td role="button">
+                                                            <span>16:00</span>
+                                                        </td>
+                                                        <td role="button">
+                                                            <span>16:00</span>
+                                                        </td>
+                                                        <td role="button">
+                                                            <span>16:00</span>
+                                                        </td>
+                                                        <td role="button">
+                                                            <span>16:00</span>
+                                                        </td>
+                                                        <td role="button">
+                                                            <span>16:00</span>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
-                                    <table class="datepicker-week__body" role="grid" aria-labelledby="month">
-                                        <thead>
-                                            <tr id="weekdays">
-                                                <th id="Sunday" class="text-center" scope="col">
-                                                    <abbr title="Domingo">D</abbr>
-                                                </th>
-                                                <th id="Monday" class="text-center" scope="col">
-                                                    <abbr title="Lunes">L</abbr>
-                                                </th>
-                                                <th id="Tuesday" class="text-center" scope="col">
-                                                    <abbr title="Martes">M</abbr>
-                                                </th>
-                                                <th id="Wednesday" class="text-center" scope="col">
-                                                    <abbr title="Miercoles">X</abbr>
-                                                </th>
-                                                <th id="Thursday" class="text-center" scope="col">
-                                                    <abbr title="Jueves">J</abbr>
-                                                </th>
-                                                <th id="Friday" class="text-center" scope="col">
-                                                    <abbr title="Viernes">V</abbr>
-                                                </th>
-                                                <th id="Saturday" class="text-center" scope="col">
-                                                    <abbr title="Sabado">S</abbr>
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td class="text-mute" headers="Sunday" role="gridcell" aria-disabled="true">
-                                                    <span class="slds-day"></span>
-                                                </td>
-                                                <td headers="Monday" role="gridcell" aria-selected="false">
-                                                    <span class="slds-day">1</span>
-                                                </td>
-                                                <td headers="Tuesday" role="gridcell" aria-selected="false">
-                                                    <span class="slds-day">2</span>
-                                                </td>
-                                                <td headers="Wednesday" role="gridcell" aria-selected="false">
-                                                    <span class="slds-day">3</span>
-                                                </td>
-                                                <td headers="Thursday" role="gridcell" aria-selected="false">
-                                                    <span class="slds-day">4</span>
-                                                </td>
-                                                <td headers="Friday" role="gridcell" aria-selected="false">
-                                                    <span class="slds-day">5</span>
-                                                </td>
-                                                <td headers="Saturday" role="gridcell" aria-selected="false">
-                                                    <span class="slds-day">6</span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td colspan="7"><hr></td>
-                                            </tr>
-                                            <tr>
-                                                <td role="button">
-                                                    <span>13:45</span>
-                                                </td>
-                                                <td role="button">
-                                                    <span>13:45</span>
-                                                </td>
-                                                <td role="button">
-                                                    <span>13:45</span>
-                                                </td>
-                                                <td role="button">
-                                                    <span>13:45</span>
-                                                </td>
-                                                <td role="button">
-                                                    <span>13:45</span>
-                                                </td>
-                                                <td role="button">
-                                                    <span>13:45</span>
-                                                </td>
-                                                <td role="button">
-                                                    <span>13:45</span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td role="button">
-                                                    <span>14:30</span>
-                                                </td>
-                                                <td role="button">
-                                                    <span>14:30</span>
-                                                </td>
-                                                <td role="button">
-                                                    <span>14:30</span>
-                                                </td>
-                                                <td role="button">
-                                                    <span>14:30</span>
-                                                </td>
-                                                <td role="button">
-                                                    <span>14:30</span>
-                                                </td>
-                                                <td role="button">
-                                                    <span>14:30</span>
-                                                </td>
-                                                <td role="button">
-                                                    <span>14:30</span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td role="button">
-                                                    <span>15:15</span>
-                                                </td>
-                                                <td role="button">
-                                                    <span>15:15</span>
-                                                </td>
-                                                <td role="button">
-                                                    <span>15:15</span>
-                                                </td>
-                                                <td role="button">
-                                                    <span>15:15</span>
-                                                </td>
-                                                <td role="button">
-                                                    <span>15:15</span>
-                                                </td>
-                                                <td role="button">
-                                                    <span>15:15</span>
-                                                </td>
-                                                <td role="button">
-                                                    <span>15:15</span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td role="button">
-                                                    <span>16:00</span>
-                                                </td>
-                                                <td role="button">
-                                                    <span>16:00</span>
-                                                </td>
-                                                <td role="button">
-                                                    <span>16:00</span>
-                                                </td>
-                                                <td role="button">
-                                                    <span>16:00</span>
-                                                </td>
-                                                <td role="button">
-                                                    <span>16:00</span>
-                                                </td>
-                                                <td role="button">
-                                                    <span>16:00</span>
-                                                </td>
-                                                <td role="button">
-                                                    <span>16:00</span>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
                                 </div>
+                                <div class="col-md-4"></div>
                             </div>
                         </div>
-                        <div class="col-md-4"></div>
-                    </div>
-                </div>
-                <div role="tabpanel" class="tab-pane fade" id="messages">
-                    <div class="row">
-                        <div class="col-md-4">
-                        </div>
-                        <div class="col-md-4">
-                            <div class="text-center">
-                                <div class="datepicker-week">
-                                    <div class="datepicker-week__header clearfix">
-                                        <div class="pull-left" role="button">
-                                            <span class="fa fa-caret-left"></span>
-                                        </div>
-                                        <div class="datepicker-week__header__title text-uppercase">marzo</div>
-                                        <div class="pull-right" role="button">
-                                            <span class="fa fa-caret-right"></span>
+                        <div role="tabpanel" class="tab-pane fade" id="messages">
+                            <div class="row">
+                                <div class="col-md-4">
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="text-center">
+                                        <div class="datepicker-week">
+                                            <div class="datepicker-week__header clearfix">
+                                                <div class="pull-left" role="button">
+                                                    <span class="fa fa-caret-left"></span>
+                                                </div>
+                                                <div class="datepicker-week__header__title text-uppercase">marzo</div>
+                                                <div class="pull-right" role="button">
+                                                    <span class="fa fa-caret-right"></span>
+                                                </div>
+                                            </div>
+                                            <table class="datepicker-week__body" role="grid" aria-labelledby="month">
+                                                <thead>
+                                                    <tr id="weekdays">
+                                                        <th id="Sunday" class="text-center" scope="col">
+                                                            <abbr title="Domingo">D</abbr>
+                                                        </th>
+                                                        <th id="Monday" class="text-center" scope="col">
+                                                            <abbr title="Lunes">L</abbr>
+                                                        </th>
+                                                        <th id="Tuesday" class="text-center" scope="col">
+                                                            <abbr title="Martes">M</abbr>
+                                                        </th>
+                                                        <th id="Wednesday" class="text-center" scope="col">
+                                                            <abbr title="Miercoles">X</abbr>
+                                                        </th>
+                                                        <th id="Thursday" class="text-center" scope="col">
+                                                            <abbr title="Jueves">J</abbr>
+                                                        </th>
+                                                        <th id="Friday" class="text-center" scope="col">
+                                                            <abbr title="Viernes">V</abbr>
+                                                        </th>
+                                                        <th id="Saturday" class="text-center" scope="col">
+                                                            <abbr title="Sabado">S</abbr>
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="text-mute" headers="Sunday" role="gridcell" aria-disabled="true">
+                                                            <span class="slds-day"></span>
+                                                        </td>
+                                                        <td headers="Monday" role="gridcell" aria-selected="false">
+                                                            <span class="slds-day">1</span>
+                                                        </td>
+                                                        <td headers="Tuesday" role="gridcell" aria-selected="false">
+                                                            <span class="slds-day">2</span>
+                                                        </td>
+                                                        <td headers="Wednesday" role="gridcell" aria-selected="false">
+                                                            <span class="slds-day">3</span>
+                                                        </td>
+                                                        <td headers="Thursday" role="gridcell" aria-selected="false">
+                                                            <span class="slds-day">4</span>
+                                                        </td>
+                                                        <td headers="Friday" role="gridcell" aria-selected="false">
+                                                            <span class="slds-day">5</span>
+                                                        </td>
+                                                        <td headers="Saturday" role="gridcell" aria-selected="false">
+                                                            <span class="slds-day">6</span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="7"><hr></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td role="button">
+                                                            <span>13:45</span>
+                                                        </td>
+                                                        <td role="button">
+                                                            <span>13:45</span>
+                                                        </td>
+                                                        <td role="button">
+                                                            <span>13:45</span>
+                                                        </td>
+                                                        <td role="button">
+                                                            <span>13:45</span>
+                                                        </td>
+                                                        <td role="button">
+                                                            <span>13:45</span>
+                                                        </td>
+                                                        <td role="button">
+                                                            <span>13:45</span>
+                                                        </td>
+                                                        <td role="button">
+                                                            <span>13:45</span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td role="button">
+                                                            <span>14:30</span>
+                                                        </td>
+                                                        <td role="button">
+                                                            <span>14:30</span>
+                                                        </td>
+                                                        <td role="button">
+                                                            <span>14:30</span>
+                                                        </td>
+                                                        <td role="button">
+                                                            <span>14:30</span>
+                                                        </td>
+                                                        <td role="button">
+                                                            <span>14:30</span>
+                                                        </td>
+                                                        <td role="button">
+                                                            <span>14:30</span>
+                                                        </td>
+                                                        <td role="button">
+                                                            <span>14:30</span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td role="button">
+                                                            <span>15:15</span>
+                                                        </td>
+                                                        <td role="button">
+                                                            <span>15:15</span>
+                                                        </td>
+                                                        <td role="button">
+                                                            <span>15:15</span>
+                                                        </td>
+                                                        <td role="button">
+                                                            <span>15:15</span>
+                                                        </td>
+                                                        <td role="button">
+                                                            <span>15:15</span>
+                                                        </td>
+                                                        <td role="button">
+                                                            <span>15:15</span>
+                                                        </td>
+                                                        <td role="button">
+                                                            <span>15:15</span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td role="button">
+                                                            <span>16:00</span>
+                                                        </td>
+                                                        <td role="button">
+                                                            <span>16:00</span>
+                                                        </td>
+                                                        <td role="button">
+                                                            <span>16:00</span>
+                                                        </td>
+                                                        <td role="button">
+                                                            <span>16:00</span>
+                                                        </td>
+                                                        <td role="button">
+                                                            <span>16:00</span>
+                                                        </td>
+                                                        <td role="button">
+                                                            <span>16:00</span>
+                                                        </td>
+                                                        <td role="button">
+                                                            <span>16:00</span>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
-                                    <table class="datepicker-week__body" role="grid" aria-labelledby="month">
-                                        <thead>
-                                            <tr id="weekdays">
-                                                <th id="Sunday" class="text-center" scope="col">
-                                                    <abbr title="Domingo">D</abbr>
-                                                </th>
-                                                <th id="Monday" class="text-center" scope="col">
-                                                    <abbr title="Lunes">L</abbr>
-                                                </th>
-                                                <th id="Tuesday" class="text-center" scope="col">
-                                                    <abbr title="Martes">M</abbr>
-                                                </th>
-                                                <th id="Wednesday" class="text-center" scope="col">
-                                                    <abbr title="Miercoles">X</abbr>
-                                                </th>
-                                                <th id="Thursday" class="text-center" scope="col">
-                                                    <abbr title="Jueves">J</abbr>
-                                                </th>
-                                                <th id="Friday" class="text-center" scope="col">
-                                                    <abbr title="Viernes">V</abbr>
-                                                </th>
-                                                <th id="Saturday" class="text-center" scope="col">
-                                                    <abbr title="Sabado">S</abbr>
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td class="text-mute" headers="Sunday" role="gridcell" aria-disabled="true">
-                                                    <span class="slds-day"></span>
-                                                </td>
-                                                <td headers="Monday" role="gridcell" aria-selected="false">
-                                                    <span class="slds-day">1</span>
-                                                </td>
-                                                <td headers="Tuesday" role="gridcell" aria-selected="false">
-                                                    <span class="slds-day">2</span>
-                                                </td>
-                                                <td headers="Wednesday" role="gridcell" aria-selected="false">
-                                                    <span class="slds-day">3</span>
-                                                </td>
-                                                <td headers="Thursday" role="gridcell" aria-selected="false">
-                                                    <span class="slds-day">4</span>
-                                                </td>
-                                                <td headers="Friday" role="gridcell" aria-selected="false">
-                                                    <span class="slds-day">5</span>
-                                                </td>
-                                                <td headers="Saturday" role="gridcell" aria-selected="false">
-                                                    <span class="slds-day">6</span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td colspan="7"><hr></td>
-                                            </tr>
-                                            <tr>
-                                                <td role="button">
-                                                    <span>13:45</span>
-                                                </td>
-                                                <td role="button">
-                                                    <span>13:45</span>
-                                                </td>
-                                                <td role="button">
-                                                    <span>13:45</span>
-                                                </td>
-                                                <td role="button">
-                                                    <span>13:45</span>
-                                                </td>
-                                                <td role="button">
-                                                    <span>13:45</span>
-                                                </td>
-                                                <td role="button">
-                                                    <span>13:45</span>
-                                                </td>
-                                                <td role="button">
-                                                    <span>13:45</span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td role="button">
-                                                    <span>14:30</span>
-                                                </td>
-                                                <td role="button">
-                                                    <span>14:30</span>
-                                                </td>
-                                                <td role="button">
-                                                    <span>14:30</span>
-                                                </td>
-                                                <td role="button">
-                                                    <span>14:30</span>
-                                                </td>
-                                                <td role="button">
-                                                    <span>14:30</span>
-                                                </td>
-                                                <td role="button">
-                                                    <span>14:30</span>
-                                                </td>
-                                                <td role="button">
-                                                    <span>14:30</span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td role="button">
-                                                    <span>15:15</span>
-                                                </td>
-                                                <td role="button">
-                                                    <span>15:15</span>
-                                                </td>
-                                                <td role="button">
-                                                    <span>15:15</span>
-                                                </td>
-                                                <td role="button">
-                                                    <span>15:15</span>
-                                                </td>
-                                                <td role="button">
-                                                    <span>15:15</span>
-                                                </td>
-                                                <td role="button">
-                                                    <span>15:15</span>
-                                                </td>
-                                                <td role="button">
-                                                    <span>15:15</span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td role="button">
-                                                    <span>16:00</span>
-                                                </td>
-                                                <td role="button">
-                                                    <span>16:00</span>
-                                                </td>
-                                                <td role="button">
-                                                    <span>16:00</span>
-                                                </td>
-                                                <td role="button">
-                                                    <span>16:00</span>
-                                                </td>
-                                                <td role="button">
-                                                    <span>16:00</span>
-                                                </td>
-                                                <td role="button">
-                                                    <span>16:00</span>
-                                                </td>
-                                                <td role="button">
-                                                    <span>16:00</span>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
                                 </div>
+                                <div class="col-md-4"></div>
                             </div>
                         </div>
-                        <div class="col-md-4"></div>
-                    </div>
-                </div>
-                <div role="tabpanel" class="tab-pane fade" id="settings">
-                    <div class="row">
-                        <div class="col-md-4">
-                        </div>
-                        <div class="col-md-4">
-                            <div class="text-center">
-                                <div class="datepicker-week">
-                                    <div class="datepicker-week__header clearfix">
-                                        <div class="pull-left" role="button">
-                                            <span class="fa fa-caret-left"></span>
-                                        </div>
-                                        <div class="datepicker-week__header__title text-uppercase">abril</div>
-                                        <div class="pull-right" role="button">
-                                            <span class="fa fa-caret-right"></span>
+                        <div role="tabpanel" class="tab-pane fade" id="settings">
+                            <div class="row">
+                                <div class="col-md-4">
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="text-center">
+                                        <div class="datepicker-week">
+                                            <div class="datepicker-week__header clearfix">
+                                                <div class="pull-left" role="button">
+                                                    <span class="fa fa-caret-left"></span>
+                                                </div>
+                                                <div class="datepicker-week__header__title text-uppercase">abril</div>
+                                                <div class="pull-right" role="button">
+                                                    <span class="fa fa-caret-right"></span>
+                                                </div>
+                                            </div>
+                                            <table class="datepicker-week__body" role="grid" aria-labelledby="month">
+                                                <thead>
+                                                    <tr id="weekdays">
+                                                        <th id="Sunday" class="text-center" scope="col">
+                                                            <abbr title="Domingo">D</abbr>
+                                                        </th>
+                                                        <th id="Monday" class="text-center" scope="col">
+                                                            <abbr title="Lunes">L</abbr>
+                                                        </th>
+                                                        <th id="Tuesday" class="text-center" scope="col">
+                                                            <abbr title="Martes">M</abbr>
+                                                        </th>
+                                                        <th id="Wednesday" class="text-center" scope="col">
+                                                            <abbr title="Miercoles">X</abbr>
+                                                        </th>
+                                                        <th id="Thursday" class="text-center" scope="col">
+                                                            <abbr title="Jueves">J</abbr>
+                                                        </th>
+                                                        <th id="Friday" class="text-center" scope="col">
+                                                            <abbr title="Viernes">V</abbr>
+                                                        </th>
+                                                        <th id="Saturday" class="text-center" scope="col">
+                                                            <abbr title="Sabado">S</abbr>
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="text-mute" headers="Sunday" role="gridcell" aria-disabled="true">
+                                                            <span class="slds-day"></span>
+                                                        </td>
+                                                        <td headers="Monday" role="gridcell" aria-selected="false">
+                                                            <span class="slds-day">1</span>
+                                                        </td>
+                                                        <td headers="Tuesday" role="gridcell" aria-selected="false">
+                                                            <span class="slds-day">2</span>
+                                                        </td>
+                                                        <td headers="Wednesday" role="gridcell" aria-selected="false">
+                                                            <span class="slds-day">3</span>
+                                                        </td>
+                                                        <td headers="Thursday" role="gridcell" aria-selected="false">
+                                                            <span class="slds-day">4</span>
+                                                        </td>
+                                                        <td headers="Friday" role="gridcell" aria-selected="false">
+                                                            <span class="slds-day">5</span>
+                                                        </td>
+                                                        <td headers="Saturday" role="gridcell" aria-selected="false">
+                                                            <span class="slds-day">6</span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="7"><hr></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td role="button">
+                                                            <span>13:45</span>
+                                                        </td>
+                                                        <td role="button">
+                                                            <span>13:45</span>
+                                                        </td>
+                                                        <td role="button">
+                                                            <span>13:45</span>
+                                                        </td>
+                                                        <td role="button">
+                                                            <span>13:45</span>
+                                                        </td>
+                                                        <td role="button">
+                                                            <span>13:45</span>
+                                                        </td>
+                                                        <td role="button">
+                                                            <span>13:45</span>
+                                                        </td>
+                                                        <td role="button">
+                                                            <span>13:45</span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td role="button">
+                                                            <span>14:30</span>
+                                                        </td>
+                                                        <td role="button">
+                                                            <span>14:30</span>
+                                                        </td>
+                                                        <td role="button">
+                                                            <span>14:30</span>
+                                                        </td>
+                                                        <td role="button">
+                                                            <span>14:30</span>
+                                                        </td>
+                                                        <td role="button">
+                                                            <span>14:30</span>
+                                                        </td>
+                                                        <td role="button">
+                                                            <span>14:30</span>
+                                                        </td>
+                                                        <td role="button">
+                                                            <span>14:30</span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td role="button">
+                                                            <span>15:15</span>
+                                                        </td>
+                                                        <td role="button">
+                                                            <span>15:15</span>
+                                                        </td>
+                                                        <td role="button">
+                                                            <span>15:15</span>
+                                                        </td>
+                                                        <td role="button">
+                                                            <span>15:15</span>
+                                                        </td>
+                                                        <td role="button">
+                                                            <span>15:15</span>
+                                                        </td>
+                                                        <td role="button">
+                                                            <span>15:15</span>
+                                                        </td>
+                                                        <td role="button">
+                                                            <span>15:15</span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td role="button">
+                                                            <span>16:00</span>
+                                                        </td>
+                                                        <td role="button">
+                                                            <span>16:00</span>
+                                                        </td>
+                                                        <td role="button">
+                                                            <span>16:00</span>
+                                                        </td>
+                                                        <td role="button">
+                                                            <span>16:00</span>
+                                                        </td>
+                                                        <td role="button">
+                                                            <span>16:00</span>
+                                                        </td>
+                                                        <td role="button">
+                                                            <span>16:00</span>
+                                                        </td>
+                                                        <td role="button">
+                                                            <span>16:00</span>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
-                                    <table class="datepicker-week__body" role="grid" aria-labelledby="month">
-                                        <thead>
-                                            <tr id="weekdays">
-                                                <th id="Sunday" class="text-center" scope="col">
-                                                    <abbr title="Domingo">D</abbr>
-                                                </th>
-                                                <th id="Monday" class="text-center" scope="col">
-                                                    <abbr title="Lunes">L</abbr>
-                                                </th>
-                                                <th id="Tuesday" class="text-center" scope="col">
-                                                    <abbr title="Martes">M</abbr>
-                                                </th>
-                                                <th id="Wednesday" class="text-center" scope="col">
-                                                    <abbr title="Miercoles">X</abbr>
-                                                </th>
-                                                <th id="Thursday" class="text-center" scope="col">
-                                                    <abbr title="Jueves">J</abbr>
-                                                </th>
-                                                <th id="Friday" class="text-center" scope="col">
-                                                    <abbr title="Viernes">V</abbr>
-                                                </th>
-                                                <th id="Saturday" class="text-center" scope="col">
-                                                    <abbr title="Sabado">S</abbr>
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td class="text-mute" headers="Sunday" role="gridcell" aria-disabled="true">
-                                                    <span class="slds-day"></span>
-                                                </td>
-                                                <td headers="Monday" role="gridcell" aria-selected="false">
-                                                    <span class="slds-day">1</span>
-                                                </td>
-                                                <td headers="Tuesday" role="gridcell" aria-selected="false">
-                                                    <span class="slds-day">2</span>
-                                                </td>
-                                                <td headers="Wednesday" role="gridcell" aria-selected="false">
-                                                    <span class="slds-day">3</span>
-                                                </td>
-                                                <td headers="Thursday" role="gridcell" aria-selected="false">
-                                                    <span class="slds-day">4</span>
-                                                </td>
-                                                <td headers="Friday" role="gridcell" aria-selected="false">
-                                                    <span class="slds-day">5</span>
-                                                </td>
-                                                <td headers="Saturday" role="gridcell" aria-selected="false">
-                                                    <span class="slds-day">6</span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td colspan="7"><hr></td>
-                                            </tr>
-                                            <tr>
-                                                <td role="button">
-                                                    <span>13:45</span>
-                                                </td>
-                                                <td role="button">
-                                                    <span>13:45</span>
-                                                </td>
-                                                <td role="button">
-                                                    <span>13:45</span>
-                                                </td>
-                                                <td role="button">
-                                                    <span>13:45</span>
-                                                </td>
-                                                <td role="button">
-                                                    <span>13:45</span>
-                                                </td>
-                                                <td role="button">
-                                                    <span>13:45</span>
-                                                </td>
-                                                <td role="button">
-                                                    <span>13:45</span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td role="button">
-                                                    <span>14:30</span>
-                                                </td>
-                                                <td role="button">
-                                                    <span>14:30</span>
-                                                </td>
-                                                <td role="button">
-                                                    <span>14:30</span>
-                                                </td>
-                                                <td role="button">
-                                                    <span>14:30</span>
-                                                </td>
-                                                <td role="button">
-                                                    <span>14:30</span>
-                                                </td>
-                                                <td role="button">
-                                                    <span>14:30</span>
-                                                </td>
-                                                <td role="button">
-                                                    <span>14:30</span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td role="button">
-                                                    <span>15:15</span>
-                                                </td>
-                                                <td role="button">
-                                                    <span>15:15</span>
-                                                </td>
-                                                <td role="button">
-                                                    <span>15:15</span>
-                                                </td>
-                                                <td role="button">
-                                                    <span>15:15</span>
-                                                </td>
-                                                <td role="button">
-                                                    <span>15:15</span>
-                                                </td>
-                                                <td role="button">
-                                                    <span>15:15</span>
-                                                </td>
-                                                <td role="button">
-                                                    <span>15:15</span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td role="button">
-                                                    <span>16:00</span>
-                                                </td>
-                                                <td role="button">
-                                                    <span>16:00</span>
-                                                </td>
-                                                <td role="button">
-                                                    <span>16:00</span>
-                                                </td>
-                                                <td role="button">
-                                                    <span>16:00</span>
-                                                </td>
-                                                <td role="button">
-                                                    <span>16:00</span>
-                                                </td>
-                                                <td role="button">
-                                                    <span>16:00</span>
-                                                </td>
-                                                <td role="button">
-                                                    <span>16:00</span>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
                                 </div>
+                                <div class="col-md-4"></div>
                             </div>
                         </div>
-                        <div class="col-md-4"></div>
                     </div>
                 </div>
             </div>
@@ -919,12 +923,26 @@ $indicators = Database::query($sql);
             <span class="fa fa-book fa-rounded fa-icon-size fa-icon-size--medium" role="button" data-toggle="popover" data-trigger="hover" data-container="body" title="Repasar" data-content="And here's some amazing content. It's very engaging. Right?"></span>
             <div class="text-uppercase">repasar</div>
         </header>
+        <section class="container">
+            <div class="row" style="padding: 32px 0;">
+                <div class="col-md-12 course-tool__body">
+                    <div class="alert alert-info">No hay materiales</div>
+                </div>
+            </div>
+        </section>
     </section>
     <section id="practice" class="row course-tool last-child">
         <header class="text-center course-tool__header">
             <span class="fa fa-edit fa-rounded fa-icon-size fa-icon-size--medium" role="button" data-toggle="popover" data-trigger="hover" data-container="body" title="Practicar" data-content="And here's some amazing content. It's very engaging. Right?"></span>
             <div class="text-uppercase">practicar</div>
         </header>
+        <section class="container">
+            <div class="row" style="padding: 32px 0;">
+                <div class="col-md-12 course-tool__body">
+                    <div class="alert alert-info">No hay materiales</div>
+                </div>
+            </div>
+        </section>
     </section>
 </section>
 
@@ -1006,7 +1024,22 @@ $indicators = Database::query($sql);
             // update link my questions
             $('#my-questions-link').attr('data-source', '<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/my_questions.php?cid=' + courseID);
             // update tutors
-
+            // update review
+            $.ajax({
+                url: '<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/review.php',
+                data: { cid: courseID }
+            })
+                .done(function(view) {
+                    $('#review .course-tool__body').html(view);
+                });
+            // update practice
+            $.ajax({
+                url: '<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/practice.php',
+                data: { cid: courseID }
+            })
+                .done(function(view) {
+                    $('#practice .course-tool__body').html(view);
+                });
         };
         return {
             init: _init,
