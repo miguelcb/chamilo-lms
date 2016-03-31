@@ -1,9 +1,5 @@
-<?php
-/* For licensing terms, see /license.txt */
+<?php require_once '../../../inc/global.inc.php';
 
-require_once '../../../inc/global.inc.php';
-
-//api_protect_course_script(true);
 api_block_anonymous_users();
 
 $user_id                    = api_get_user_id();

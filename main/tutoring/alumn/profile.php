@@ -1,19 +1,10 @@
 <?php
-/* For licensing terms, see /license.txt */
-
-/**
-* This file displays the user's profile,
-* optionally it allows users to modify their profile as well.
-*
-* See inc/conf/profile.conf.php to modify settings
-*
-* @package chamilo.auth
-*/
 
 use Chamilo\UserBundle\Entity\User;
 use ChamiloSession as Session;
 
 $cidReset = true;
+
 require_once '../../inc/global.inc.php';
 
 $_SESSION['this_section'] = $this_section;

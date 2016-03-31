@@ -1,7 +1,7 @@
 body { background: #eee url(images/bg.png) no-repeat fixed; }
 footer {
   padding-bottom: 15px;
-  background-color: #fff;
+  background-color: #f9f9f9;
 }
 .modal-content { border-radius: 0;  }
 .modal-footer { background-color: #eee; }
@@ -203,7 +203,7 @@ footer {
 }
 #practice:before {
   top: -90px;
-  background-image: url(images/diagonal-45.png);
+  background-image: url(images/diagonal-45-flip.png);
   background-position: left top;
 }
 #practice:after {
@@ -211,8 +211,7 @@ footer {
   background-image: url(images/diagonal-45-invert.png);
   background-position: left bottom;
 }
-
-.course-tool:last-of-type:after {
+.course-tools .course-tool.last-child:after {
   background-image: none;
   background-color: inherit;
 }
@@ -233,3 +232,59 @@ footer {
   text-decoration: none;
 }
 
+/* appointment */
+.datepicker-week {}
+.datepicker-week__header {
+  position: relative;
+  padding: 4px 0;
+}
+.datepicker-week__header .pull-left {
+  width: 36px;
+  height: 36px;
+  line-height: 36px;
+  text-align: center;
+}
+.datepicker-week__header .pull-right {
+  width: 36px;
+  height: 36px;
+  line-height: 36px;
+  text-align: center;
+}
+.datepicker-week__header__title {
+  position: absolute;
+  top: 0;
+  right: 36px;
+  bottom: 0;
+  left: 36px;
+  line-height: 36px;
+}
+.datepicker-week__body { width: 100%; }
+.datepicker-week__body tr td[headers] {
+  width: 1%;
+  padding: 16px 4px;
+}
+.datepicker-week__body tr td hr {
+  margin-top: 7px;
+  margin-bottom: 8px;
+}
+.datepicker-week__body tr td[role=button] {
+  font-size: 9px;
+  padding: 9px 0;
+}
+.datepicker-week__body tr td[role=button] span {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  border-radius: 50%;
+  font-size: 10px;
+}
+.datepicker-week__body tr td[role=button].active span {
+  color: #fff;
+  background-color: #3498db;
+}
+.datepicker-week__body tr td[role=button]:not(.active) span:hover { background-color: #eee; }
+
+.tutors-appointments { padding: 64px 0; }
+.tutors-appointments li { display: inline-block; }
+.tutors-appointments li.active img { box-shadow: 0 0 6px #3498db; }

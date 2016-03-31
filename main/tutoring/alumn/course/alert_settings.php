@@ -1,31 +1,31 @@
-<?php
-
-require_once '../../../inc/global.inc.php';
+<?php require_once '../../../inc/global.inc.php';
 
 api_block_anonymous_users();
 
 $cid = is_null($_GET['cid']) ? '' : $_GET['cid'];
 ?>
 
+<div class="alert alert-info">Si deseas dejar de recibir notificaciones, solo tienes que quitar el check</div>
+
 <form action="" class="alert-settings">
     <div class="checkbox" class="alert-setting__setting">
         <label>
-          <input type="checkbox"> Preguntar
+          <input type="checkbox" checked> Preguntar
         </label>
     </div>
     <div class="checkbox" class="alert-setting__setting">
         <label>
-          <input type="checkbox"> Sacar cita
+          <input type="checkbox" checked> Sacar cita
         </label>
     </div>
     <div class="checkbox" class="alert-setting__setting">
         <label>
-          <input type="checkbox"> Repasar
+          <input type="checkbox" checked> Repasar
         </label>
     </div>
     <div class="checkbox" class="alert-setting__setting">
         <label>
-          <input type="checkbox"> Practicar
+          <input type="checkbox" checked> Practicar
         </label>
     </div>
 </form>

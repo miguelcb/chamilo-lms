@@ -1,11 +1,7 @@
-<?php
-/* For licensing terms, see /license.txt */
-/**
-*	@package chamilo.messages
-*/
-$cidReset= true;
-require_once '../../../inc/global.inc.php';
+<?php $cidReset= true; require_once '../../../inc/global.inc.php';
+
 api_block_anonymous_users();
+
 if (api_get_setting('allow_message_tool')!='true') {
 	api_not_allowed();
 }
