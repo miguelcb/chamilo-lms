@@ -8,7 +8,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="{{  _p.web }}" class="navbar-brand">
+            <a href="{{  _p.web_main }}tutoring/alumn/dashboard.php" class="navbar-brand">
               <span>TUTOR</span><br>
               <span>VIRTUAL</span>
             </a>
