@@ -90,7 +90,7 @@ $indicators = Database::query($sql);
     <!-- ask -->
     <section id="ask" class="row course-tool">
         <header class="text-center course-tool__header">
-            <span class="fa fa-question fa-rounded fa-icon-size fa-icon-size--medium" role="button" data-toggle="popover" data-trigger="hover" data-container="body" title="Preguntar" data-content="And here's some amazing content. It's very engaging. Right?"></span>
+            <span class="fa fa-question fa-rounded fa-icon-size fa-icon-size--medium" role="button" data-toggle="popover" data-trigger="hover" data-container="body" title="Preguntar" data-content="Resuelve tus dudas realizando preguntas o visitando el repositorio de preguntas."></span>
             <div class="text-uppercase">preguntar</div>
         </header>
         <section class="container">
@@ -150,7 +150,7 @@ $indicators = Database::query($sql);
     <!-- appointment -->
     <section id="appointment" class="row course-tool">
         <header class="text-center course-tool__header">
-            <span class="fa fa-calendar fa-rounded fa-icon-size fa-icon-size--medium" role="button" data-toggle="popover" data-trigger="hover" data-container="body" title="Sacar cita" data-content="And here's some amazing content. It's very engaging. Right?"></span>
+            <span class="fa fa-calendar fa-rounded fa-icon-size fa-icon-size--medium" role="button" data-toggle="popover" data-trigger="hover" data-container="body" title="Sacar cita" data-content="Si deseas un asesoría mas personalizada, reserva una cita presencial o virtual con tu tutor."></span>
             <div class="text-uppercase">Reunirte con tu tutor</div>
         </header>
         <section class="container">
@@ -681,7 +681,7 @@ $indicators = Database::query($sql);
     <!-- review -->
     <section id="review" class="row course-tool">
         <header class="text-center course-tool__header">
-            <span class="fa fa-book fa-rounded fa-icon-size fa-icon-size--medium" role="button" data-toggle="popover" data-trigger="hover" data-container="body" title="Repasar" data-content="And here's some amazing content. It's very engaging. Right?"></span>
+            <span class="fa fa-book fa-rounded fa-icon-size fa-icon-size--medium" role="button" data-toggle="popover" data-trigger="hover" data-container="body" title="Repasar" data-content="Mejora tus habilidades en el curso revisando nuevos materiales para repasar."></span>
             <div class="text-uppercase">repasar</div>
         </header>
         <section class="container">
@@ -695,7 +695,7 @@ $indicators = Database::query($sql);
     <!-- practice -->
     <section id="practice" class="row course-tool last-child">
         <header class="text-center course-tool__header">
-            <span class="fa fa-edit fa-rounded fa-icon-size fa-icon-size--medium" role="button" data-toggle="popover" data-trigger="hover" data-container="body" title="Practicar" data-content="And here's some amazing content. It's very engaging. Right?"></span>
+            <span class="fa fa-edit fa-rounded fa-icon-size fa-icon-size--medium" role="button" data-toggle="popover" data-trigger="hover" data-container="body" title="Practicar" data-content="Pon a prueba tus conocimientos y tu avance, con estos materiales para practicar."></span>
             <div class="text-uppercase">practicar</div>
         </header>
         <section class="container">
