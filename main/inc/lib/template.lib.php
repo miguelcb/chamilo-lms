@@ -1295,37 +1295,29 @@ class Template
         );
 
         // Captcha
-        $captcha = api_get_setting('allow_captcha');
-        $allowCaptcha = $captcha == 'true';
+        $ajax = api_get_path(WEB_AJAX_PATH).'form.ajax.php?a=get_captcha';
+        $options = array(
+            'width' => 250,
+            'height' => 90,
+            'callback'     => $ajax.'&var='.basename(__FILE__, '.php'),
+            'sessionVar'   => basename(__FILE__, '.php'),
+            'imageOptions' => array(
+                'font_size' => 20,
+                'font_path' => api_get_path(SYS_FONTS_PATH) . 'opensans/',
+                'font_file' => 'OpenSans-Regular.ttf',
+                //'output' => 'gif'
+            )
+        );
 
-        if ($allowCaptcha) {
-            $useCaptcha = isset($_SESSION['loginFailed']) ? $_SESSION['loginFailed'] : null;
-            if ($useCaptcha) {
-                $ajax = api_get_path(WEB_AJAX_PATH).'form.ajax.php?a=get_captcha';
-                $options = array(
-                    'width' => 250,
-                    'height' => 90,
-                    'callback'     => $ajax.'&var='.basename(__FILE__, '.php'),
-                    'sessionVar'   => basename(__FILE__, '.php'),
-                    'imageOptions' => array(
-                        'font_size' => 20,
-                        'font_path' => api_get_path(SYS_FONTS_PATH) . 'opensans/',
-                        'font_file' => 'OpenSans-Regular.ttf',
-                        //'output' => 'gif'
-                    )
-                );
+        // Minimum options using all defaults (including defaults for Image_Text):
+        //$options = array('callback' => 'qfcaptcha_image.php');
 
-                // Minimum options using all defaults (including defaults for Image_Text):
-                //$options = array('callback' => 'qfcaptcha_image.php');
+        $captcha_question = $form->addElement('CAPTCHA_Image', 'captcha_question', '', $options);
+        $form->addHtml(get_lang('ClickOnTheImageForANewOne'));
 
-                $captcha_question = $form->addElement('CAPTCHA_Image', 'captcha_question', '', $options);
-                $form->addHtml(get_lang('ClickOnTheImageForANewOne'));
-
-                $form->addElement('text', 'captcha', get_lang('EnterTheLettersYouSee'));
-                $form->addRule('captcha', get_lang('EnterTheCharactersYouReadInTheImage'), 'required', null, 'client');
-                $form->addRule('captcha', get_lang('TheTextYouEnteredDoesNotMatchThePicture'), 'CAPTCHA', $captcha_question);
-            }
-        }
+        $form->addElement('text', 'captcha', get_lang('EnterTheLettersYouSee'));
+        $form->addRule('captcha', get_lang('EnterTheCharactersYouReadInTheImage'), 'required', null, 'client');
+        $form->addRule('captcha', get_lang('TheTextYouEnteredDoesNotMatchThePicture'), 'CAPTCHA', $captcha_question);
 
         $form->addButton('submitAuth', get_lang('LoginEnter'), null, 'primary', null, 'btn-block');
 

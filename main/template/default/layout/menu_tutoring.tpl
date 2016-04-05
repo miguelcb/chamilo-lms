@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default x-navbar">
+<nav class="navbar navbar-default x-navbar" {% if _u.logged == 0 %}style="background-color: #fff; padding: 4px 0; min-height: 64px;"{% endif %}>
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -8,9 +8,22 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="{{  _p.web_main }}tutoring/alumn/dashboard.php" class="navbar-brand">
+            <a href="
+              {% if _u.logged == 0 %}
+              {{ _p.web }}
+              {% else %}
+                {% if _u.status == 5 %}
+                  {{  _p.web_main }}tutoring/alumn/dashboard.php
+                {% else %}
+                  {{ _p.web }}
+                {% endif %}
+              {% endif %}" class="navbar-brand">
+              {% if _u.logged == 0 %}
+                <img src="{{ _p.web_css_theme }}images/logo.png" height="40" alt="">
+              {% else %}
               <span>TUTOR</span><br>
               <span>VIRTUAL</span>
+              {% endif %}
             </a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -39,7 +52,18 @@
                 {% endif %}
             </ul>
             <ul class="nav navbar-nav navbar-right">
-              <li><a style="padding: 8px 0;" href="http://utp.edu.pe"><img src="{{ _p.web }}/web/css/themes/TutorVirtual/images/utp-blanco.png" alt="" height="48"></a></li>
+              <li>
+                {% if _u.logged == 0  %}
+                  <div style="  font-size: 24px; line-height: 1; padding: 8px 0;">
+                    <span>TUTOR</span><br>
+                    <span>VIRTUAL</span>
+                  </div>
+                {% else %}
+                  <a style="padding: 8px 0;" href="http://utp.edu.pe">
+                    <img src="{{ _p.web }}/web/css/themes/TutorVirtual/images/utp-blanco.png" alt="" height="48">
+                  </a>
+                {% endif %}
+              </li>
             </ul>
            {% if _u.logged == 1 %}
            <ul class="nav navbar-nav navbar-right">
@@ -48,15 +72,9 @@
                {% endif %}
                {% if _u.status != 6 %}
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                        {{ _u.complete_name }} <span class="caret"></span>
+                    <a href="javascript:void(0);" title=":)" style="line-height: 34px; color: #fff; font-size: 18px;">
+                        {{ _u.complete_name }}
                     </a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li>
-                            {{ profile_link }}
-                            {{ message_link }}
-                        </li>
-                    </ul>
                 </li>
                {% if logout_link is not null %}
                <li>
