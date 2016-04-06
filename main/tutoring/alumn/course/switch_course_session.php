@@ -4,12 +4,6 @@ include_once '../../../inc/global.inc.php';
 
 $cid = is_null($_GET['cid']) ? '' : $_GET['cid'];
 
-function pretty_print($v) {
-    print('<pre>'.print_r($v, true).'</pre>');
-}
-
-pretty_print($_SESSION);
-
 if (!empty($cid)) {
     \System\Session::erase('_real_cid');
     \System\Session::erase('_cid');
