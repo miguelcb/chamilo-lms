@@ -128,19 +128,19 @@ class Text_CAPTCHA_Driver_Image extends Text_CAPTCHA_Driver_Base
     public function createCAPTCHA()
     {
         $options['canvas'] = array(
-            'width' => $this->_width,
-            'height' => $this->_height
+            'width' => 160,
+            'height' => 80
         );
-        $options['width'] = $this->_width - 20;
-        $options['height'] = $this->_height - 20;
-        $options['cx'] = ceil(($this->_width) / 2 + 10);
-        $options['cy'] = ceil(($this->_height) / 2 + 10);
-        $options['angle'] = rand(0, 30) - 15;
-        $options['font_size'] = $this->_imageOptions['font_size'];
-        $options['font_path'] = $this->_imageOptions['font_path'];
-        $options['font_file'] = $this->_imageOptions['font_file'];
+        $options['width'] = 160;
+        $options['height'] = 80;
+        $options['cx'] = ceil((160) / 2 + 16);
+        $options['cy'] = ceil((80) / 2 + 24);
+        $options['angle'] =  0;
+        $options['font_size'] = 32;
+        $options['font_path'] = '../../../web/assets/fonts/';
+        $options['font_file'] = 'SpecialElite.ttf';
         $options['color'] = array($this->_imageOptions['text_color']);
-        $options['background_color'] = $this->_imageOptions['background_color'];
+        $options['background_color'] = '#ffffff';
         $options['max_lines'] = 1;
         $options['mode'] = 'auto';
 
@@ -159,30 +159,6 @@ class Text_CAPTCHA_Driver_Image extends Text_CAPTCHA_Driver_Base
 
         if ($this->_imageOptions['antialias'] && function_exists('imageantialias')) {
             imageantialias($image, true);
-        }
-
-        $colors = Image_Text::convertString2RGB(
-            $this->_imageOptions['lines_color']
-        );
-        $linesColor = imagecolorallocate(
-            $image, $colors['r'], $colors['g'], $colors['b']
-        );
-        //some obfuscation
-        for ($i = 0; $i < 3; $i++) {
-            $x1 = rand(0, $this->_width - 1);
-            $y1 = rand(0, round($this->_height / 10, 0));
-            $x2 = rand(0, round($this->_width / 10, 0));
-            $y2 = rand(0, $this->_height - 1);
-            imageline($image, $x1, $y1, $x2, $y2, $linesColor);
-            $x1 = rand(0, $this->_width - 1);
-            $y1 = $this->_height - rand(1, round($this->_height / 10, 0));
-            $x2 = $this->_width - rand(1, round($this->_width / 10, 0));
-            $y2 = rand(0, $this->_height - 1);
-            imageline($image, $x1, $y1, $x2, $y2, $linesColor);
-            $cx = rand(0, $this->_width - 50) + 25;
-            $cy = rand(0, $this->_height - 50) + 25;
-            $w = rand(1, 24);
-            imagearc($image, $cx, $cy, $w, $w, 0, 360, $linesColor);
         }
 
         // @todo remove hardcoded value
@@ -271,19 +247,9 @@ class Text_CAPTCHA_Driver_Image extends Text_CAPTCHA_Driver_Base
      */
     public function createPhrase()
     {
-        $len = intval(min(8, $this->_width / 25));
+        $len = 5;
         $options = $this->_textPasswordOptions;
         $textPassword = new Text_Password();
-        if (!is_array($options) || count($options) === 0) {
-            $this->setPhrase($textPassword->create($len));
-        } else {
-            if (count($options) === 1) {
-                $this->setPhrase($textPassword->create($len, $options[0]));
-            } else {
-                $this->setPhrase(
-                    $textPassword->create($len, $options[0], $options[1])
-                );
-            }
-        }
+        $this->setPhrase(strtoupper($textPassword->create($len, 'unpronounceable', 'alphanumeric')));
     }
 }

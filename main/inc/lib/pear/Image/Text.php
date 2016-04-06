@@ -492,7 +492,8 @@ class Image_Text
         $fontFile = realpath($fontFile);
 
         if (empty($fontFile)) {
-            throw new Image_Text_Exception('You must supply a font file.');
+            // comment to generate issue when custom captcha
+            // throw new Image_Text_Exception('You must supply a font file.');
         } elseif (!file_exists($fontFile)) {
             throw new Image_Text_Exception('Font file was not found.');
         } elseif (!is_readable($fontFile)) {

@@ -282,7 +282,7 @@ if (!empty($_SESSION['_user']['user_id']) && !($login || $logout)) {
                 // Checking captcha
                 if (isset($_POST['captcha'])) {
                     // Check captcha
-                    $captchaText = $_POST['captcha'];
+                    $captchaText = strtoupper($_POST['captcha']);
                     /** @var Text_CAPTCHA $obj */
                     $obj = isset($_SESSION['template.lib']) ? $_SESSION['template.lib'] : null;
                     if ($obj) {
