@@ -16,7 +16,6 @@ footer {
 .fa-icon-size--medium { font-size: 24px; }
 .fa-icon-size--small { font-size: 16px; }
 .fa-rounded {
-  background-color: #e74c3c;
   width: 48px;
   height: 48px;
   line-height: 48px;
@@ -299,23 +298,23 @@ footer {
 .panel-sesion {
   background-color: rgba(43,180,170,0.8);
   border: none;
-  color: #FFFFFF;
+  color: #fff;
   padding: 45px;
   margin-top: -24px;
 }
 .panel-sesion .form-control {
-  border: solid 1px #FFFFFF;
+  border: solid 1px #fff;
   padding: 30px;
-  color: #2B0000!important;
-  background-color: transparent!important;
+  color: #fff !important;
+  background-color: transparent !important;
   border-radius: 0;
   margin: 15px;
 }
 .panel-sesion button { padding: 15px; }
-.panel-sesion ::-webkit-input-placeholder { color: #eee; }
-.panel-sesion :-moz-placeholder { color: #eee; }
-.panel-sesion ::-moz-placeholder { color: #eee; }
-.panel-sesion :-ms-input-placeholder { color: #eeeeee; }
+.panel-sesion::-webkit-input-placeholder { color: #fff; }
+.panel-sesion:-moz-placeholder { color: #fff; }
+.panel-sesion::-moz-placeholder { color: #fff; }
+.panel-sesion:-ms-input-placeholder { color: #fff; }
 
 /**
  * Improvements UI Design
@@ -323,6 +322,22 @@ footer {
  * Virtual Learning Management System => VLMS
  */
 .vlms { color: #333; }
+
+/* palette */
+.vlms-bgc,
+.vlms-bgc-hover:hover { background-color: #fff; }
+.vlms-bgc--palette-1,
+.vlms-bgc-hover--palette-1 { background-color: #e64d3c;  }
+.vlms-bgc--palette-2,
+.vlms-bgc-hover--palette-2 { background-color: #a970ac;  }
+.vlms-bgc--palette-3,
+.vlms-bgc-hover--palette-3 { background-color: #3fac7a; }
+.vlms-bgc--palette-4,
+.vlms-bgc-hover--palette-4 { background-color: #af9901; }
+.vlms-bgc--palette-5,
+.vlms-bgc-hover--palette-5 { background-color: #949dcd;  }
+.vlms-bgc--palette-6,
+.vlms-bgc-hover--palette-6 { background-color: #f29701;  }
 
 /* base */
 .vlms-block {
@@ -353,6 +368,25 @@ footer {
   white-space: nowrap;
 }
 .vlms .vlms-text--small { font-size: 12px; }
+
+/* badge */
+.vlms-badge {
+  background-color: #e0e5ee;
+  padding: 4px 8px;
+  border-radius: 240px;
+  font-size: 10px;
+  line-height: 1.25;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #16325c;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+.vlms-badge--inverse {
+  background-color: #061c3f;
+  color: #fff;
+  border-color: #061c3f;
+}
 
 /* list */
 .vlms .vlms-list {
@@ -396,7 +430,7 @@ footer {
 }
 .vlms .vlms-list--horizontal.vlms-has-dividers>.vlms-list__item:last-child:after { content: none; }
 .vlms .vlms-list.vlms-has-interactions>.vlms-list__item:hover {
-  background-color: #f4f6f9;
+  background-color: #e4e4e9;
   border-color: #d8dde6;
   cursor: pointer;
 }

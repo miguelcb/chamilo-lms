@@ -36,23 +36,37 @@ while ($question = Database::fetch_assoc($questions)) {
 <?php if (count($all_questions) > 0): ?>
 <div class="row">
     <div class="col-md-4">
-        <ul class="list-group">
-            <li class="list-group-item">
-                <div class="input-group">
-                    <input type="text" class="form-control" aria-describedby="basic-addon1">
-                    <span class="input-group-addon fa fa-search" role="button"></span>
+        <div class="vlms">
+            <div class="vlms-block">
+                <div class="vlms-scrollable vlms-scrollable--y">
+                    <ul class="vlms-list vlms-list--vertical vlms-has-dividers vlms-has-interactions">
+                        <li class="vlms-title-divider">Repositorio de preguntas</li>
+                        <?php foreach ($all_questions as $question): ?>
+                            <li class="vlms-list__item" role="button" data-question-id="<?php echo $question['post_id']; ?>">
+                                <div class="vlms-media">
+                                    <div class="vlms-media__figure">
+                                        <svg aria-hidden="true" class="vlms-icon" style="fill: #555;">
+                                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#share_post"></use>
+                                        </svg>
+                                    </div>
+                                    <div class="vlms-media__body">
+                                        <div class="vlms-media__body__title clearfix">
+                                            <a class="pull-left" href="javascript:void(0);"><?php echo $question['post_title']; ?></a>
+                                        </div>
+                                        <div class="vlms-media__body__detail">
+                                            <ul class="vlms-list vlms-list--horizontal vlms-has-dividers vlms-text--small">
+                                                <li class="vlms-list__item"><?php echo api_convert_and_format_date($question['post_date'], '%b %d, %Y'); ?></li>
+                                                <li class="vlms-list__item"><?php echo $question['pseudonym']; ?></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
                 </div>
-            </li>
-            <?php foreach ($all_questions as $question): ?>
-                <li class="list-group-item" role="button" data-question-id="<?php echo $question['post_id']; ?>">
-                    <h4 class="list-group-item-heading clearfix">
-                        <div class="pull-left"><?php echo $question['pseudonym']; ?></div>
-                        <div class="pull-right small" style="padding: 0;"><?php echo api_convert_and_format_date($question['post_date'], '%b %d') ?></div>
-                    </h4>
-                    <div class="list-group-item-text"><?php echo $question['post_title']; ?></div>
-                </li>
-            <?php endforeach; ?>
-        </ul>
+            </div>
+        </div>
     </div>
     <div class="col-md-8 question-tutoring">
         <div class="alert alert-info">Haz click en alguna de las preguntas para ver la pregunta completa</div>

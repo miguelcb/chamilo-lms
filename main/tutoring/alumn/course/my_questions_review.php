@@ -19,24 +19,52 @@ $sql = "SELECT *, (SELECT COUNT(*) FROM $table_forum_post fpr WHERE fpr.post_par
 $questions = Database::query($sql);
 ?>
 
-<div class="panel panel-primary">
-    <div class="panel-heading">
-        <h4 class="m0">Mis preguntas</h4>
+<div class="vlms">
+    <div class="vlms-block">
+        <div class="vlms-scrollable vlms-scrollable--y">
+            <ul class="vlms-list vlms-list--vertical vlms-has-dividers vlms-has-interactions">
+                <li class="vlms-title-divider">Mis preguntas en el curso</li>
+                <?php if (Database::num_rows($questions) > 0): ?>
+                        <?php while ($row = Database::fetch_assoc($questions)): ?>
+                            <li class="vlms-list__item">
+                                <div class="vlms-media">
+                                    <div class="vlms-media__figure">
+                                        <svg aria-hidden="true" class="vlms-icon" style="fill: #555;">
+                                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#share_post"></use>
+                                        </svg>
+                                    </div>
+                                    <div class="vlms-media__body">
+                                        <div class="vlms-media__body__title clearfix">
+                                            <a class="pull-left" href="javascript:void(0);"><?php echo $row['post_title']; ?></a>
+                                            <span class="pull-right vlms-badge vlms-badge--inverse">
+                                                <?php echo $row['answered'] == '1' ? 'Atendida' : 'Sin atender'; ?>
+                                            </span>
+                                        </div>
+                                        <div class="vlms-media__body__detail">
+                                            <ul class="vlms-list vlms-list--horizontal vlms-has-dividers vlms-text--small">
+                                                <li class="vlms-list__item"><?php echo api_convert_and_format_date($row['post_date'], '%b %d, %Y'); ?></li>
+                                                <li class="vlms-list__item"><?php echo $row['teach'] == '' ? 'Sin asignar' : 'Quispe Zapata, Juan'; ?></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        <?php endwhile; ?>
+                    <div class="panel-footer clearfix">
+                        <a href="javascript:void(0);" class="pull-right" data-toggle="ajax-modal" id="my-questions-link" data-target="#my-questions-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/my_questions.php?cid=<?php echo $cid; ?>">ver más</a>
+                    </div>
+                <?php else: ?>
+                    <li class="vlms-list__item">
+                        <div class="vlms-media">
+                            <div class="vlms-media__body">
+                                <div class="vlms-media__body__title">No tienes preguntas en el curso</div>
+                            </div>
+                        </div>
+                    </li>
+                <?php endif; ?>
+            </ul>
+        </div>
     </div>
-    <?php if (Database::num_rows($questions) > 0): ?>
-        <ul class="list-group">
-            <?php while ($row = Database::fetch_assoc($questions)): ?>
-                <li class="list-group-item"><?php echo $row['post_title']; ?></li>
-            <?php endwhile; ?>
-        </ul>
-        <div class="panel-footer clearfix">
-            <a href="javascript:void(0);" class="pull-right" data-toggle="ajax-modal" id="my-questions-link" data-target="#my-questions-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/my_questions.php?cid=<?php echo $cid; ?>">Ver más</a>
-        </div>
-    <?php else: ?>
-        <div class="panel-body">
-            <div class="alert alert-info m0">No hay preguntas</div>
-        </div>
-    <?php endif; ?>
 </div>
 
 <script>
