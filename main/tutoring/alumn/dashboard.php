@@ -1,10 +1,8 @@
 <?php include_once '../../inc/global.inc.php';
 
-api_block_anonymous_users();
+include 'helpers.inc.php';
 
-function pretty_print($v) {
-    print('<pre>'.print_r($v, true).'</pre>');
-}
+api_block_anonymous_users();
 
 $user_id = api_get_user_id();
 
@@ -749,7 +747,7 @@ $indicators = Database::query($sql);
                 $('#' + this.toolsAllowed[i])[
                    toolsAvailable.indexOf(this.toolsAllowed[i]) == -1 ? 'addClass' : 'removeClass'
                 ]('hidden');
-                console.log($('#nav-tools').find('[href=' + this.toolsAllowed[i] + ']'));
+                console.log($('#nav-tools').find('[href=#' + this.toolsAllowed[i] + ']'));
                 $('#nav-tools').find('[href=#' + this.toolsAllowed[i] + ']').parent()[
                     toolsAvailable.indexOf(this.toolsAllowed[i]) == -1 ? 'hide' : 'show'
                 ]();
@@ -773,6 +771,12 @@ $indicators = Database::query($sql);
                 });
         };
         _switchTo = function(courseID) {
+            // refresh course session
+            $.ajax({
+                async: false,
+                url: '<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/switch_course_session.php',
+                data: { cid: courseID }
+            });
             // update tools
             this.hideTools(courseID);
             // update my questions list
