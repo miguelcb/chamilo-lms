@@ -30,7 +30,7 @@ $questions = Database::query($sql);
             <?php endwhile; ?>
         </ul>
         <div class="panel-footer clearfix">
-            <a href="javascript:void(0);" class="pull-right" data-toggle="ajax-modal" id="my-questions-link" data-target="#my-questions-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/my_questions.php?cid=<?php echo $cid; ?>">Ver todas mis preguntas</a>
+            <a href="javascript:void(0);" class="pull-right" data-toggle="ajax-modal" id="my-questions-link" data-target="#my-questions-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/my_questions.php?cid=<?php echo $cid; ?>">Ver más</a>
         </div>
     <?php else: ?>
         <div class="panel-body">

@@ -1,4 +1,4 @@
-<footer> <!-- start of #footer section -->
+<footer {% if _u.status == 0 %}class="hidden"{% endif %}> <!-- start of #footer section -->
     <div class="container">
         <div class="row">
             <div id="footer_left" class="col-md-4">

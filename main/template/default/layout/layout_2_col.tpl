@@ -11,7 +11,7 @@
     {% endif %}
 
 	{#  Right column #}
-	<div class="col-md-{% if _u.logged  == 0 %}4{% else %}3{% endif %} menu-column {% if _u.logged  == 0 %}pull-right{% endif %}">
+	<div class="col-md-{% if _u.logged  == 0 %}4{% else %}3{% endif %} menu-column {% if _u.logged  == 0 %}col-md-offset-8{% endif %}">
         {% if plugin_menu_top %}
             <div id="plugin_menu_top">
                 {{plugin_menu_top}}
@@ -21,7 +21,7 @@
 	    {# if user is not login show the login form #}
         {% block login_form %}
 		{% if _u.logged  == 0 %}
-			{% include template ~ "/layout/login_form.tpl" %}
+			{% include template ~ "/layout/login_form_tutoring.tpl" %}
 		{% endif %}
         {% endblock %}
 
