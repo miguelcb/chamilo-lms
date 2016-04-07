@@ -15,7 +15,7 @@
           <a id="captcha-link" href="{{ _p.web_ajax }}form.ajax.php?a=get_captcha&amp;var=template.lib" target="_blank" onclick="var cancelClick = false; if (document.images) {  var img = new Image();  var d = new Date();  img.src = this.href + ((this.href.indexOf('?') == -1) ? '?' : '&amp;') + d.getTime();  document.images['QF_CAPTCHA_captcha_question'].src = img.src;  cancelClick = true;} return !cancelClick;">
             <img src="{{ _p.web_main }}inc/ajax/form.ajax.php?a=get_captcha&amp;var=template.lib" name="QF_CAPTCHA_captcha_question" id="QF_CAPTCHA_captcha_question" height="40" title="Click to view another image">
           </a>
-          <span class="help-block" style="color: #fff; font-weight: bold;">Haz clic en la imagen para cambiarla</span>
+          <span class="help-block" style="color: #fff; font-size: 12px; margin-bottom: 0;">Haz clic en la imagen para cambiarla</span>
         </div>
       </div>
       <div class="input-group">

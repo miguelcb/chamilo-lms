@@ -32,7 +32,7 @@ while ($row = Database::fetch_assoc($result)) {
 <div class="row">
     <div class="col-md-4 vlms">
         <div class="vlms-block">
-            <div class="vlms-scrollable vlms-scrollable--y" style="background-color: #fff; padding: 8px; height: 500px;">
+            <div class="vlms-scrollable vlms-scrollable--y">
                 <ul class="vlms-list vlms-list--vertical vlms-has-dividers vlms-has-interactions">
                     <?php foreach ($resources as $row): ?>
                         <?php if ($row['path'] == '0'): ?>
