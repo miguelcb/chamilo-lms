@@ -106,26 +106,38 @@ while($course = Database::fetch_assoc($courses)) {
 }
 ?>
 <?php if (count($course_news) > 0): ?>
-<ul class="list-group">
-    <?php foreach ($course_news as $c_id => $new): ?>
-    <li class="list-group-item active">
-        <h3 class="m0"><?php echo api_get_course_info_by_id($c_id)['title']; ?></h3 class="m0">
-    </li>
-    <?php foreach($new as $tool): ?>
-    <li class="list-group-item">
-        <div class="media">
-            <div class="media-left">
-                <a href="javascript:void(0);"><span class="<?php echo $tool['icon']; ?> fa-icon-size--medium fa-rounded fa-rounded--peter-river pull-left"></span></a>
-            </div>
-            <div class="media-body">
-                <h4 class="media-heading">Se ha agregado un nuevo material <span class="pull-right small"><?php echo api_convert_and_format_date($tool['date'], '%b %d') ?></span></h4>
-                <p><?php echo $tool['description']; ?></p>
-            </div>
-        </div>
-    </li>
-    <?php endforeach; ?>
-    <?php endforeach; ?>
-</ul>
+<div class="vlms">
+    <ul class="vlms-list vlms-list--vertical vlms-has-dividers vlms-has-interactions">
+        <?php foreach ($course_news as $c_id => $new): ?>
+        <li class="vlms-title-divider"><?php echo api_get_course_info_by_id($c_id)['title']; ?></li>
+            <?php foreach($new as $row): ?>
+            <li class="vlms-list__item">
+                <div class="vlms-media">
+                    <div class="vlms-media__figure">
+                        <svg aria-hidden="true" class="vlms-icon" style="fill: #555;">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#event"></use>
+                        </svg>
+                    </div>
+                    <div class="vlms-media__body">
+                        <div class="vlms-media__body__title clearfix">
+                            <a class="pull-left" href="javascript:void(0);">
+                                <?php if ($row['tool'] == 'practice' || $row['tool'] == 'review'): ?>
+                                    Se ha agregado nuevo material para <?php echo $row['tool'] == 'practice' ? 'practicar' : 'repasar'; ?>
+                                <?php endif; ?>
+                            </a>
+                        </div>
+                        <div class="vlms-media__body__detail">
+                            <ul class="vlms-list vlms-list--vertical vlms-text--small">
+                                <li class="vlms-list__item"><?php echo date_to_str_ago($row['date']); ?></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <?php endforeach; ?>
+        <?php endforeach; ?>
+    </ul>
+</div>
 <?php else: ?>
 <div class="alert alert-info">No hay ninguna novedad</div>
 <?php endif; ?>

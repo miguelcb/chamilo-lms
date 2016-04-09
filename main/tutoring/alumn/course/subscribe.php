@@ -14,7 +14,7 @@ $table_course_user = Database::get_main_table(TABLE_MAIN_COURSE_USER);
 
 $sql = "SELECT *, (SELECT count(*) FROM $table_course_user cu WHERE cu.c_id = c.id AND cu.user_id = $user_id) subscribed
         FROM $table_course c
-        WHERE c.category_code = '$category_code'";
+        WHERE c.category_code = '$category_code' AND (SELECT count(*) FROM $table_course_user cu WHERE cu.c_id = c.id AND cu.user_id = $user_id) < 1";
 
 $courses = Database::query($sql);
 ?>

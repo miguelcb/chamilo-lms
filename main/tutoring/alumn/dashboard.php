@@ -161,9 +161,10 @@ $indicators = Database::query($sql);
         </header>
         <section class="container">
             <div class="row" style="padding: 32px 0;">
+                <!-- reserva por fechas -->
                 <div class="col-md-4">
-                    <div class="vlms-title-divider">Rerserva por fecha</div>
                     <div class="vlms">
+                        <div class="vlms-title-divider">Rerserva por fecha</div>
                         <div class="vlms-datepicker center-block" aria-hidden="false" style="margin-top: 24px;">
                             <div class="vlms-datepicker__filter">
                               <div class="vlms-datepicker__filter__month">
@@ -231,13 +232,13 @@ $indicators = Database::query($sql);
                                     <span class="vlms-datepicker__month__day">2</span>
                                   </td>
                                   <td headers="Wednesday" role="gridcell" aria-disabled="true">
-                                    <span class="vlms-datepicker__month__day vlms-datepicker__month__day--unlocked">3</span>
+                                    <span class="vlms-datepicker__month__day vlms-datepicker__month__day--presential">3</span>
                                   </td>
                                   <td headers="Thursday" role="gridcell" aria-disabled="true">
-                                    <span class="vlms-datepicker__month__day vlms-datepicker__month__day--unlocked">4</span>
+                                    <span class="vlms-datepicker__month__day vlms-datepicker__month__day--presential">4</span>
                                   </td>
                                   <td headers="Friday" role="gridcell" aria-disabled="true">
-                                    <span class="vlms-datepicker__month__day">5</span>
+                                    <span class="vlms-datepicker__month__day vlms-datepicker__month__day--filled">5</span>
                                   </td>
                                   <td headers="Saturday" role="gridcell" aria-disabled="true">
                                     <span class="vlms-datepicker__month__day">6</span>
@@ -248,22 +249,22 @@ $indicators = Database::query($sql);
                                     <span class="vlms-datepicker__month__day">7</span>
                                   </td>
                                   <td headers="Monday" role="gridcell" aria-disabled="true">
-                                    <span class="vlms-datepicker__month__day vlms-datepicker__month__day--unlocked">8</span>
+                                    <span class="vlms-datepicker__month__day vlms-datepicker__month__day--presential">8</span>
                                   </td>
                                   <td headers="Tuesday" role="gridcell" aria-disabled="true">
                                     <span class="vlms-datepicker__month__day">9</span>
                                   </td>
                                   <td headers="Wednesday" role="gridcell" aria-disabled="true">
-                                    <span class="vlms-datepicker__month__day">10</span>
+                                    <span class="vlms-datepicker__month__day vlms-datepicker__month__day--filled">10</span>
                                   </td>
                                   <td headers="Thursday" role="gridcell" aria-disabled="true">
                                     <span class="vlms-datepicker__month__day">11</span>
                                   </td>
                                   <td headers="Friday" role="gridcell" aria-disabled="true">
-                                    <span class="vlms-datepicker__month__day vlms-datepicker__month__day--unlocked">12</span>
+                                    <span class="vlms-datepicker__month__day vlms-datepicker__month__day--presential">12</span>
                                   </td>
                                   <td headers="Saturday" role="gridcell" aria-disabled="true">
-                                    <span class="vlms-datepicker__month__day vlms-datepicker__month__day--unlocked">13</span>
+                                    <span class="vlms-datepicker__month__day vlms-datepicker__month__day--presential">13</span>
                                   </td>
                                 </tr>
                                 <tr>
@@ -271,13 +272,13 @@ $indicators = Database::query($sql);
                                     <span class="vlms-datepicker__month__day">14</span>
                                   </td>
                                   <td headers="Monday" role="gridcell" aria-disabled="true">
-                                    <span class="vlms-datepicker__month__day vlms-datepicker__month__day--locked">15</span>
+                                    <span class="vlms-datepicker__month__day vlms-datepicker__month__day--both">15</span>
                                   </td>
                                   <td headers="Tuesday" role="gridcell" aria-disabled="true">
                                     <span class="vlms-datepicker__month__day">16</span>
                                   </td>
                                   <td headers="Wednesday" role="gridcell" aria-disabled="true">
-                                    <span class="vlms-datepicker__month__day">17</span>
+                                    <span class="vlms-datepicker__month__day vlms-datepicker__month__day--filled">17</span>
                                   </td>
                                   <td headers="Thursday" role="gridcell" aria-disabled="true">
                                     <span class="vlms-datepicker__month__day vlms-datepicker__month__day--is-today">18</span>
@@ -286,7 +287,7 @@ $indicators = Database::query($sql);
                                     <span class="vlms-datepicker__month__day">19</span>
                                   </td>
                                   <td headers="Saturday" role="gridcell" aria-disabled="true">
-                                    <span class="vlms-datepicker__month__day vlms-datepicker__month__day--unlocked">20</span>
+                                    <span class="vlms-datepicker__month__day vlms-datepicker__month__day--presential">20</span>
                                   </td>
                                 </tr>
                                 <tr>
@@ -297,13 +298,13 @@ $indicators = Database::query($sql);
                                     <span class="vlms-datepicker__month__day">22</span>
                                   </td>
                                   <td headers="Tuesday" role="gridcell" aria-disabled="true">
-                                    <span class="vlms-datepicker__month__day vlms-datepicker__month__day--selected">23</span>
+                                    <span class="vlms-datepicker__month__day vlms-datepicker__month__day--virtual">23</span>
                                   </td>
                                   <td headers="Wednesday" role="gridcell" aria-disabled="true">
                                     <span class="vlms-datepicker__month__day">24</span>
                                   </td>
                                   <td headers="Thursday" role="gridcell" aria-disabled="true">
-                                    <span class="vlms-datepicker__month__day vlms-datepicker__month__day--unlocked">25</span>
+                                    <span class="vlms-datepicker__month__day vlms-datepicker__month__day--presential">25</span>
                                   </td>
                                   <td headers="Friday" role="gridcell" aria-disabled="true">
                                     <span class="vlms-datepicker__month__day">26</span>
@@ -317,7 +318,7 @@ $indicators = Database::query($sql);
                                     <span class="vlms-datepicker__month__day">28</span>
                                   </td>
                                   <td headers="Monday" role="gridcell" aria-disabled="true">
-                                    <span class="vlms-datepicker__month__day vlms-datepicker__month__day--unlocked">29</span>
+                                    <span class="vlms-datepicker__month__day vlms-datepicker__month__day--presential">29</span>
                                   </td>
                                   <td headers="Tuesday" role="gridcell" aria-disabled="true">
                                     <span class="vlms-datepicker__month__day">30</span>
@@ -339,11 +340,18 @@ $indicators = Database::query($sql);
                             </table>
                         </div>
 
+                        <div class="text-center" style="margin-top: 16px;">
+                            <span class="vlms-badge vlms-bgc--sun-flower">presencial</span>
+                            <span class="vlms-badge vlms-bgc--peter-river">virtual</span>
+                            <span class="vlms-badge vlms-bgc--emerald">presencial/virtual</span>
+                            <span class="vlms-badge vlms-bgc--alizarin">sin reservas</span>
+                        </div>
+
                         <div class="vlms-block" style="margin-top: 16px;">
                             <div class="vlms-scrollable vlms-scrollable--y">
                                 <ul class="vlms-list vlms-list--vertical vlms-has-dividers vlms-has-interactions">
                                     <li class="vlms-title-divider">Disponibilidad</li>
-                                    <li class="vlms-list__item" data-toggle="ajax-modal" data-target="#appointment-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/register_appointment.php?appointmentType=0">
+                                    <li class="vlms-list__item">
                                         <div class="vlms-media">
                                             <div class="vlms-media__figure">
                                                 <svg aria-hidden="true" class="vlms-icon" style="fill: #555;">
@@ -351,20 +359,27 @@ $indicators = Database::query($sql);
                                                 </svg>
                                             </div>
                                             <div class="vlms-media__body">
-                                                <div class="vlms-media__body__title clearfix">
-                                                    <a class="pull-left" href="javascript:void(0);">Martes, 23 de Nov del 2016</a>
-                                                    <span class="pull-right vlms-badge vlms-badge--inverse">Cita</span>
+                                                <div class="vlms-media__body__title">
+                                                    <a class="vlms-truncate vlms-pr--medium" href="javascript:void(0);">Martes, 23 de Noviembre del 2016</a>
+                                                    <button class="vlms-list__item__action pull-right" data-toggle="ajax-modal" data-target="#appointment-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/register_appointment.php?appointmentType=0">
+                                                        <svg aria-hidden="true" class="vlms-list__item__action__icon" data-toggle="tooltip" data-container="body" data-placement="left" title="Reservar">
+                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#add"></use>
+                                                        </svg>
+                                                        <span class="sr-only">Show More</span>
+                                                    </button>
                                                 </div>
                                                 <div class="vlms-media__body__detail">
-                                                    <ul class="vlms-list vlms-list--horizontal vlms-has-dividers vlms-text--small">
+                                                    <ul class="vlms-list vlms-list--vertical vlms-text--small">
                                                         <li class="vlms-list__item">8:00 am - 8:45 am</li>
-                                                        <li class="vlms-list__item">Quispe Zapata, Juan</li>
+                                                        <li class="vlms-list__item">
+                                                            <strong>Quispe Zapata, Juan</strong>
+                                                        </li>
                                                     </ul>
                                                 </div>
                                             </div>
                                         </div>
                                     </li>
-                                    <li class="vlms-list__item" data-toggle="ajax-modal" data-target="#appointment-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/register_appointment.php?appointmentType=0">
+                                    <li class="vlms-list__item">
                                         <div class="vlms-media">
                                             <div class="vlms-media__figure">
                                                 <svg aria-hidden="true" class="vlms-icon" style="fill: #555;">
@@ -372,20 +387,27 @@ $indicators = Database::query($sql);
                                                 </svg>
                                             </div>
                                             <div class="vlms-media__body">
-                                                <div class="vlms-media__body__title clearfix">
-                                                    <a class="pull-left" href="javascript:void(0);">Martes, 23 de Nov del 2016</a>
-                                                    <span class="pull-right vlms-badge vlms-badge--inverse">Cita</span>
+                                                <div class="vlms-media__body__title">
+                                                    <a class="vlms-truncate vlms-pr--medium" href="javascript:void(0);">Martes, 23 de Noviembre del 2016</a>
+                                                    <button class="vlms-list__item__action pull-right" data-toggle="ajax-modal" data-target="#appointment-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/register_appointment.php?appointmentType=0">
+                                                        <svg aria-hidden="true" class="vlms-list__item__action__icon" data-toggle="tooltip" data-container="body" data-placement="left" title="Reservar">
+                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#add"></use>
+                                                        </svg>
+                                                        <span class="sr-only">Show More</span>
+                                                    </button>
                                                 </div>
                                                 <div class="vlms-media__body__detail">
-                                                    <ul class="vlms-list vlms-list--horizontal vlms-has-dividers vlms-text--small">
+                                                    <ul class="vlms-list vlms-list--vertical vlms-text--small">
                                                         <li class="vlms-list__item">8:00 am - 8:45 am</li>
-                                                        <li class="vlms-list__item">Quispe Zapata, Juan</li>
+                                                        <li class="vlms-list__item">
+                                                            <strong>Quispe Zapata, Juan</strong>
+                                                        </li>
                                                     </ul>
                                                 </div>
                                             </div>
                                         </div>
                                     </li>
-                                    <li class="vlms-list__item" data-toggle="ajax-modal" data-target="#appointment-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/register_appointment.php?appointmentType=0">
+                                    <li class="vlms-list__item">
                                         <div class="vlms-media">
                                             <div class="vlms-media__figure">
                                                 <svg aria-hidden="true" class="vlms-icon" style="fill: #555;">
@@ -393,20 +415,27 @@ $indicators = Database::query($sql);
                                                 </svg>
                                             </div>
                                             <div class="vlms-media__body">
-                                                <div class="vlms-media__body__title clearfix">
-                                                    <a class="pull-left" href="javascript:void(0);">Martes, 23 de Nov del 2016</a>
-                                                    <span class="pull-right vlms-badge vlms-badge--inverse">Cita</span>
+                                                <div class="vlms-media__body__title">
+                                                    <a class="vlms-truncate vlms-pr--medium" href="javascript:void(0);">Martes, 23 de Noviembre del 2016</a>
+                                                    <button class="vlms-list__item__action pull-right" data-toggle="ajax-modal" data-target="#appointment-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/register_appointment.php?appointmentType=0">
+                                                        <svg aria-hidden="true" class="vlms-list__item__action__icon" data-toggle="tooltip" data-container="body" data-placement="left" title="Reservar">
+                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#add"></use>
+                                                        </svg>
+                                                        <span class="sr-only">Show More</span>
+                                                    </button>
                                                 </div>
                                                 <div class="vlms-media__body__detail">
-                                                    <ul class="vlms-list vlms-list--horizontal vlms-has-dividers vlms-text--small">
+                                                    <ul class="vlms-list vlms-list--vertical vlms-text--small">
                                                         <li class="vlms-list__item">8:00 am - 8:45 am</li>
-                                                        <li class="vlms-list__item">Quispe Zapata, Juan</li>
+                                                        <li class="vlms-list__item">
+                                                            <strong>Quispe Zapata, Juan</strong>
+                                                        </li>
                                                     </ul>
                                                 </div>
                                             </div>
                                         </div>
                                     </li>
-                                    <li class="vlms-list__item" data-toggle="ajax-modal" data-target="#appointment-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/register_appointment.php?appointmentType=0">
+                                    <li class="vlms-list__item">
                                         <div class="vlms-media">
                                             <div class="vlms-media__figure">
                                                 <svg aria-hidden="true" class="vlms-icon" style="fill: #555;">
@@ -414,20 +443,27 @@ $indicators = Database::query($sql);
                                                 </svg>
                                             </div>
                                             <div class="vlms-media__body">
-                                                <div class="vlms-media__body__title clearfix">
-                                                    <a class="pull-left" href="javascript:void(0);">Martes, 23 de Nov del 2016</a>
-                                                    <span class="pull-right vlms-badge vlms-badge--inverse">Cita</span>
+                                                <div class="vlms-media__body__title">
+                                                    <a class="vlms-truncate vlms-pr--medium" href="javascript:void(0);">Martes, 23 de Noviembre del 2016</a>
+                                                    <button class="vlms-list__item__action pull-right" data-toggle="ajax-modal" data-target="#appointment-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/register_appointment.php?appointmentType=0">
+                                                        <svg aria-hidden="true" class="vlms-list__item__action__icon" data-toggle="tooltip" data-container="body" data-placement="left" title="Reservar">
+                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#add"></use>
+                                                        </svg>
+                                                        <span class="sr-only">Show More</span>
+                                                    </button>
                                                 </div>
                                                 <div class="vlms-media__body__detail">
-                                                    <ul class="vlms-list vlms-list--horizontal vlms-has-dividers vlms-text--small">
+                                                    <ul class="vlms-list vlms-list--vertical vlms-text--small">
                                                         <li class="vlms-list__item">8:00 am - 8:45 am</li>
-                                                        <li class="vlms-list__item">Quispe Zapata, Juan</li>
+                                                        <li class="vlms-list__item">
+                                                            <strong>Quispe Zapata, Juan</strong>
+                                                        </li>
                                                     </ul>
                                                 </div>
                                             </div>
                                         </div>
                                     </li>
-                                    <li class="vlms-list__item" data-toggle="ajax-modal" data-target="#appointment-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/register_appointment.php?appointmentType=0">
+                                    <li class="vlms-list__item">
                                         <div class="vlms-media">
                                             <div class="vlms-media__figure">
                                                 <svg aria-hidden="true" class="vlms-icon" style="fill: #555;">
@@ -435,20 +471,27 @@ $indicators = Database::query($sql);
                                                 </svg>
                                             </div>
                                             <div class="vlms-media__body">
-                                                <div class="vlms-media__body__title clearfix">
-                                                    <a class="pull-left" href="javascript:void(0);">Martes, 23 de Nov del 2016</a>
-                                                    <span class="pull-right vlms-badge vlms-badge--inverse">Cita</span>
+                                                <div class="vlms-media__body__title">
+                                                    <a class="vlms-truncate vlms-pr--medium" href="javascript:void(0);">Martes, 23 de Noviembre del 2016</a>
+                                                    <button class="vlms-list__item__action pull-right" data-toggle="ajax-modal" data-target="#appointment-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/register_appointment.php?appointmentType=0">
+                                                        <svg aria-hidden="true" class="vlms-list__item__action__icon" data-toggle="tooltip" data-container="body" data-placement="left" title="Reservar">
+                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#add"></use>
+                                                        </svg>
+                                                        <span class="sr-only">Show More</span>
+                                                    </button>
                                                 </div>
                                                 <div class="vlms-media__body__detail">
-                                                    <ul class="vlms-list vlms-list--horizontal vlms-has-dividers vlms-text--small">
+                                                    <ul class="vlms-list vlms-list--vertical vlms-text--small">
                                                         <li class="vlms-list__item">8:00 am - 8:45 am</li>
-                                                        <li class="vlms-list__item">Quispe Zapata, Juan</li>
+                                                        <li class="vlms-list__item">
+                                                            <strong>Quispe Zapata, Juan</strong>
+                                                        </li>
                                                     </ul>
                                                 </div>
                                             </div>
                                         </div>
                                     </li>
-                                    <li class="vlms-list__item" data-toggle="ajax-modal" data-target="#appointment-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/register_appointment.php?appointmentType=0">
+                                    <li class="vlms-list__item">
                                         <div class="vlms-media">
                                             <div class="vlms-media__figure">
                                                 <svg aria-hidden="true" class="vlms-icon" style="fill: #555;">
@@ -456,20 +499,27 @@ $indicators = Database::query($sql);
                                                 </svg>
                                             </div>
                                             <div class="vlms-media__body">
-                                                <div class="vlms-media__body__title clearfix">
-                                                    <a class="pull-left" href="javascript:void(0);">Martes, 23 de Nov del 2016</a>
-                                                    <span class="pull-right vlms-badge vlms-badge--inverse">Cita</span>
+                                                <div class="vlms-media__body__title">
+                                                    <a class="vlms-truncate vlms-pr--medium" href="javascript:void(0);">Martes, 23 de Noviembre del 2016</a>
+                                                    <button class="vlms-list__item__action pull-right" data-toggle="ajax-modal" data-target="#appointment-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/register_appointment.php?appointmentType=0">
+                                                        <svg aria-hidden="true" class="vlms-list__item__action__icon" data-toggle="tooltip" data-container="body" data-placement="left" title="Reservar">
+                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#add"></use>
+                                                        </svg>
+                                                        <span class="sr-only">Show More</span>
+                                                    </button>
                                                 </div>
                                                 <div class="vlms-media__body__detail">
-                                                    <ul class="vlms-list vlms-list--horizontal vlms-has-dividers vlms-text--small">
+                                                    <ul class="vlms-list vlms-list--vertical vlms-text--small">
                                                         <li class="vlms-list__item">8:00 am - 8:45 am</li>
-                                                        <li class="vlms-list__item">Quispe Zapata, Juan</li>
+                                                        <li class="vlms-list__item">
+                                                            <strong>Quispe Zapata, Juan</strong>
+                                                        </li>
                                                     </ul>
                                                 </div>
                                             </div>
                                         </div>
                                     </li>
-                                    <li class="vlms-list__item" data-toggle="ajax-modal" data-target="#appointment-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/register_appointment.php?appointmentType=0">
+                                    <li class="vlms-list__item">
                                         <div class="vlms-media">
                                             <div class="vlms-media__figure">
                                                 <svg aria-hidden="true" class="vlms-icon" style="fill: #555;">
@@ -477,20 +527,27 @@ $indicators = Database::query($sql);
                                                 </svg>
                                             </div>
                                             <div class="vlms-media__body">
-                                                <div class="vlms-media__body__title clearfix">
-                                                    <a class="pull-left" href="javascript:void(0);">Martes, 23 de Nov del 2016</a>
-                                                    <span class="pull-right vlms-badge vlms-badge--inverse">Cita</span>
+                                                <div class="vlms-media__body__title">
+                                                    <a class="vlms-truncate vlms-pr--medium" href="javascript:void(0);">Martes, 23 de Noviembre del 2016</a>
+                                                    <button class="vlms-list__item__action pull-right" data-toggle="ajax-modal" data-target="#appointment-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/register_appointment.php?appointmentType=0">
+                                                        <svg aria-hidden="true" class="vlms-list__item__action__icon" data-toggle="tooltip" data-container="body" data-placement="left" title="Reservar">
+                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#add"></use>
+                                                        </svg>
+                                                        <span class="sr-only">Show More</span>
+                                                    </button>
                                                 </div>
                                                 <div class="vlms-media__body__detail">
-                                                    <ul class="vlms-list vlms-list--horizontal vlms-has-dividers vlms-text--small">
+                                                    <ul class="vlms-list vlms-list--vertical vlms-text--small">
                                                         <li class="vlms-list__item">8:00 am - 8:45 am</li>
-                                                        <li class="vlms-list__item">Quispe Zapata, Juan</li>
+                                                        <li class="vlms-list__item">
+                                                            <strong>Quispe Zapata, Juan</strong>
+                                                        </li>
                                                     </ul>
                                                 </div>
                                             </div>
                                         </div>
                                     </li>
-                                    <li class="vlms-list__item" data-toggle="ajax-modal" data-target="#appointment-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/register_appointment.php?appointmentType=0">
+                                    <li class="vlms-list__item">
                                         <div class="vlms-media">
                                             <div class="vlms-media__figure">
                                                 <svg aria-hidden="true" class="vlms-icon" style="fill: #555;">
@@ -498,20 +555,27 @@ $indicators = Database::query($sql);
                                                 </svg>
                                             </div>
                                             <div class="vlms-media__body">
-                                                <div class="vlms-media__body__title clearfix">
-                                                    <a class="pull-left" href="javascript:void(0);">Martes, 23 de Nov del 2016</a>
-                                                    <span class="pull-right vlms-badge vlms-badge--inverse">Cita</span>
+                                                <div class="vlms-media__body__title">
+                                                    <a class="vlms-truncate vlms-pr--medium" href="javascript:void(0);">Martes, 23 de Noviembre del 2016</a>
+                                                    <button class="vlms-list__item__action pull-right" data-toggle="ajax-modal" data-target="#appointment-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/register_appointment.php?appointmentType=0">
+                                                        <svg aria-hidden="true" class="vlms-list__item__action__icon" data-toggle="tooltip" data-container="body" data-placement="left" title="Reservar">
+                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#add"></use>
+                                                        </svg>
+                                                        <span class="sr-only">Show More</span>
+                                                    </button>
                                                 </div>
                                                 <div class="vlms-media__body__detail">
-                                                    <ul class="vlms-list vlms-list--horizontal vlms-has-dividers vlms-text--small">
+                                                    <ul class="vlms-list vlms-list--vertical vlms-text--small">
                                                         <li class="vlms-list__item">8:00 am - 8:45 am</li>
-                                                        <li class="vlms-list__item">Quispe Zapata, Juan</li>
+                                                        <li class="vlms-list__item">
+                                                            <strong>Quispe Zapata, Juan</strong>
+                                                        </li>
                                                     </ul>
                                                 </div>
                                             </div>
                                         </div>
                                     </li>
-                                    <li class="vlms-list__item" data-toggle="ajax-modal" data-target="#appointment-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/register_appointment.php?appointmentType=1">
+                                    <li class="vlms-list__item">
                                         <div class="vlms-media">
                                             <div class="vlms-media__figure">
                                                 <svg aria-hidden="true" class="vlms-icon" style="fill: #555;">
@@ -519,20 +583,27 @@ $indicators = Database::query($sql);
                                                 </svg>
                                             </div>
                                             <div class="vlms-media__body">
-                                                <div class="vlms-media__body__title clearfix">
-                                                    <a class="pull-left" href="javascript:void(0);">Martes, 23 de Nov del 2016</a>
-                                                    <span class="pull-right vlms-badge vlms-badge--inverse">Chat</span>
+                                                <div class="vlms-media__body__title">
+                                                    <a class="vlms-truncate vlms-pr--medium" href="javascript:void(0);">Martes, 23 de Noviembre del 2016</a>
+                                                    <button class="vlms-list__item__action pull-right" data-toggle="ajax-modal" data-target="#appointment-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/register_appointment.php?appointmentType=0">
+                                                        <svg aria-hidden="true" class="vlms-list__item__action__icon" data-toggle="tooltip" data-container="body" data-placement="left" title="Reservar">
+                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#add"></use>
+                                                        </svg>
+                                                        <span class="sr-only">Show More</span>
+                                                    </button>
                                                 </div>
                                                 <div class="vlms-media__body__detail">
-                                                    <ul class="vlms-list vlms-list--horizontal vlms-has-dividers vlms-text--small">
+                                                    <ul class="vlms-list vlms-list--vertical vlms-text--small">
                                                         <li class="vlms-list__item">8:00 am - 8:45 am</li>
-                                                        <li class="vlms-list__item">Quispe Zapata, Juan</li>
+                                                        <li class="vlms-list__item">
+                                                            <strong>Quispe Zapata, Juan</strong>
+                                                        </li>
                                                     </ul>
                                                 </div>
                                             </div>
                                         </div>
                                     </li>
-                                    <li class="vlms-list__item" data-toggle="ajax-modal" data-target="#appointment-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/register_appointment.php?appointmentType=1">
+                                    <li class="vlms-list__item">
                                         <div class="vlms-media">
                                             <div class="vlms-media__figure">
                                                 <svg aria-hidden="true" class="vlms-icon" style="fill: #555;">
@@ -540,14 +611,21 @@ $indicators = Database::query($sql);
                                                 </svg>
                                             </div>
                                             <div class="vlms-media__body">
-                                                <div class="vlms-media__body__title clearfix">
-                                                    <a class="pull-left" href="javascript:void(0);">Martes, 23 de Nov del 2016</a>
-                                                    <span class="pull-right vlms-badge vlms-badge--inverse">Chat</span>
+                                                <div class="vlms-media__body__title">
+                                                    <a class="vlms-truncate vlms-pr--medium" href="javascript:void(0);">Martes, 23 de Noviembre del 2016</a>
+                                                    <button class="vlms-list__item__action pull-right" data-toggle="ajax-modal" data-target="#appointment-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/register_appointment.php?appointmentType=0">
+                                                        <svg aria-hidden="true" class="vlms-list__item__action__icon" data-toggle="tooltip" data-container="body" data-placement="left" title="Reservar">
+                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#add"></use>
+                                                        </svg>
+                                                        <span class="sr-only">Show More</span>
+                                                    </button>
                                                 </div>
                                                 <div class="vlms-media__body__detail">
-                                                    <ul class="vlms-list vlms-list--horizontal vlms-has-dividers vlms-text--small">
+                                                    <ul class="vlms-list vlms-list--vertical vlms-text--small">
                                                         <li class="vlms-list__item">8:00 am - 8:45 am</li>
-                                                        <li class="vlms-list__item">Quispe Zapata, Juan</li>
+                                                        <li class="vlms-list__item">
+                                                            <strong>Quispe Zapata, Juan</strong>
+                                                        </li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -558,259 +636,69 @@ $indicators = Database::query($sql);
                         </div>
                     </div>
                 </div>
+                <!-- reserva por tutor -->
                 <div class="col-md-4">
-                    <div class="vlms-title-divider">Rerserva por tutor</div>
-
-                    <div id="appointment-tutor-picker" class="carousel slide" data-ride="carousel" data-interval="false">
-                      <div class="carousel-inner" role="listbox">
-                        <div class="item active">
-                            <img src="http://neo.pe/tutorvirtual/image/02.jpg" alt="" class="img-circle center-block">
-                            <div class="carousel-caption" style="">
-                                <h3>Quispe Zapata, Juan</h3>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <img src="http://neo.pe/tutorvirtual/image/01.jpg" alt="" class="img-circle center-block">
-                            <div class="carousel-caption">
-                                <h3>Mendoza Neudstald, Lorei</h3>
-                            </div>
-                        </div>
-                      </div>
-
-                      <a class="left carousel-control" href="javascript:void(0);" data-target="#appointment-tutor-picker" role="button" data-slide="prev">
-                        <svg aria-hidden="true" style="fill: #555;">
-                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#chevronleft"></use>
-                        </svg>
-                        <span class="sr-only">Previous</span>
-                      </a>
-                      <a class="right carousel-control" href="javascript:void(0);" data-target="#appointment-tutor-picker" role="button" data-slide="next">
-                        <svg aria-hidden="true" style="fill: #555;">
-                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#chevronright"></use>
-                        </svg>
-                        <span class="sr-only">Next</span>
-                      </a>
-                    </div>
-
                     <div class="vlms">
+                        <div class="vlms-title-divider">Rerserva por tutor</div>
+
+                        <div id="appointment-tutor-picker" class="carousel slide" data-ride="carousel" data-interval="false">
+                          <div class="carousel-inner" role="listbox">
+                            <div class="item active">
+                                <img src="http://neo.pe/tutorvirtual/image/02.jpg" alt="" class="img-circle center-block">
+                                <div class="carousel-caption" style="">
+                                    <h3>Quispe Zapata, Juan</h3>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <img src="http://neo.pe/tutorvirtual/image/01.jpg" alt="" class="img-circle center-block">
+                                <div class="carousel-caption">
+                                    <h3>Mendoza Neudstald, Lorei</h3>
+                                </div>
+                            </div>
+                          </div>
+
+                          <a class="left carousel-control" href="javascript:void(0);" data-target="#appointment-tutor-picker" role="button" data-slide="prev">
+                            <svg aria-hidden="true" style="fill: #555; height: 100%;">
+                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#chevronleft"></use>
+                            </svg>
+                            <span class="sr-only">Previous</span>
+                          </a>
+                          <a class="right carousel-control" href="javascript:void(0);" data-target="#appointment-tutor-picker" role="button" data-slide="next">
+                            <svg aria-hidden="true" style="fill: #555; height: 100%;">
+                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#chevronright"></use>
+                            </svg>
+                            <span class="sr-only">Next</span>
+                          </a>
+                        </div>
+
+                        <hr style="margin-bottom: 18px;">
+
+                        <ul class="vlms-list vlms-list--horizontal" style="  justify-content: center;">
+                            <li class="vlms-list__item text-center" style="padding: 8px;">
+                                <svg aria-hidden="true" class="vlms-icon" style="fill: #555;">
+                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#event"></use>
+                                </svg>
+                                <span class="vlms-badge vlms-badge--inverse" style="display: block;">Cita</span>
+                            </li>
+                            <li class="vlms-list__item text-center" style="padding: 8px;">
+                                <svg aria-hidden="true" class="vlms-icon" style="fill: #555;">
+                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#chat"></use>
+                                </svg>
+                                <span class="vlms-badge vlms-badge--inverse" style="display: block;">Chat</span>
+                            </li>
+                        </ul>
+
                         <div class="vlms-block" style="margin-top: 16px;">
                             <div class="vlms-scrollable vlms-scrollable--y">
                                 <ul class="vlms-list vlms-list--vertical vlms-has-dividers vlms-has-interactions">
                                     <li class="vlms-title-divider">Disponibilidad</li>
-                                    <li class="vlms-list__item" data-toggle="ajax-modal" data-target="#appointment-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/register_appointment.php?appointmentType=0">
-                                        <div class="vlms-media">
-                                            <div class="vlms-media__figure">
-                                                <svg aria-hidden="true" class="vlms-icon" style="fill: #555;">
-                                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#event"></use>
-                                                </svg>
-                                            </div>
-                                            <div class="vlms-media__body">
-                                                <div class="vlms-media__body__title clearfix">
-                                                    <a class="pull-left" href="javascript:void(0);">Martes, 23 de Nov del 2016</a>
-                                                    <span class="pull-right vlms-badge vlms-badge--inverse">Cita</span>
-                                                </div>
-                                                <div class="vlms-media__body__detail">
-                                                    <ul class="vlms-list vlms-list--horizontal vlms-has-dividers vlms-text--small">
-                                                        <li class="vlms-list__item">8:00 am - 8:45 am</li>
-                                                        <li class="vlms-list__item">Quispe Zapata, Juan</li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="vlms-list__item" data-toggle="ajax-modal" data-target="#appointment-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/register_appointment.php?appointmentType=0">
-                                        <div class="vlms-media">
-                                            <div class="vlms-media__figure">
-                                                <svg aria-hidden="true" class="vlms-icon" style="fill: #555;">
-                                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#event"></use>
-                                                </svg>
-                                            </div>
-                                            <div class="vlms-media__body">
-                                                <div class="vlms-media__body__title clearfix">
-                                                    <a class="pull-left" href="javascript:void(0);">Martes, 23 de Nov del 2016</a>
-                                                    <span class="pull-right vlms-badge vlms-badge--inverse">Cita</span>
-                                                </div>
-                                                <div class="vlms-media__body__detail">
-                                                    <ul class="vlms-list vlms-list--horizontal vlms-has-dividers vlms-text--small">
-                                                        <li class="vlms-list__item">8:00 am - 8:45 am</li>
-                                                        <li class="vlms-list__item">Quispe Zapata, Juan</li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="vlms-list__item" data-toggle="ajax-modal" data-target="#appointment-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/register_appointment.php?appointmentType=0">
-                                        <div class="vlms-media">
-                                            <div class="vlms-media__figure">
-                                                <svg aria-hidden="true" class="vlms-icon" style="fill: #555;">
-                                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#event"></use>
-                                                </svg>
-                                            </div>
-                                            <div class="vlms-media__body">
-                                                <div class="vlms-media__body__title clearfix">
-                                                    <a class="pull-left" href="javascript:void(0);">Martes, 23 de Nov del 2016</a>
-                                                    <span class="pull-right vlms-badge vlms-badge--inverse">Cita</span>
-                                                </div>
-                                                <div class="vlms-media__body__detail">
-                                                    <ul class="vlms-list vlms-list--horizontal vlms-has-dividers vlms-text--small">
-                                                        <li class="vlms-list__item">8:00 am - 8:45 am</li>
-                                                        <li class="vlms-list__item">Quispe Zapata, Juan</li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="vlms-list__item" data-toggle="ajax-modal" data-target="#appointment-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/register_appointment.php?appointmentType=0">
-                                        <div class="vlms-media">
-                                            <div class="vlms-media__figure">
-                                                <svg aria-hidden="true" class="vlms-icon" style="fill: #555;">
-                                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#event"></use>
-                                                </svg>
-                                            </div>
-                                            <div class="vlms-media__body">
-                                                <div class="vlms-media__body__title clearfix">
-                                                    <a class="pull-left" href="javascript:void(0);">Martes, 23 de Nov del 2016</a>
-                                                    <span class="pull-right vlms-badge vlms-badge--inverse">Cita</span>
-                                                </div>
-                                                <div class="vlms-media__body__detail">
-                                                    <ul class="vlms-list vlms-list--horizontal vlms-has-dividers vlms-text--small">
-                                                        <li class="vlms-list__item">8:00 am - 8:45 am</li>
-                                                        <li class="vlms-list__item">Quispe Zapata, Juan</li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="vlms-list__item" data-toggle="ajax-modal" data-target="#appointment-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/register_appointment.php?appointmentType=0">
-                                        <div class="vlms-media">
-                                            <div class="vlms-media__figure">
-                                                <svg aria-hidden="true" class="vlms-icon" style="fill: #555;">
-                                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#event"></use>
-                                                </svg>
-                                            </div>
-                                            <div class="vlms-media__body">
-                                                <div class="vlms-media__body__title clearfix">
-                                                    <a class="pull-left" href="javascript:void(0);">Martes, 23 de Nov del 2016</a>
-                                                    <span class="pull-right vlms-badge vlms-badge--inverse">Cita</span>
-                                                </div>
-                                                <div class="vlms-media__body__detail">
-                                                    <ul class="vlms-list vlms-list--horizontal vlms-has-dividers vlms-text--small">
-                                                        <li class="vlms-list__item">8:00 am - 8:45 am</li>
-                                                        <li class="vlms-list__item">Quispe Zapata, Juan</li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="vlms-list__item" data-toggle="ajax-modal" data-target="#appointment-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/register_appointment.php?appointmentType=0">
-                                        <div class="vlms-media">
-                                            <div class="vlms-media__figure">
-                                                <svg aria-hidden="true" class="vlms-icon" style="fill: #555;">
-                                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#event"></use>
-                                                </svg>
-                                            </div>
-                                            <div class="vlms-media__body">
-                                                <div class="vlms-media__body__title clearfix">
-                                                    <a class="pull-left" href="javascript:void(0);">Martes, 23 de Nov del 2016</a>
-                                                    <span class="pull-right vlms-badge vlms-badge--inverse">Cita</span>
-                                                </div>
-                                                <div class="vlms-media__body__detail">
-                                                    <ul class="vlms-list vlms-list--horizontal vlms-has-dividers vlms-text--small">
-                                                        <li class="vlms-list__item">8:00 am - 8:45 am</li>
-                                                        <li class="vlms-list__item">Quispe Zapata, Juan</li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="vlms-list__item" data-toggle="ajax-modal" data-target="#appointment-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/register_appointment.php?appointmentType=0">
-                                        <div class="vlms-media">
-                                            <div class="vlms-media__figure">
-                                                <svg aria-hidden="true" class="vlms-icon" style="fill: #555;">
-                                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#event"></use>
-                                                </svg>
-                                            </div>
-                                            <div class="vlms-media__body">
-                                                <div class="vlms-media__body__title clearfix">
-                                                    <a class="pull-left" href="javascript:void(0);">Martes, 23 de Nov del 2016</a>
-                                                    <span class="pull-right vlms-badge vlms-badge--inverse">Cita</span>
-                                                </div>
-                                                <div class="vlms-media__body__detail">
-                                                    <ul class="vlms-list vlms-list--horizontal vlms-has-dividers vlms-text--small">
-                                                        <li class="vlms-list__item">8:00 am - 8:45 am</li>
-                                                        <li class="vlms-list__item">Quispe Zapata, Juan</li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="vlms-list__item" data-toggle="ajax-modal" data-target="#appointment-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/register_appointment.php?appointmentType=0">
-                                        <div class="vlms-media">
-                                            <div class="vlms-media__figure">
-                                                <svg aria-hidden="true" class="vlms-icon" style="fill: #555;">
-                                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#event"></use>
-                                                </svg>
-                                            </div>
-                                            <div class="vlms-media__body">
-                                                <div class="vlms-media__body__title clearfix">
-                                                    <a class="pull-left" href="javascript:void(0);">Martes, 23 de Nov del 2016</a>
-                                                    <span class="pull-right vlms-badge vlms-badge--inverse">Cita</span>
-                                                </div>
-                                                <div class="vlms-media__body__detail">
-                                                    <ul class="vlms-list vlms-list--horizontal vlms-has-dividers vlms-text--small">
-                                                        <li class="vlms-list__item">8:00 am - 8:45 am</li>
-                                                        <li class="vlms-list__item">Quispe Zapata, Juan</li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="vlms-list__item" data-toggle="ajax-modal" data-target="#appointment-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/register_appointment.php?appointmentType=1">
-                                        <div class="vlms-media">
-                                            <div class="vlms-media__figure">
-                                                <svg aria-hidden="true" class="vlms-icon" style="fill: #555;">
-                                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#chat"></use>
-                                                </svg>
-                                            </div>
-                                            <div class="vlms-media__body">
-                                                <div class="vlms-media__body__title clearfix">
-                                                    <a class="pull-left" href="javascript:void(0);">Martes, 23 de Nov del 2016</a>
-                                                    <span class="pull-right vlms-badge vlms-badge--inverse">Chat</span>
-                                                </div>
-                                                <div class="vlms-media__body__detail">
-                                                    <ul class="vlms-list vlms-list--horizontal vlms-has-dividers vlms-text--small">
-                                                        <li class="vlms-list__item">8:00 am - 8:45 am</li>
-                                                        <li class="vlms-list__item">Quispe Zapata, Juan</li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="vlms-list__item" data-toggle="ajax-modal" data-target="#appointment-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/register_appointment.php?appointmentType=1">
-                                        <div class="vlms-media">
-                                            <div class="vlms-media__figure">
-                                                <svg aria-hidden="true" class="vlms-icon" style="fill: #555;">
-                                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#chat"></use>
-                                                </svg>
-                                            </div>
-                                            <div class="vlms-media__body">
-                                                <div class="vlms-media__body__title clearfix">
-                                                    <a class="pull-left" href="javascript:void(0);">Martes, 23 de Nov del 2016</a>
-                                                    <span class="pull-right vlms-badge vlms-badge--inverse">Chat</span>
-                                                </div>
-                                                <div class="vlms-media__body__detail">
-                                                    <ul class="vlms-list vlms-list--horizontal vlms-has-dividers vlms-text--small">
-                                                        <li class="vlms-list__item">8:00 am - 8:45 am</li>
-                                                        <li class="vlms-list__item">Quispe Zapata, Juan</li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
+                                    <li class="vlms-list__item">Sin vacantes</li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                 </div>
+                <!-- mis citas -->
                 <div class="col-md-4">
                     <div class="vlms">
                         <ul class="vlms-list vlms-list--vertical vlms-has-dividers vlms-has-interactions">
@@ -823,14 +711,15 @@ $indicators = Database::query($sql);
                                         </svg>
                                     </div>
                                     <div class="vlms-media__body">
-                                        <div class="vlms-media__body__title clearfix">
-                                            <a class="pull-left" href="javascript:void(0);">Lunes, 1 de Abril del 2015</a>
-                                            <span class="pull-right vlms-badge vlms-badge--inverse">Cita</span>
+                                        <div class="vlms-media__body__title">
+                                            <a href="javascript:void(0);">Lunes, 1 de Abril del 2016</a>
                                         </div>
                                         <div class="vlms-media__body__detail">
-                                            <ul class="vlms-list vlms-list--horizontal vlms-has-dividers vlms-text--small">
-                                                <li class="vlms-list__item">3:45 pm</li>
-                                                <li class="vlms-list__item">Quispe Zapata, Juan</li>
+                                            <ul class="vlms-list vlms-list--vertical vlms-text--small">
+                                                <li class="vlms-list__item">8:00 am - 8:45 am</li>
+                                                <li class="vlms-list__item">
+                                                    <strong>Quispe Zapata, Juan</strong>
+                                                </li>
                                             </ul>
                                         </div>
                                     </div>
@@ -844,14 +733,15 @@ $indicators = Database::query($sql);
                                         </svg>
                                     </div>
                                     <div class="vlms-media__body">
-                                        <div class="vlms-media__body__title clearfix">
-                                            <a class="pull-left" href="javascript:void(0);">Lunes, 1 de Abril del 2015</a>
-                                            <span class="pull-right vlms-badge vlms-badge--inverse">Cita</span>
+                                        <div class="vlms-media__body__title">
+                                            <a href="javascript:void(0);">Martes, 23 de Noviembre del 2016</a>
                                         </div>
                                         <div class="vlms-media__body__detail">
-                                            <ul class="vlms-list vlms-list--horizontal vlms-has-dividers vlms-text--small">
-                                                <li class="vlms-list__item">3:45 pm</li>
-                                                <li class="vlms-list__item">Quispe Zapata, Juan</li>
+                                            <ul class="vlms-list vlms-list--vertical vlms-text--small">
+                                                <li class="vlms-list__item">8:00 am - 8:45 am</li>
+                                                <li class="vlms-list__item">
+                                                    <strong>Quispe Zapata, Juan</strong>
+                                                </li>
                                             </ul>
                                         </div>
                                     </div>
@@ -865,14 +755,15 @@ $indicators = Database::query($sql);
                                         </svg>
                                     </div>
                                     <div class="vlms-media__body">
-                                        <div class="vlms-media__body__title clearfix">
-                                            <a class="pull-left" href="javascript:void(0);">Martes, 3 de Abril del 2015</a>
-                                            <span class="pull-right vlms-badge vlms-badge--inverse">Chat</span>
+                                        <div class="vlms-media__body__title">
+                                            <a href="javascript:void(0);">Martes, 3 de Abril del 2016</a>
                                         </div>
                                         <div class="vlms-media__body__detail">
-                                            <ul class="vlms-list vlms-list--horizontal vlms-has-dividers vlms-text--small">
-                                                <li class="vlms-list__item">3:45 pm</li>
-                                                <li class="vlms-list__item">Mendoza Neudstald, Lorei</li>
+                                            <ul class="vlms-list vlms-list--vertical vlms-text--small">
+                                                <li class="vlms-list__item">3:45 pm - 4:15 pm</li>
+                                                <li class="vlms-list__item">
+                                                    <strong>Mendoza Neudstald, Lorei</strong>
+                                                </li>
                                             </ul>
                                         </div>
                                     </div>
@@ -886,14 +777,15 @@ $indicators = Database::query($sql);
                                         </svg>
                                     </div>
                                     <div class="vlms-media__body">
-                                        <div class="vlms-media__body__title clearfix">
-                                            <a class="pull-left" href="javascript:void(0);">Jueves, 5 de Abril del 2015</a>
-                                            <span class="pull-right vlms-badge vlms-badge--inverse">Cita</span>
+                                        <div class="vlms-media__body__title">
+                                            <a href="javascript:void(0);">Jueves, 5 de Abril del 2015</a>
                                         </div>
                                         <div class="vlms-media__body__detail">
-                                            <ul class="vlms-list vlms-list--horizontal vlms-has-dividers vlms-text--small">
-                                                <li class="vlms-list__item">3:45 pm</li>
-                                                <li class="vlms-list__item">Quispe Zapata, Juan</li>
+                                            <ul class="vlms-list vlms-list--vertical vlms-text--small">
+                                                <li class="vlms-list__item">3:45 pm - 4:15 pm</li>
+                                                <li class="vlms-list__item">
+                                                    <strong>Quispe Zapata, Juan</strong>
+                                                </li>
                                             </ul>
                                         </div>
                                     </div>
