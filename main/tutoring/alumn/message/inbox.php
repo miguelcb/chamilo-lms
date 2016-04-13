@@ -16,31 +16,39 @@ $result = Database::query($sql);
 <div class="row" id="inbox">
     <?php if (Database::num_rows($result) > 0): ?>
     <div class="col-md-4">
-        <ul class="list-group messages-tutoring">
-            <li class="list-group-item">
-                <button class="btn btn-block btn-danger" id="delete-all-messages"><?php echo get_lang('Borrar todos los mensajes'); ?></button>
-            </li>
-        <?php while($row = Database::fetch_assoc($result)): ?>
-            <li class="list-group-item messages-tutoring__item" role="button" data-message-id="<?php echo $row['id']; ?>">
-                <h4 class="list-group-item-heading clearfix" style="position: relative; padding-right: 24px;">
-                    <div class="pull-left"><?php echo $row['user_sender']; ?></div>
-                    <div class="pull-right small" style="padding: 0;"><?php echo api_convert_and_format_date($row['send_date'], '%b %d') ?></div>
-                    <div class="btn-group" style="position: absolute; right: 0;">
-                      <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding: 2px 4px; line-height: 1;">
-                        <span class="caret"></span>
-                        <span class="sr-only">Toggle Dropdown</span>
-                      </button>
-                      <ul class="dropdown-menu dropdown-menu-right">
-                        <li>
-                            <a class="message-tutoring__item__delete" href="#" data-message-delete-id="<?php echo $row['id']; ?>"><?php echo get_lang('DeleteMessage'); ?></a>
-                        </li>
-                      </ul>
-                    </div>
-                </h4>
-                <div class="list-group-item-text"><?php echo $row['title']; ?></div>
-            </li>
-        <?php endwhile; ?>
-        </ul>
+        <div class="vlms">
+            <ul class="vlms-list vlms-list--vertical vlms-has-dividers vlms-has-interactions messages-tutoring">
+                <li class="vlms-list__item">
+                    <button class="btn btn-block btn-danger" id="delete-all-messages"><?php echo get_lang('Borrar todos los mensajes'); ?></button>
+                </li>
+                <?php while($row = Database::fetch_assoc($result)): ?>
+                    <li class="vlms-list__item messages-tutoring__item" role="button" data-message-id="<?php echo $row['id']; ?>">
+                        <div class="vlms-media">
+                            <div class="vlms-media__body">
+                                <div class="vlms-media__body__title">
+                                    <a class="vlms-truncate vlms-pr--medium" href="javascript:void(0);"><?php echo $row['title']; ?></a>
+                                    <button class="vlms-list__item__action" data-message-delete-id="<?php echo $row['id']; ?>">
+                                        <svg aria-hidden="true" class="vlms-list__item__action__icon" data-toggle="tooltip" data-container="body" data-placement="left" title="Eliminar">
+                                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#close"></use>
+                                        </svg>
+                                        <span class="sr-only">Show More</span>
+                                    </button>
+                                </div>
+                                <div class="vlms-media__body__detail">
+                                    <ul class="vlms-list vlms-list--vertical vlms-text--small">
+                                        <li class="vlms-list__item"><?php echo date_to_str_ago($row['send_date']); ?></li>
+                                        <li class="vlms-list__item">
+                                            <strong><?php echo $row['user_sender']; ?></strong>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </li>
+                <?php endwhile; ?>
+            </ul>
+        </div>
     </div>
     <div class="col-md-8 message-tutoring">
         <div class="alert alert-info">Haz click en alguno de los mensajes para ver el mensaje completo</div>
@@ -51,6 +59,9 @@ $result = Database::query($sql);
 </div>
 
 <script>
+    $('[data-toggle=tooltip]').boostrapTooltip();
+    $('[data-toggle=popover]').boostrapPopover();
+
     $('.messages-tutoring__item').click(function() {
         var $sup = $(this);
         $('.messages-tutoring__item').removeClass('active');

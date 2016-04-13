@@ -32,12 +32,42 @@ while ($question = Database::fetch_assoc($questions)) {
         $my_questions[$question['post_id']]['attachments'][] = $attachment;
     }
 }
-
 ?>
 
 <?php if (count($my_questions) > 0): ?>
 <div class="row">
     <div class="col-md-4">
+        <div class="vlms">
+            <div class="vlms-block">
+                <div class="vlms-scrollable vlms-scrollable--y">
+                    <ul class="vlms-list vlms-list--vertical vlms-has-dividers vlms-has-interactions">
+                        <li class="vlms-title-divider">Mis preguntas en el curso</li>
+                        <?php foreach ($my_questions as $question): ?>
+                            <li class="vlms-list__item" role="button" data-question-id="<?php echo $question['post_id']; ?>">
+                                <div class="vlms-media">
+                                    <div class="vlms-media__figure">
+                                        <svg aria-hidden="true" class="vlms-icon" style="fill: #555;">
+                                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#share_post"></use>
+                                        </svg>
+                                    </div>
+                                    <div class="vlms-media__body">
+                                        <div class="vlms-media__body__title vlms-truncate">
+                                            <a href="javascript:void(0);"><?php echo $question['post_title']; ?></a>
+                                        </div>
+                                        <div class="vlms-media__body__detail">
+                                            <ul class="vlms-list vlms-list--horizontal vlms-has-dividers vlms-text--small">
+                                                <li class="vlms-list__item"><?php echo api_convert_and_format_date($question['post_date'], '%b %d, %Y'); ?></li>
+                                                <li class="vlms-list__item"><strong><?php echo $question['answered'] == '1' ? 'Atendida' : 'Sin atender'; ?></strong></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
+            </div>
+        </div>
         <ul class="list-group">
             <li class="list-group-item">
                 <div class="input-group">
@@ -61,7 +91,18 @@ while ($question = Database::fetch_assoc($questions)) {
     </div>
 </div>
 <?php else: ?>
-    <div class="alert alert-info">No hay preguntas</div>
+    <div class="vlms">
+        <div class="vlms-block">
+            <ul class="vlms-list vlms-list--vertical vlms-has-dividers vlms-has-interactions">
+                <li class="vlms-title-divider">Mis preguntas</li>
+                <li class="vlms-list__item">
+                    <div class="vlms-media__body">
+                        <div class="vlms-media__body__title">No tienes preguntas en el curso</div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
 <?php endif; ?>
 
 <script>
