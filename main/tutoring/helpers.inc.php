@@ -94,3 +94,20 @@ function extension_icon($ext) {
 
     return $ext;
 }
+
+function appointment_icon($type)
+{
+    switch ($type) {
+        case 'virtual-appointment':
+            $type = 'event';
+            break;
+        case 'face-appointment':
+            $type = 'chat';
+            break;
+        default:
+            $type = 'error';
+            break;
+    }
+
+    return $type;
+}
