@@ -4,9 +4,6 @@ include 'helpers.inc.php';
 
 api_block_anonymous_users();
 
-function pretty_print($v) {
-    print('<pre>'.print_r($v, true).'</pre>');
-}
 // $cid     = is_null($_GET['cid']) ? 1 : $_GET['cid'];
 
 $table_forum_post       = Database::get_course_table(TABLE_FORUM_POST);
@@ -35,18 +32,24 @@ while ($question = Database::fetch_assoc($questions)) {
     }
 }
 ?>
-<ul class="list-unstyled text-right course-tutoring__nav">
-  <li style="display: inline-block;">
-    <a href="javascript:void(0)" class="fa fa-list-alt fa-icon-size fa-icon-size--medium" style="color: #555; margin: 8px;" data-modal="ajax-modal" data-target="#recent-activities-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/tutor/activity_panel.php" data-toggle="tooltip" data-placement="bottom" data-container="body" title="" data-original-title="Actividades recientes"></a>
-  </li>
-  <li style="display: inline-block;">
-    <a href="javascript:void(0)" class="fa fa-cog fa-icon-size fa-icon-size--medium" style="color: #555; margin: 8px;" data-modal="ajax-modal" data-target="#alert-settings-modal" data-source="http://104.131.109.28/tutorvirtual-winter16/main/tutoring/alumn/course/alert_settings.php?cid=1" data-toggle="tooltip" data-placement="bottom" data-container="body" title="" data-original-title="Alertas del curso"></a>
-  </li>  
-</ul>
 
 <header class="text-center course-tool__header">
-  <span class="fa fa-question fa-rounded fa-icon-size fa-icon-size--medium vlms-bgc--palette-1" role="button" data-toggle="popover" data-trigger="hover" data-container="body" title="" data-content="Resuelve tus dudas realizando preguntas o visitando el repositorio de preguntas." data-original-title="Preguntas"></span>
-  <div class="text-uppercase">Preguntas</div>
+    <div class="row">
+        <div class="col-sm-4 col-sm-offset-4">
+            <span class="fa fa-question fa-rounded fa-icon-size fa-icon-size--medium vlms-bgc--palette-1" role="button" data-toggle="popover" data-trigger="hover" data-container="body" title="" data-content="Responde a las preguntas realizadas por tus alumnos." data-original-title="Preguntas"></span>
+        </div>
+        <div class="col-sm-4">
+            <ul class="list-unstyled text-right course-tutoring__nav">
+                <li style="display: inline-block;">
+                    <a href="javascript:void(0)" class="fa fa-list-alt fa-icon-size fa-icon-size--medium" style="color: #555; margin: 8px;" data-modal="ajax-modal" data-target="#recent-activities-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/tutor/activity_panel.php" data-toggle="tooltip" data-placement="bottom" data-container="body" title="" data-original-title="Actividades recientes"></a>
+                </li>
+                <li style="display: inline-block;">
+                    <a href="javascript:void(0)" class="fa fa-cog fa-icon-size fa-icon-size--medium" style="color: #555; margin: 8px;" data-modal="ajax-modal" data-target="#alert-settings-modal" data-source="http://104.131.109.28/tutorvirtual-winter16/main/tutoring/alumn/course/alert_settings.php?cid=1" data-toggle="tooltip" data-placement="bottom" data-container="body" title="" data-original-title="Alertas del curso"></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="text-uppercase">Preguntas</div>
 </header>
 
 <?php if (count($all_questions) > 0): ?>
@@ -82,12 +85,6 @@ while ($question = Database::fetch_assoc($questions)) {
 
 
 <script>
-
-    $.fn.boostrapTooltip = $.fn.tooltip.noConflict();
-    $.fn.boostrapPopover = $.fn.popover.noConflict();
-    $('[data-toggle=tooltip]').boostrapTooltip();
-    $('[data-toggle=popover]').boostrapPopover();
-
     $('[data-question-id]').click(function() {
         var $sup = $(this);
         $('[data-question-id]').removeClass('active');

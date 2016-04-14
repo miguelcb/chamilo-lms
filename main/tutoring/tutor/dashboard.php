@@ -5,17 +5,28 @@
 * @package chamilo.main
 */
 include_once '../../inc/global.inc.php';
+
+include 'helpers.inc.php';
+
+api_block_anonymous_users();
+
+function pretty_print($v) {
+    print('<pre>'.print_r($v, true).'</pre>');
+}
 ?>
 <?php Display::display_header('Dashboard'); ?>
 <!-- area-preguntar -->
-<section class="container-fluid padded row" id="ask_t" style="background-color: rgb(226,228,231); padding-top: 90px;
+<section class="container-fluid padded row" id="ask" style="background-color: rgb(226,228,231); padding-top: 90px;
 	padding-bottom: 90px;">
 	<div class="container container-white" style="background-color: rgba(255,255,255,0.7);">
 		<?php include_once 'repository_questions.php';?>
 	</div>
 </section>
-<section id="appointment_t" class="row course-tool last-child">
-	<h2 class="text-center"><i class="fa fa-calendar fa-rounded fa-icon-size fa-icon-size--medium"></i>Citas</h2>
+<section id="appointment" class="row course-tool last-child">
+<header class="text-center course-tool__header">
+  <span class="fa fa-calendar fa-rounded fa-icon-size fa-icon-size--medium vlms-bgc--palette-1" role="button" data-toggle="popover" data-trigger="hover" data-container="body" title="" data-content="Reservas de citas presenciales o virtuales realizadas por tus alumnos." data-original-title="Citas"></span>
+  <div class="text-uppercase">Citas</div>
+</header>
 	<section class="container">
 		<div class="row">
 			<div class="col-sm-8">
@@ -45,9 +56,8 @@ include_once '../../inc/global.inc.php';
 							</div>
 							
 						</div>
-						<div class="vlms">	
-
-						<div class="vlms-datepicker center-block" aria-hidden="false" style="margin-top: 24px;">
+						<div class="vlms">
+            <div class="vlms-datepicker center-block" aria-hidden="false" style="margin-top: 24px;">
                             <div class="vlms-datepicker__filter">
                               <div class="vlms-datepicker__filter__month">
                                 <div class="vlms-datepicker__filter__month__control">
@@ -114,13 +124,13 @@ include_once '../../inc/global.inc.php';
                                     <span class="vlms-datepicker__month__day">2</span>
                                   </td>
                                   <td headers="Wednesday" role="gridcell" aria-disabled="true">
-                                    <span class="vlms-datepicker__month__day vlms-datepicker__month__day--unlocked">3</span>
+                                    <span class="vlms-datepicker__month__day vlms-datepicker__month__day--presential">3</span>
                                   </td>
                                   <td headers="Thursday" role="gridcell" aria-disabled="true">
-                                    <span class="vlms-datepicker__month__day vlms-datepicker__month__day--unlocked">4</span>
+                                    <span class="vlms-datepicker__month__day vlms-datepicker__month__day--presential">4</span>
                                   </td>
                                   <td headers="Friday" role="gridcell" aria-disabled="true">
-                                    <span class="vlms-datepicker__month__day">5</span>
+                                    <span class="vlms-datepicker__month__day vlms-datepicker__month__day--filled">5</span>
                                   </td>
                                   <td headers="Saturday" role="gridcell" aria-disabled="true">
                                     <span class="vlms-datepicker__month__day">6</span>
@@ -131,22 +141,22 @@ include_once '../../inc/global.inc.php';
                                     <span class="vlms-datepicker__month__day">7</span>
                                   </td>
                                   <td headers="Monday" role="gridcell" aria-disabled="true">
-                                    <span class="vlms-datepicker__month__day vlms-datepicker__month__day--unlocked">8</span>
+                                    <span class="vlms-datepicker__month__day vlms-datepicker__month__day--presential">8</span>
                                   </td>
                                   <td headers="Tuesday" role="gridcell" aria-disabled="true">
                                     <span class="vlms-datepicker__month__day">9</span>
                                   </td>
                                   <td headers="Wednesday" role="gridcell" aria-disabled="true">
-                                    <span class="vlms-datepicker__month__day">10</span>
+                                    <span class="vlms-datepicker__month__day vlms-datepicker__month__day--filled">10</span>
                                   </td>
                                   <td headers="Thursday" role="gridcell" aria-disabled="true">
                                     <span class="vlms-datepicker__month__day">11</span>
                                   </td>
                                   <td headers="Friday" role="gridcell" aria-disabled="true">
-                                    <span class="vlms-datepicker__month__day vlms-datepicker__month__day--unlocked">12</span>
+                                    <span class="vlms-datepicker__month__day vlms-datepicker__month__day--presential">12</span>
                                   </td>
                                   <td headers="Saturday" role="gridcell" aria-disabled="true">
-                                    <span class="vlms-datepicker__month__day vlms-datepicker__month__day--unlocked">13</span>
+                                    <span class="vlms-datepicker__month__day vlms-datepicker__month__day--presential">13</span>
                                   </td>
                                 </tr>
                                 <tr>
@@ -154,13 +164,13 @@ include_once '../../inc/global.inc.php';
                                     <span class="vlms-datepicker__month__day">14</span>
                                   </td>
                                   <td headers="Monday" role="gridcell" aria-disabled="true">
-                                    <span class="vlms-datepicker__month__day vlms-datepicker__month__day--locked">15</span>
+                                    <span class="vlms-datepicker__month__day vlms-datepicker__month__day--both">15</span>
                                   </td>
                                   <td headers="Tuesday" role="gridcell" aria-disabled="true">
                                     <span class="vlms-datepicker__month__day">16</span>
                                   </td>
                                   <td headers="Wednesday" role="gridcell" aria-disabled="true">
-                                    <span class="vlms-datepicker__month__day">17</span>
+                                    <span class="vlms-datepicker__month__day vlms-datepicker__month__day--filled">17</span>
                                   </td>
                                   <td headers="Thursday" role="gridcell" aria-disabled="true">
                                     <span class="vlms-datepicker__month__day vlms-datepicker__month__day--is-today">18</span>
@@ -169,7 +179,7 @@ include_once '../../inc/global.inc.php';
                                     <span class="vlms-datepicker__month__day">19</span>
                                   </td>
                                   <td headers="Saturday" role="gridcell" aria-disabled="true">
-                                    <span class="vlms-datepicker__month__day vlms-datepicker__month__day--unlocked">20</span>
+                                    <span class="vlms-datepicker__month__day vlms-datepicker__month__day--presential">20</span>
                                   </td>
                                 </tr>
                                 <tr>
@@ -180,13 +190,13 @@ include_once '../../inc/global.inc.php';
                                     <span class="vlms-datepicker__month__day">22</span>
                                   </td>
                                   <td headers="Tuesday" role="gridcell" aria-disabled="true">
-                                    <span class="vlms-datepicker__month__day vlms-datepicker__month__day--selected">23</span>
+                                    <span class="vlms-datepicker__month__day vlms-datepicker__month__day--virtual">23</span>
                                   </td>
                                   <td headers="Wednesday" role="gridcell" aria-disabled="true">
                                     <span class="vlms-datepicker__month__day">24</span>
                                   </td>
                                   <td headers="Thursday" role="gridcell" aria-disabled="true">
-                                    <span class="vlms-datepicker__month__day vlms-datepicker__month__day--unlocked">25</span>
+                                    <span class="vlms-datepicker__month__day vlms-datepicker__month__day--presential">25</span>
                                   </td>
                                   <td headers="Friday" role="gridcell" aria-disabled="true">
                                     <span class="vlms-datepicker__month__day">26</span>
@@ -200,7 +210,7 @@ include_once '../../inc/global.inc.php';
                                     <span class="vlms-datepicker__month__day">28</span>
                                   </td>
                                   <td headers="Monday" role="gridcell" aria-disabled="true">
-                                    <span class="vlms-datepicker__month__day vlms-datepicker__month__day--unlocked">29</span>
+                                    <span class="vlms-datepicker__month__day vlms-datepicker__month__day--presential">29</span>
                                   </td>
                                   <td headers="Tuesday" role="gridcell" aria-disabled="true">
                                     <span class="vlms-datepicker__month__day">30</span>
@@ -220,7 +230,7 @@ include_once '../../inc/global.inc.php';
                                 </tr>
                               </tbody>
                             </table>
-                        </div>
+                        </div>						
 						</div>
 						<div id="fechacita"></div>
 					</div>
@@ -338,3 +348,10 @@ include_once '../../inc/global.inc.php';
 </section>
 <a href="#" title="Ir arriba" id="hook-top" class="fa fa-arrow-up"></a>
 <?php Display::display_footer(); ?>
+
+<script>
+    $.fn.boostrapTooltip = $.fn.tooltip.noConflict();
+    $.fn.boostrapPopover = $.fn.popover.noConflict();
+    $('[data-toggle=tooltip]').boostrapTooltip();
+    $('[data-toggle=popover]').boostrapPopover();
+</script>

@@ -298,13 +298,23 @@ footer {
   height: 230px;
   margin-top: 16px;
 }
+#appointment-tutor-picker .carousel-counter {
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translate3d(-50%,0,0);
+  -ms-transform: translate3d(-50%,0,0);
+  transform: translate3d(-50%,0,0);
+}
+#appointment-tutor-picker .carousel-indicators { margin-bottom: 0; }
+#appointment-tutor-picker .carousel-indicators li { border-color: #333; }
+#appointment-tutor-picker .carousel-indicators li.active { background-color: #333; }
 #appointment-tutor-picker .carousel-inner,
 #appointment-tutor-picker .carousel-inner .item { height: 100%; }
 #appointment-tutor-picker .carousel-inner .item { width: 100%; }
 #appointment-tutor-picker .carousel-inner .item img {
   position: relative;
-  top: 16px;
-  height: 128px;
+  top: 28px;
+  height: 120px;
 }
 #appointment-tutor-picker .carousel-inner .item .carousel-caption,
 #appointment-tutor-picker .carousel-inner .item .carousel-caption h3 {
@@ -313,7 +323,7 @@ footer {
   color: #777;
 }
 #appointment-tutor-picker .carousel-inner .item .carousel-caption {
-  bottom: 16px;
+  bottom: 20px;
   text-shadow: none;
 }
 #appointment-tutor-picker .carousel-control {
