@@ -6,7 +6,7 @@ function pretty_print($v) {
     print('<pre>'.print_r($v, true).'</pre>');
 }
 
-$post_id = is_null($_GET['id']) ? 1 : $_GET['id'];
+$post_id = is_null($_GET['id']) ? "" : $_GET['id'];
 
 $table_forum_post       = Database::get_course_table(TABLE_FORUM_POST);
 $table_forum_attachment = Database::get_course_table(TABLE_FORUM_ATTACHMENT);
@@ -28,8 +28,13 @@ $question_attachments = Database::query($sql);
 $post_answer_id = isset($question['answer']['post_id']) ? $question['answer']['post_id'] : 0;
 
 $sql = "SELECT * FROM $table_forum_attachment fa WHERE fa.c_id = $c_id AND fa.post_id = $post_answer_id";
+
 $answer_attachments = Database::query($sql);
 ?>
+
+
+
+<?php if ($question['answer'] != null): ?>
 <div class="panel panel-default">
     <div class="panel-body">
         <div class="media">
@@ -78,6 +83,27 @@ $answer_attachments = Database::query($sql);
         </div>
     </div>
 </div>
+<?php else: ?>
+
+<form id="form-ask">
+    <div class="form-group">
+        <h4 class="media-heading"><?php echo $question['post_title']; ?></h4>
+        <textarea name="question" id="question" rows="10" class="form-control" placeholder="Escribe tu respuesta aquí"></textarea>
+    </div>
+    <div class="clearfix">
+        <div class="pull-right">
+            <label class="btn btn-default fa fa-paperclip" title="Archivos adjuntos">
+                <input type="file" style="display: none;">
+            </label>
+        </div>
+        <div class="text-center">
+            <button type="button" class="btn btn-success" id="btn-ask">Responder</button>
+        </div>
+    </div>
+</form>
+
+<?php endif; ?>
+
 
 
 <!--<h3>Tema de la pregunta</h3>

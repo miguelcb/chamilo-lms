@@ -13,8 +13,8 @@ $all_questions = [];
 
 $sql = "SELECT *, (SELECT COUNT(*) FROM $table_forum_post fpr WHERE fpr.post_parent_id = fp.post_id) answered 
         FROM $table_forum_post fp
-        INNER JOIN user u on u.user_id = fp.poster_id
-        INNER JOIN course c on c.id = fp.c_id and u.status = 5";
+        JOIN user u on u.id = fp.poster_id
+        INNER JOIN course c on c.id = fp.c_id and fp.post_parent_id = 0";
 
 $questions = Database::query($sql);
 
