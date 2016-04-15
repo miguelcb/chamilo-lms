@@ -2,13 +2,15 @@
 
 include_once '../../helpers.inc.php';
 
+api_block_anonymous_users();
+
 $user_id   = is_null($_GET['uid']) ? '' : $_GET['uid'];
 $course_id = is_null($_GET['cid']) ? '' : $_GET['cid'];
 $tutor_id  = is_null($_GET['tid']) ? '' : $_GET['tid'];
 
 $sql = "SELECT pa.*, u.user_id, u.firstname, u.lastname FROM personal_agenda pa
         INNER JOIN user u ON u.user_id = pa.user
-        WHERE pa.course = $course_id AND pa.user = $tutor_id
+        WHERE pa.course = $course_id AND pa.user = $tutor_id AND (SELECT COUNT(*) FROM personal_agenda pax WHERE pax.course = $course_id AND pax.user = $user_id AND pax.parent_event_id = pa.id) < 1
         ORDER BY pa.date";
 
 $result = Database::query($sql);
@@ -29,7 +31,7 @@ $result = Database::query($sql);
                         <div class="vlms-media__body">
                             <div class="vlms-media__body__title">
                                 <a class="vlms-truncate vlms-pr--medium" href="javascript:void(0);"><?php echo api_convert_and_format_date($row->date, '%A, %d de %B del %Y'); ?></a>
-                                <button class="vlms-list__item__action pull-right" data-toggle="ajax-modal" data-target="#appointment-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/register_appointment.php?appointmentType=0">
+                                <button type="button" class="vlms-list__item__action pull-right" data-appointment-id="<?php echo $row->id; ?>">
                                     <svg aria-hidden="true" class="vlms-list__item__action__icon" data-toggle="tooltip" data-container="body" data-placement="left" title="Reservar">
                                         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#add"></use>
                                     </svg>
@@ -56,4 +58,46 @@ $result = Database::query($sql);
 
 <script>
     $('[data-toggle=tooltip]').boostrapTooltip();
+    $('[data-appointment-id]').click(function() {
+        if (!window.confirm("¿Desea reservar cita?")) return;
+        var $sup = $(this);
+        $.ajax({
+            url: Course.AJAX_URI + 'course/appointments_register.php',
+            data: {
+                uid: Course.USER_ID,
+                aid: $sup.attr('data-appointment-id')
+            }
+        })
+            .done(function() {
+                // update appointments by date
+                $.ajax({
+                    url: Course.AJAX_URI + 'course/appointments_by_date_availability.php',
+                    data: {
+                        uid: Course.USER_ID,
+                        cid: '<?php echo $course_id; ?>',
+                        d: $('#appointments-by-date .vlms-datepicker .vlms-datepicker__month .active').attr('data-date')
+                    }
+                  })
+                    .done(function(view) { $('#appointments-by-date-availability').html(view); });
+                // update appointments by tutor
+                $.ajax({
+                    url: Course.AJAX_URI + 'course/appointments_by_tutor_availability.php',
+                    data: {
+                        uid: Course.USER_ID,
+                        cid: '<?php echo $course_id; ?>',
+                        tid: $('#appointment-tutor-picker .carousel-inner .active').attr('data-tutor-id')
+                    }
+                })
+                    .done(function(view) { $('#appointments-by-tutor-availability').html(view); });
+                // update appoinments
+                $.ajax({
+                    url: Course.AJAX_URI + 'course/appointments.php',
+                    data: {
+                        uid: Course.USER_ID,
+                        cid: '<?php echo $course_id; ?>'
+                    }
+                })
+                    .done(function(view) { $('#appointments').html(view); });
+            });
+    });
 </script>

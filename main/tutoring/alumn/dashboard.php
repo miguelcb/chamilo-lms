@@ -1,6 +1,6 @@
-<?php include_once '../../inc/global.inc.php';
+<?php require_once '../../inc/global.inc.php';
 
-include 'helpers.inc.php';
+require_once '../helpers.inc.php';
 
 api_block_anonymous_users();
 
@@ -165,180 +165,7 @@ $indicators = Database::query($sql);
                 <div class="col-md-4" id="appointments-by-date">
                   <div class="vlms">
                     <div class="vlms-title-divider">Rerserva por fecha</div>
-                    <div class="vlms-datepicker center-block" aria-hidden="false" style="margin-top: 24px;">
-                        <div class="vlms-datepicker__filter">
-                          <div class="vlms-datepicker__filter__month">
-                            <div class="vlms-datepicker__filter__month__control">
-                              <button class="vlms-datepicker__filter__month__control__button">
-                                <svg aria-hidden="true" class="vlms-datepicker__filter__month__control__button__icon">
-                                  <use xlink:href="#left"></use>
-                                </svg>
-                                <span class="sr-only">Previous Month</span>
-                              </button>
-                            </div>
-                            <h2 id="month" class="vlms-datepicker__filter__month__title" aria-live="assertive" aria-atomic="true">Noviembre</h2>
-                            <div class="vlms-datepicker__filter__month__control">
-                              <button class="vlms-datepicker__filter__month__control__button">
-                                <svg aria-hidden="true" class="vlms-datepicker__filter__month__control__button__icon">
-                                  <use xlink:href="#right"></use>
-                                </svg>
-                                <span class="sr-only">Next Month</span>
-                              </button>
-                            </div>
-                          </div>
-                          <div class="vlms-datepicker__filter__year">
-                            <div class="vlms-datepicker__filter__year__container">
-                              <select class="vlms-datepicker__filter__year__container__select" disabled>
-                                <option value="2016" selected>2016</option>
-                              </select>
-                            </div>
-                          </div>
-                        </div>
-                        <table class="vlms-datepicker__month" role="grid" aria-labelledby="month">
-                          <thead>
-                            <tr id="weekdays">
-                              <th id="Sunday" scope="col">
-                                <abbr title="Domingo">D</abbr>
-                              </th>
-                              <th id="Monday" scope="col">
-                                <abbr title="Lunes">L</abbr>
-                              </th>
-                              <th id="Tuesday" scope="col">
-                                <abbr title="Martes">M</abbr>
-                              </th>
-                              <th id="Wednesday" scope="col">
-                                <abbr title="Miercoles">X</abbr>
-                              </th>
-                              <th id="Thursday" scope="col">
-                                <abbr title="Jueves">J</abbr>
-                              </th>
-                              <th id="Friday" scope="col">
-                                <abbr title="Viernes">V</abbr>
-                              </th>
-                              <th id="Saturday" scope="col">
-                                <abbr title="Sábado">S</abbr>
-                              </th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <td headers="Sunday" role="gridcell" aria-disabled="true">
-                                <span class="vlms-datepicker__month__day vlms-datepicker__month__day--disabled">31</span>
-                              </td>
-                              <td headers="Monday" role="gridcell" aria-disabled="true">
-                                <span class="vlms-datepicker__month__day">1</span>
-                              </td>
-                              <td headers="Tuesday" role="gridcell" aria-disabled="true">
-                                <span class="vlms-datepicker__month__day">2</span>
-                              </td>
-                              <td headers="Wednesday" role="gridcell" aria-disabled="true">
-                                <span class="vlms-datepicker__month__day vlms-datepicker__month__day--presential">3</span>
-                              </td>
-                              <td headers="Thursday" role="gridcell" aria-disabled="true">
-                                <span class="vlms-datepicker__month__day vlms-datepicker__month__day--presential">4</span>
-                              </td>
-                              <td headers="Friday" role="gridcell" aria-disabled="true">
-                                <span class="vlms-datepicker__month__day">5</span>
-                              </td>
-                              <td headers="Saturday" role="gridcell" aria-disabled="true">
-                                <span class="vlms-datepicker__month__day">6</span>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td headers="Sunday" role="gridcell" aria-disabled="true">
-                                <span class="vlms-datepicker__month__day">7</span>
-                              </td>
-                              <td headers="Monday" role="gridcell" aria-disabled="true">
-                                <span class="vlms-datepicker__month__day vlms-datepicker__month__day--presential">8</span>
-                              </td>
-                              <td headers="Tuesday" role="gridcell" aria-disabled="true">
-                                <span class="vlms-datepicker__month__day">9</span>
-                              </td>
-                              <td headers="Wednesday" role="gridcell" aria-disabled="true">
-                                <span class="vlms-datepicker__month__day">10</span>
-                              </td>
-                              <td headers="Thursday" role="gridcell" aria-disabled="true">
-                                <span class="vlms-datepicker__month__day">11</span>
-                              </td>
-                              <td headers="Friday" role="gridcell" aria-disabled="true">
-                                <span class="vlms-datepicker__month__day vlms-datepicker__month__day--presential">12</span>
-                              </td>
-                              <td headers="Saturday" role="gridcell" aria-disabled="true">
-                                <span class="vlms-datepicker__month__day vlms-datepicker__month__day--presential">13</span>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td headers="Sunday" role="gridcell" aria-disabled="true">
-                                <span class="vlms-datepicker__month__day">14</span>
-                              </td>
-                              <td headers="Monday" role="gridcell" aria-disabled="true">
-                                <span class="vlms-datepicker__month__day vlms-datepicker__month__day--both">15</span>
-                              </td>
-                              <td headers="Tuesday" role="gridcell" aria-disabled="true">
-                                <span class="vlms-datepicker__month__day">16</span>
-                              </td>
-                              <td headers="Wednesday" role="gridcell" aria-disabled="true">
-                                <span class="vlms-datepicker__month__day">17</span>
-                              </td>
-                              <td headers="Thursday" role="gridcell" aria-disabled="true">
-                                <span class="vlms-datepicker__month__day vlms-datepicker__month__day--is-today">18</span>
-                              </td>
-                              <td headers="Friday" role="gridcell" aria-disabled="true">
-                                <span class="vlms-datepicker__month__day">19</span>
-                              </td>
-                              <td headers="Saturday" role="gridcell" aria-disabled="true">
-                                <span class="vlms-datepicker__month__day vlms-datepicker__month__day--presential">20</span>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td headers="Sunday" role="gridcell" aria-disabled="true">
-                                <span class="vlms-datepicker__month__day">21</span>
-                              </td>
-                              <td headers="Monday" role="gridcell" aria-disabled="true">
-                                <span class="vlms-datepicker__month__day">22</span>
-                              </td>
-                              <td headers="Tuesday" role="gridcell" aria-disabled="true">
-                                <span class="vlms-datepicker__month__day vlms-datepicker__month__day--virtual">23</span>
-                              </td>
-                              <td headers="Wednesday" role="gridcell" aria-disabled="true">
-                                <span class="vlms-datepicker__month__day">24</span>
-                              </td>
-                              <td headers="Thursday" role="gridcell" aria-disabled="true">
-                                <span class="vlms-datepicker__month__day vlms-datepicker__month__day--presential">25</span>
-                              </td>
-                              <td headers="Friday" role="gridcell" aria-disabled="true">
-                                <span class="vlms-datepicker__month__day">26</span>
-                              </td>
-                              <td headers="Saturday" role="gridcell" aria-disabled="true">
-                                <span class="vlms-datepicker__month__day">27</span>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td headers="Sunday" role="gridcell" aria-disabled="true">
-                                <span class="vlms-datepicker__month__day">28</span>
-                              </td>
-                              <td headers="Monday" role="gridcell" aria-disabled="true">
-                                <span class="vlms-datepicker__month__day vlms-datepicker__month__day--presential">29</span>
-                              </td>
-                              <td headers="Tuesday" role="gridcell" aria-disabled="true">
-                                <span class="vlms-datepicker__month__day">30</span>
-                              </td>
-                              <td headers="Wednesday" role="gridcell" aria-disabled="true">
-                                <span class="vlms-datepicker__month__day vlms-datepicker__month__day--disabled">1</span>
-                              </td>
-                              <td headers="Thursday" role="gridcell" aria-disabled="true">
-                                <span class="vlms-datepicker__month__day vlms-datepicker__month__day--disabled">2</span>
-                              </td>
-                              <td headers="Friday" role="gridcell" aria-disabled="true">
-                                <span class="vlms-datepicker__month__day vlms-datepicker__month__day--disabled">3</span>
-                              </td>
-                              <td headers="Saturday" role="gridcell" aria-disabled="true">
-                                <span class="vlms-datepicker__month__day vlms-datepicker__month__day--disabled">4</span>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                    </div>
+                    <?php calendar_appointment([], 'style="margin-top: 24px;"'); ?>
 
                     <div class="text-center" style="margin-top: 16px;">
                         <span class="vlms-badge vlms-bgc--sun-flower">presencial</span>
@@ -346,7 +173,7 @@ $indicators = Database::query($sql);
                         <span class="vlms-badge vlms-bgc--emerald">presencial/virtual</span>
                     </div>
 
-                    <div class="vlms-block" style="height: 300px; padding: 0; margin-top: 16px;">
+                    <div class="vlms-block" style="height: 300px; padding: 0; margin-top: 16px;" id="appointments-by-date-availability">
                         <div class="vlms-scrollable vlms-scrollable--y">
                             <ul class="vlms-list vlms-list--vertical vlms-has-dividers vlms-has-interactions">
                                 <li class="vlms-title-divider">Disponibilidad</li>
@@ -377,7 +204,7 @@ $indicators = Database::query($sql);
                         <ul class="vlms-list vlms-list--horizontal" style="  justify-content: center;">
                             <li class="vlms-list__item text-center" style="padding: 8px;">
                                 <svg aria-hidden="true" class="vlms-icon" style="fill: #555;">
-                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#event"></use>
+                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#groups"></use>
                                 </svg>
                                 <span class="vlms-badge vlms-badge--inverse" style="display: block;">Cita presencial</span>
                             </li>
@@ -389,7 +216,7 @@ $indicators = Database::query($sql);
                             </li>
                         </ul>
 
-                        <div class="vlms-block" style="height: 300px; padding: 0; margin-top: 8px;">
+                        <div class="vlms-block" style="height: 300px; padding: 0; margin-top: 8px;" id="appointments-by-tutor-availability">
                             <div class="vlms-scrollable vlms-scrollable--y">
                                 <ul class="vlms-list vlms-list--vertical vlms-has-dividers vlms-has-interactions">
                                     <li class="vlms-title-divider">Disponibilidad</li>
@@ -535,9 +362,6 @@ $indicators = Database::query($sql);
 <a href="#" title="Ir arriba" id="hook-top" class="fa fa-arrow-up"></a>
 
 <script>
-    $.fn.boostrapTooltip = $.fn.tooltip.noConflict();
-    $.fn.boostrapPopover = $.fn.popover.noConflict();
-
     window.Course = (function($, $w) {
         var _MAIN_AJAX_URI = '<?php echo api_get_path(WEB_CODE_PATH); ?>',
             _AJAX_URI = '<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/',

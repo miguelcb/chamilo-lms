@@ -68,23 +68,6 @@ while ($question = Database::fetch_assoc($questions)) {
                 </div>
             </div>
         </div>
-        <ul class="list-group">
-            <li class="list-group-item">
-                <div class="input-group">
-                    <input type="text" class="form-control" aria-describedby="basic-addon1">
-                    <span class="input-group-addon fa fa-search" role="button"></span>
-                </div>
-            </li>
-            <?php foreach ($my_questions as $question): ?>
-                <li class="list-group-item" role="button" data-question-id="<?php echo $question['post_id']; ?>">
-                    <h4 class="list-group-item-heading clearfix">
-                        <div class="pull-left"><?php echo $question['pseudonym']; ?></div>
-                        <div class="pull-right small" style="padding: 0;"><?php echo api_convert_and_format_date($question['post_date'], '%b %d') ?></div>
-                    </h4>
-                    <div class="list-group-item-text"><?php echo $question['post_title']; ?></div>
-                </li>
-            <?php endforeach; ?>
-        </ul>
     </div>
     <div class="col-md-8 question-tutoring">
         <div class="alert alert-info">Haz click en alguna de las preguntas para ver la pregunta completa</div>
