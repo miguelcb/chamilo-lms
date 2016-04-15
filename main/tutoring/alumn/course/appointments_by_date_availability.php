@@ -57,7 +57,7 @@ $result = Database::query($sql);
 
 <script>
     $('[data-toggle=tooltip]').boostrapTooltip();
-    $('[data-appointment-id]').click(function(e) {
+    $('#appointments-by-date-availability [data-appointment-id]').click(function(e) {
         if (!window.confirm("¿Desea reservar cita?")) return;
         var $sup = $(this);
         $.ajax({

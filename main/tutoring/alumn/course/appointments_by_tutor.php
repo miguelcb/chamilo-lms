@@ -30,7 +30,7 @@ while ($row = Database::fetch_assoc($result)) {
 ?>
 
 <div class="vlms">
-    <div class="vlms-title-divider">Rerserva por tutor</div>
+    <div class="vlms-title-divider">Reserva por tutor</div>
     <?php if (Database::num_rows($result) > 0): ?>
     <div id="appointment-tutor-picker" class="carousel slide" data-ride="carousel" data-interval="false">
         <span class="carousel-counter vlms-badge vlms-badge--inverse"><?php echo Database::num_rows($result) > 1 ? Database::num_rows($result).' tutores' : '1 tutor'; ?></span>

@@ -9,7 +9,7 @@ $user_id = api_get_user_id();
 $table_course      = Database::get_main_table(TABLE_MAIN_COURSE);
 $table_course_user = Database::get_main_table(TABLE_MAIN_COURSE_USER);
 
-$sql = "SELECT c.* FROM $table_course c
+$sql = "SELECT c.*, (SELECT COALESCE(ff.forum_id, 0) FROM c_forum_forum ff WHERE ff.c_id = c.id LIMIT 1) forum_id FROM $table_course c
         INNER JOIN $table_course_user cu ON cu.c_id = c.id AND cu.user_id = $user_id
         ORDER BY cu.sort ASC";
 
@@ -31,7 +31,7 @@ $indicators = Database::query($sql);
       <div class="carousel-inner" role="listbox">
         <?php $counter = 0; ?>
         <?php while($course = Database::fetch_assoc($courses)): ?>
-            <div class="course-tutoring item <?php echo $counter == 0 ? 'active' : ''; ++$counter; ?>" data-course-id="<?php echo $course['id']; ?>">
+            <div class="course-tutoring item <?php echo $counter == 0 ? 'active' : ''; ++$counter; ?>" data-course-id="<?php echo $course['id']; ?>" data-course-code="<?php echo $course['code']; ?>" data-course-forum-id="<?php echo $course['forum_id']; ?>">
                 <div class="container-fluid" style="padding: 0 64px;">
                     <h1 class="text-center" style="margin-bottom: 32px;"><?php echo $course['title']; ?></h1>
                     <p><?php echo $course['description']; ?></p>
@@ -98,10 +98,18 @@ $indicators = Database::query($sql);
         <section class="container">
             <div class="row" style="padding: 32px 0;">
                 <div class="col-md-6">
-                    <form id="form-ask">
+                    <form id="form-ask" action="">
+                        <input type="hidden" name="post_title" value="Pregunta para responder">
+                        <input type="hidden" name="_qf__thread">
+                        <input type="hidden" name="forum_id" value="1">
+                        <input type="hidden" name="thread_id" value="0">
+                        <input type="hidden" name="gradebook" value="0">
+                        <input type="hidden" name="MAX_FILE_SIZE" value="268435456">
+                        <input type="hidden" name="sec_token" value="<?php echo Security::get_token(); ?>">
+                        <input type="hidden" name="post_notification" value="1">
                         <div class="form-group">
                             <span class="help-block">Te recomendamos que revises el <a href="javascript:void(0);" id="repository-questions-link" data-toggle="ajax-modal" data-target="#repository-questions-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/repository_questions.php?cid=1">repositorio de preguntas</a> para validar que tu consulta no se haya realizado antes.</span>
-                            <textarea name="question" id="question" rows="10" class="form-control" placeholder="Escribe tu pregunta aquí"></textarea>
+                            <textarea name="post_text" rows="10" class="form-control" placeholder="Escribe tu pregunta aquí"></textarea>
                         </div>
                         <div class="clearfix">
                             <div class="pull-left">
@@ -109,7 +117,7 @@ $indicators = Database::query($sql);
                                     <span class="help-block">¿Quieres que tu pregunta sea respondida por un tutor en especial?</span>
                                     <div class="btn-toolbar" role="toolbar" aria-label="..." style="margin: 0;">
                                         <div class="btn-group" role="group" aria-label="..." style="margin-left: 0;">
-                                            <select name="" id="" class="form-control">
+                                            <select name="" id="ask-tutors" class="form-control">
                                                 <option value="asda">Sin preferencia (Tutor)</option>
                                                 <option value="asda">Mendoza Neudstald, Lorei</option>
                                                 <option value="asda">Quispe Zapata, Juan</option>
@@ -125,11 +133,12 @@ $indicators = Database::query($sql);
                             </div>
                             <div class="pull-right">
                                 <label class="btn btn-default fa fa-paperclip" title="Archivos adjuntos">
-                                    <input type="file" style="display: none;">
+                                    <input name="user_upload" type="file" style="display: none;">
                                 </label>
                             </div>
                             <div class="text-center">
-                                <button type="button" class="btn btn-success" id="btn-ask">Preguntar</button>
+                                <input type="hidden" name="SubmitPost" value="Preguntar">
+                                <button type="button" class="btn btn-success">Preguntar</button>
                             </div>
                         </div>
                     </form>
@@ -164,7 +173,7 @@ $indicators = Database::query($sql);
                 <!-- reserva por fechas -->
                 <div class="col-md-4" id="appointments-by-date">
                   <div class="vlms">
-                    <div class="vlms-title-divider">Rerserva por fecha</div>
+                    <div class="vlms-title-divider">Reserva por fecha</div>
                     <?php calendar_appointment([], 'style="margin-top: 24px;"'); ?>
 
                     <div class="text-center" style="margin-top: 16px;">
@@ -186,7 +195,7 @@ $indicators = Database::query($sql);
                 <!-- reserva por tutor -->
                 <div class="col-md-4" id="appointments-by-tutor">
                     <div class="vlms">
-                        <div class="vlms-title-divider">Rerserva por tutor</div>
+                        <div class="vlms-title-divider">Reserva por tutor</div>
 
                         <div id="appointment-tutor-picker" class="carousel">
                             <div class="carousel-inner">
@@ -233,94 +242,7 @@ $indicators = Database::query($sql);
                             <div class="vlms-scrollable vlms-scrollable--y">
                                 <ul class="vlms-list vlms-list--vertical vlms-has-dividers vlms-has-interactions">
                                     <li class="vlms-title-divider">Mis citas en el curso</li>
-                                    <li class="vlms-list__item">
-                                        <div class="vlms-media">
-                                            <div class="vlms-media__figure">
-                                                <svg aria-hidden="true" class="vlms-icon" style="fill: #555;">
-                                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#event"></use>
-                                                </svg>
-                                            </div>
-                                            <div class="vlms-media__body">
-                                                <div class="vlms-media__body__title">
-                                                    <a href="javascript:void(0);">Lunes, 1 de Abril del 2016</a>
-                                                </div>
-                                                <div class="vlms-media__body__detail">
-                                                    <ul class="vlms-list vlms-list--vertical vlms-text--small">
-                                                        <li class="vlms-list__item">8:00 am - 8:45 am</li>
-                                                        <li class="vlms-list__item">
-                                                            <strong>Quispe Zapata, Juan</strong>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="vlms-list__item">
-                                        <div class="vlms-media">
-                                            <div class="vlms-media__figure">
-                                                <svg aria-hidden="true" class="vlms-icon" style="fill: #555;">
-                                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#event"></use>
-                                                </svg>
-                                            </div>
-                                            <div class="vlms-media__body">
-                                                <div class="vlms-media__body__title">
-                                                    <a href="javascript:void(0);">Martes, 23 de Noviembre del 2016</a>
-                                                </div>
-                                                <div class="vlms-media__body__detail">
-                                                    <ul class="vlms-list vlms-list--vertical vlms-text--small">
-                                                        <li class="vlms-list__item">8:00 am - 8:45 am</li>
-                                                        <li class="vlms-list__item">
-                                                            <strong>Quispe Zapata, Juan</strong>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="vlms-list__item">
-                                        <div class="vlms-media">
-                                            <div class="vlms-media__figure">
-                                                <svg aria-hidden="true" class="vlms-icon" style="fill: #555;">
-                                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#chat"></use>
-                                                </svg>
-                                            </div>
-                                            <div class="vlms-media__body">
-                                                <div class="vlms-media__body__title">
-                                                    <a href="javascript:void(0);">Martes, 3 de Abril del 2016</a>
-                                                </div>
-                                                <div class="vlms-media__body__detail">
-                                                    <ul class="vlms-list vlms-list--vertical vlms-text--small">
-                                                        <li class="vlms-list__item">3:45 pm - 4:15 pm</li>
-                                                        <li class="vlms-list__item">
-                                                            <strong>Mendoza Neudstald, Lorei</strong>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="vlms-list__item">
-                                        <div class="vlms-media">
-                                            <div class="vlms-media__figure">
-                                                <svg aria-hidden="true" class="vlms-icon" style="fill: #555;">
-                                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#event"></use>
-                                                </svg>
-                                            </div>
-                                            <div class="vlms-media__body">
-                                                <div class="vlms-media__body__title">
-                                                    <a href="javascript:void(0);">Jueves, 5 de Abril del 2015</a>
-                                                </div>
-                                                <div class="vlms-media__body__detail">
-                                                    <ul class="vlms-list vlms-list--vertical vlms-text--small">
-                                                        <li class="vlms-list__item">3:45 pm - 4:15 pm</li>
-                                                        <li class="vlms-list__item">
-                                                            <strong>Quispe Zapata, Juan</strong>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
+                                    <li class="vlms-list__item">Sin vacantes</li>
                                 </ul>
                             </div>
                         </div>
@@ -412,7 +334,47 @@ $indicators = Database::query($sql);
             if (this.toolsByCourse(courseID).indexOf(tool) == -1) return;
             this[tool + 'Tool'](courseID);
         };
-        _askTool = function(courseID) {};
+        _askTool = function(courseID) {
+            // update action
+            $('#form-ask').attr('action', this.MAIN_AJAX_URI + 'forum/newthread.php?forum=' + currentCourseForumID + '&gradebook=0&thread=0&post=0&cidReq=' + currentCourseCode + '&id_session=0&gidReq=0&origin=');
+            // update tutors
+            $.ajax({
+                url: this.AJAX_URI + 'course/ask_tutors.php',
+                data: { cid: courseID }
+            })
+                .done(function(view) { $('#ask-tutors').html(view); });
+            // update my questions list
+            $.ajax({
+                url: this.AJAX_URI + 'course/my_questions_review.php',
+                data: { cid: courseID }
+            })
+                .done(function(view) { $('#my-questions').html(view); });
+            // update link repository questions
+            $('#repository-questions-link').attr('data-source', this.AJAX_URI + 'course/repository_questions.php?cid=' + courseID);
+            // update link my questions
+            $('#my-questions-link').attr('data-source', this.AJAX_URI + 'course/my_questions.php?cid=' + courseID);
+            // form ask
+            $('#form-ask button').click(function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                e.stopImmediatePropagation();
+                $.ajax({
+                    url: $('#form-ask').attr('action'),
+                    data: new FormData($('#form-ask')[0]),
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    type: 'POST'
+                })
+                    .done(function() {
+                        $.ajax({
+                            url: Course.AJAX_URI + 'course/my_questions_review.php',
+                            data: { cid: currentCourseID }
+                        })
+                            .done(function(view) { $('#my-questions').html(view); });
+                    });
+            });
+        };
         _appointmentTool = function(courseID) {
           // update appointments by date
           $.ajax({
@@ -433,12 +395,26 @@ $indicators = Database::query($sql);
           })
             .done(function(view) { $('#appointments').html(view); });
         };
-        _reviewTool = function(courseID) {};
-        _practiceTool = function(courseID) {};
+        _reviewTool = function(courseID) {
+            // update review
+            $.ajax({
+                url: this.AJAX_URI + '/course/review.php',
+                data: { cid: courseID }
+            })
+                .done(function(view) { $('#review .course-tool__body').html(view); });
+        };
+        _practiceTool = function(courseID) {
+            // update practice
+            $.ajax({
+                url: this.AJAX_URI + 'course/practice.php',
+                data: { cid: courseID }
+            })
+                .done(function(view) { $('#practice .course-tool__body').html(view); });
+        };
         _unsubscribe = function(courseCode) {
             if (!$w.confirm("Cancelar suscripción")) return;
             $.ajax({
-                url: '<?php echo api_get_path(WEB_CODE_PATH); ?>auth/courses.php',
+                url: this.MAIN_AJAX_URI + 'auth/courses.php',
                 data: {
                     action: 'unsubscribe',
                     sec_token: '<?php echo Security::get_existing_token(); ?>',
@@ -446,15 +422,18 @@ $indicators = Database::query($sql);
                 }
             })
                 .done(function(view) {
-                    $.ajax({ url: '<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/subscribe.php' })
+                    $.ajax({ url: this.AJAX_URI + 'course/subscribe.php' })
                         .done(function(view) { $w.location.reload(); });
                 });
         };
         _switchTo = function(courseID) {
+            window.currentCourseCode = $('.course-tutoring.active').attr('data-course-code') || '';
+            window.currentCourseID = $('.course-tutoring.active').attr('data-course-id') || 0;
+            window.currentCourseForumID = $('.course-tutoring.active').attr('data-course-forum-id') || 0;
             // refresh course session
             $.ajax({
                 async: false,
-                url: '<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/switch_course_session.php',
+                url: this.AJAX_URI + 'course/switch_course_session.php',
                 data: { cid: courseID }
             });
             // hide tools
@@ -463,35 +442,6 @@ $indicators = Database::query($sql);
             $.each(this.toolsAllowed, function(i, tool) {
               this.showTool(tool, courseID);
             }.bind(this));
-            // update my questions list
-            $.ajax({
-                url: '<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/my_questions_review.php',
-                data: { cid: courseID }
-            })
-                .done(function(view) {
-                    $('#my-questions').html(view);
-                });
-            // update link repository questions
-            $('#repository-questions-link').attr('data-source', '<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/repository_questions.php?cid=' + courseID);
-            // update link my questions
-            $('#my-questions-link').attr('data-source', '<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/my_questions.php?cid=' + courseID);
-            // update tutors
-            // update review
-            $.ajax({
-                url: '<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/review.php',
-                data: { cid: courseID }
-            })
-                .done(function(view) {
-                    $('#review .course-tool__body').html(view);
-                });
-            // update practice
-            $.ajax({
-                url: '<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/practice.php',
-                data: { cid: courseID }
-            })
-                .done(function(view) {
-                    $('#practice .course-tool__body').html(view);
-                });
         };
         return {
             MAIN_AJAX_URI: _MAIN_AJAX_URI,

@@ -25,7 +25,7 @@ while ($row = Database::fetch_object($result)) {
 ?>
 
 <div class="vlms">
-    <div class="vlms-title-divider">Rerserva por fecha</div>
+    <div class="vlms-title-divider">Reserva por fecha</div>
     <?php calendar_appointment($dates, 'style="margin-top: 24px;"'); ?>
 
     <div class="text-center" style="margin-top: 16px;">
@@ -45,7 +45,7 @@ while ($row = Database::fetch_object($result)) {
 </div>
 
 <script>
-    $('#appointments-by-date .vlms-datepicker [data-date]').click(function() {
+    $('#appointments-by-date .vlms-datepicker [data-date]').click(function(e) {
         var $sup = $(this);
         $('#appointments-by-date .vlms-datepicker .active').removeClass('active');
         $sup.addClass('active');
