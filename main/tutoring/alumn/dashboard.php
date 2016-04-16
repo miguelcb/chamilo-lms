@@ -310,7 +310,9 @@ $indicators = Database::query($sql);
             var t = {
                 1: ['ask', 'appointment', 'review', 'practice'],
                 3: ['ask', 'appointment'],
-                4: ['ask', 'appointment']
+                4: ['ask', 'appointment'],
+                5: ['ask', 'appointment', 'review', 'practice'],
+                6: ['appointment']
             };
 
             return t[courseID];
