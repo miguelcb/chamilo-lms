@@ -105,22 +105,25 @@ while ($row = Database::fetch_assoc($result)) {
 
 <script>
     (function() {
-        var $e = $('#appointment-tutor-picker .item.active');
+        console.log('ok');
+        var $e = $('#appointment-tutor-picker');
+        if (!$e.find('[data-tutor-id]').length) return;
         $.ajax({
-            url: Course.AJAX_URI + 'course/appointments_by_tutor_availability.php',
+            async: false,
+            url: VLMS.URI + 'course/appointments_by_tutor_availability.php',
             data: {
-                cid: $e.attr('data-course-id'),
-                uid: $e.attr('data-user-id'),
-                tid: $e.attr('data-tutor-id')
+                cid: $e.find('.item.active').attr('data-course-id'),
+                uid: $e.find('.item.active').attr('data-user-id'),
+                tid: $e.find('.item.active').attr('data-tutor-id')
             }
         })
             .done(function(view) { $('#appointments-by-tutor-availability').html(view); });
     })();
 
-    $('#appointment-tutor-picker').on('slid.bs.carousel', function (e) {
+    $('#appointment-tutor-picker').off().on('slid.bs.carousel', function (e) {
         var $e = $(e.relatedTarget);
         $.ajax({
-            url: Course.AJAX_URI + 'course/appointments_by_tutor_availability.php',
+            url: VLMS.URI + 'course/appointments_by_tutor_availability.php',
             data: {
                 cid: $e.attr('data-course-id'),
                 uid: $e.attr('data-user-id'),

@@ -483,7 +483,6 @@ class AddCourse
         $visible_for_platform_admin = 2;
 
         /*    Course tools  */
-
         Database::query(
             "INSERT INTO $tbl_course_homepage (c_id, id, name, link, image, visibility, admin, address, added_tool, target, category, session_id)
             VALUES ($course_id, 1, '" . TOOL_COURSE_DESCRIPTION . "','course_description/','info.gif','" . self::string2binary(
@@ -657,6 +656,24 @@ class AddCourse
             VALUES ($course_id, 27, '" . TOOL_COURSE_MAINTENANCE . "','course_info/maintenance.php','backup.gif','$visible_for_course_admin','1','','NO','_self', 'admin','0')"
         );
 
+        // CUSTOM TOOLS TO VIRTUAL TUTORING
+        Database::query(
+            "INSERT INTO $tbl_course_homepage (c_id, id, name, link, image, visibility, admin, address, added_tool, target, category, session_id)
+            VALUES ($course_id, 28, '" . TOOL_ASK . "', 'tutoring/alumn/dashboard.php', 'crons.gif', '1', '0', '', 'NO', '_self', 'interaction', '0')"
+        );
+        Database::query(
+            "INSERT INTO $tbl_course_homepage (c_id, id, name, link, image, visibility, admin, address, added_tool, target, category, session_id)
+            VALUES ($course_id, 29, '" . TOOL_APPOINTMENT . "', 'tutoring/alumn/dashboard.php', 'crons.gif', '1', '0', '', 'NO', '_self', 'interaction', '0')"
+        );
+        Database::query(
+            "INSERT INTO $tbl_course_homepage (c_id, id, name, link, image, visibility, admin, address, added_tool, target, category, session_id)
+            VALUES ($course_id, 30, '" . TOOL_REVIEW . "', 'tutoring/alumn/dashboard.php', 'crons.gif', '1', '0', '', 'NO', '_self', 'interaction', '0')"
+        );
+        Database::query(
+            "INSERT INTO $tbl_course_homepage (c_id, id, name, link, image, visibility, admin, address, added_tool, target, category, session_id)
+            VALUES ($course_id, 31, '" . TOOL_PRACTICE . "', 'tutoring/alumn/dashboard.php', 'crons.gif', '1', '0', '', 'NO', '_self', 'interaction', '0')"
+        );
+
         $defaultEmailExerciseAlert = 1;
         $alert = api_get_setting('email_alert_manager_on_new_quiz');
         if ($alert === 'true') {
@@ -667,26 +684,31 @@ class AddCourse
 
         /* course_setting table (courseinfo tool)   */
         $settings = [
-            'email_alert_manager_on_new_doc' => ['default' => 0, 'category' => 'work'],
-            'email_alert_on_new_doc_dropbox' => ['default' => 0, 'category' => 'dropbox'],
-            'allow_user_edit_agenda' => ['default' => 0, 'category' => 'agenda'],
-            'allow_user_edit_announcement' => ['default' => 0, 'category' => 'announcement'],
-            'email_alert_manager_on_new_quiz' => ['default' => $defaultEmailExerciseAlert, 'category' => 'quiz'],
-            'allow_user_image_forum' => ['default' => 1, 'category' => 'forum'],
-            'course_theme' => ['default' => '', 'category' => 'theme'],
-            'allow_learning_path_theme' => ['default' => 1, 'category' => 'theme'],
-            'allow_open_chat_window' => ['default' => 1, 'category' => 'chat'],
+            'email_alert_manager_on_new_doc'               => ['default' => 0, 'category' => 'work'],
+            'email_alert_on_new_doc_dropbox'               => ['default' => 0, 'category' => 'dropbox'],
+            'allow_user_edit_agenda'                       => ['default' => 0, 'category' => 'agenda'],
+            'allow_user_edit_announcement'                 => ['default' => 0, 'category' => 'announcement'],
+            'email_alert_manager_on_new_quiz'              => ['default' => $defaultEmailExerciseAlert, 'category' => 'quiz'],
+            'allow_user_image_forum'                       => ['default' => 1, 'category' => 'forum'],
+            'course_theme'                                 => ['default' => '', 'category' => 'theme'],
+            'allow_learning_path_theme'                    => ['default' => 1, 'category' => 'theme'],
+            'allow_open_chat_window'                       => ['default' => 1, 'category' => 'chat'],
             'email_alert_to_teacher_on_new_user_in_course' => ['default' => 0, 'category' =>'registration'],
-            'allow_user_view_user_list' => ['default' =>1, 'category' =>'user'],
-            'display_info_advance_inside_homecourse' => ['default' => 1, 'category' =>'thematic_advance'],
-            'email_alert_students_on_new_homework' => ['default' => 0, 'category' =>'work'],
-            'enable_lp_auto_launch' => ['default' => 0, 'category' =>'learning_path'],
-            'pdf_export_watermark_text' => ['default' =>'', 'category' =>'learning_path'],
-            'allow_public_certificates' => [
-                'default' => api_get_setting('allow_public_certificates') === 'true' ? 1 : '',
+            'allow_user_view_user_list'                    => ['default' =>1, 'category' =>'user'],
+            'display_info_advance_inside_homecourse'       => ['default' => 1, 'category' =>'thematic_advance'],
+            'email_alert_students_on_new_homework'         => ['default' => 0, 'category' =>'work'],
+            'enable_lp_auto_launch'                        => ['default' => 0, 'category' =>'learning_path'],
+            'pdf_export_watermark_text'                    => ['default' =>'', 'category' =>'learning_path'],
+            'allow_public_certificates'                    => [
+                'default'  => api_get_setting('allow_public_certificates') === 'true' ? 1 : '',
                 'category' =>'certificates'
             ],
-            'documents_default_visibility' => ['default' =>'visible', 'category' =>'document']
+            'documents_default_visibility' => ['default' =>'visible', 'category' =>'document'],
+            // CUSTOM SETTINGS TO VIRTUAL TUTORING
+            'alert_tool_ask'         => ['default' => 1, 'category' => 'ask'],
+            'alert_tool_appointment' => ['default' => 1, 'category' => 'appointment'],
+            'alert_tool_review'      => ['default' => 1, 'category' => 'review'],
+            'alert_tool_practice'    => ['default' => 1, 'category' => 'practice']
         ];
 
         $counter = 1;

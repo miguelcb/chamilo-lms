@@ -144,6 +144,11 @@ define('TOOL_GRADEBOOK', 'gradebook');
 define('TOOL_NOTEBOOK', 'notebook');
 define('TOOL_ATTENDANCE', 'attendance');
 define('TOOL_COURSE_PROGRESS', 'course_progress');
+// CUSTOM TOOLS TO VIRTUAL TUTORING
+define('TOOL_PRACTICE', 'practice');
+define('TOOL_REVIEW', 'review');
+define('TOOL_ASK', 'ask');
+define('TOOL_APPOINTMENT', 'appointment');
 
 // CONSTANTS defining Chamilo interface sections
 define('SECTION_CAMPUS', 'mycampus');

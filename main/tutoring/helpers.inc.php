@@ -125,7 +125,7 @@ function calendar_appointment($dates = [], $attributes = '') {
         'Sábado',
         'Domingo'
     ];
-    $months        = [
+    $months = [
         'Enero',
         'Febrero',
         'Marzo',

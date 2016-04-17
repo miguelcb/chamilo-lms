@@ -284,49 +284,44 @@ $indicators = Database::query($sql);
 <a href="#" title="Ir arriba" id="hook-top" class="fa fa-arrow-up"></a>
 
 <script>
-    window.Course = (function($, $w) {
-        var _MAIN_AJAX_URI = '<?php echo api_get_path(WEB_CODE_PATH); ?>',
-            _AJAX_URI = '<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/',
-            _USER_ID = +'<?php echo api_get_user_id(); ?>',
-            _toolsAllowed = ['ask', 'appointment', 'review', 'practice'],
-            _init,
+    $('[data-toggle=tooltip]').boostrapTooltip();
+    $('[data-toggle=popover]').boostrapPopover();
+
+    window.Course = (function($) {
+        var _init,
             _unsubscribe,
             _switchTo,
             _tools,
             _hideTools,
             _showTool;
         _init = function() {
+            // GET TOOLS BY COURSE
+            $.ajax({ async: false, url: VLMS.URI + 'course/tools.php' })
+                .done(function(tools) {
+                    VLMS.current.toolsCourse = JSON.parse(tools);
+                });
+            // SWITCH TO CURRENT COURSE
             Course.switchTo($('.course-tutoring.active').attr('data-course-id') || 0);
-            $('[data-toggle=tooltip]').boostrapTooltip();
-            $('[data-toggle=popover]').boostrapPopover();
 
-            $('#courses-tutoring').on('slid.bs.carousel', function() {
-                Course.switchTo($('.course-tutoring.active').attr('data-course-id') || 0);
+            $('#courses-tutoring').on('slid.bs.carousel', function(e) {
+                Course.switchTo($(e.relatedTarget).attr('data-course-id') || 0);
                 $('[data-toggle=tooltip]').boostrapTooltip();
                 $('[data-toggle=popover]').boostrapPopover();
             });
         };
-        _toolsByCourse = function(courseID) {
-            var t = {
-                1: ['ask', 'appointment', 'review', 'practice'],
-                3: ['ask', 'appointment'],
-                4: ['ask', 'appointment'],
-                5: ['ask', 'appointment', 'review', 'practice'],
-                6: ['appointment']
-            };
-
-            return t[courseID];
+        _getTools = function(courseID) {
+            return VLMS.current.toolsCourse[courseID];
         };
         _hideTools = function(courseID) {
-            var toolsAvailable = this.toolsByCourse(courseID);
+            var toolsAvailable = this.getTools(courseID);
             var hide = [];
-            var i = 0, l = this.toolsAllowed.length;
+            var i = 0, l = VLMS.TOOLS.length;
             for (; i < l; i++) {
-                $('#' + this.toolsAllowed[i])[
-                   toolsAvailable.indexOf(this.toolsAllowed[i]) == -1 ? 'addClass' : 'removeClass'
+                $('#' + VLMS.TOOLS[i])[
+                   toolsAvailable.indexOf(VLMS.TOOLS[i]) == -1 ? 'addClass' : 'removeClass'
                 ]('hidden');
-                $('#nav-tools').find('[href=#' + this.toolsAllowed[i] + ']').parent()[
-                    toolsAvailable.indexOf(this.toolsAllowed[i]) == -1 ? 'hide' : 'show'
+                $('#nav-tools').find('[href=#' + VLMS.TOOLS[i] + ']').parent()[
+                    toolsAvailable.indexOf(VLMS.TOOLS[i]) == -1 ? 'hide' : 'show'
                 ]();
             }
             $('.course-tool').removeClass('last-child');
@@ -337,29 +332,26 @@ $indicators = Database::query($sql);
             this[tool + 'Tool'](courseID);
         };
         _askTool = function(courseID) {
-            // update action
-            $('#form-ask').attr('action', this.MAIN_AJAX_URI + 'forum/newthread.php?forum=' + currentCourseForumID + '&gradebook=0&thread=0&post=0&cidReq=' + currentCourseCode + '&id_session=0&gidReq=0&origin=');
-            // update tutors
+            // UPDATE ACTION
+            $('#form-ask').attr('action', VLMS.MAIN_URI + 'forum/newthread.php?forum=' + VLMS.current.forumID + '&gradebook=0&thread=0&post=0&cidReq=' + VLMS.current.code + '&id_session=0&gidReq=0&origin=');
+            // UPDATE TUTORS
             $.ajax({
-                url: this.AJAX_URI + 'course/ask_tutors.php',
+                url: VLMS.URI + 'course/ask_tutors.php',
                 data: { cid: courseID }
             })
                 .done(function(view) { $('#ask-tutors').html(view); });
-            // update my questions list
+            // UPDATE MY QUESTIONS LIST
             $.ajax({
-                url: this.AJAX_URI + 'course/my_questions_review.php',
+                url: VLMS.URI + 'course/my_questions_review.php',
                 data: { cid: courseID }
             })
                 .done(function(view) { $('#my-questions').html(view); });
-            // update link repository questions
-            $('#repository-questions-link').attr('data-source', this.AJAX_URI + 'course/repository_questions.php?cid=' + courseID);
-            // update link my questions
-            $('#my-questions-link').attr('data-source', this.AJAX_URI + 'course/my_questions.php?cid=' + courseID);
-            // form ask
-            $('#form-ask button').click(function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                e.stopImmediatePropagation();
+            // UPDATE LINK REPOSITORY QUESTIONS
+            $('#repository-questions-link').attr('data-source', VLMS.URI + 'course/repository_questions.php?cid=' + courseID);
+            // UPDATE LINK MY QUESTIONS
+            $('#my-questions-link').attr('data-source', VLMS.URI + 'course/my_questions.php?cid=' + courseID);
+            // FORM ASK
+            $('#form-ask button').off().click(function(e) {
                 $.ajax({
                     url: $('#form-ask').attr('action'),
                     data: new FormData($('#form-ask')[0]),
@@ -370,45 +362,45 @@ $indicators = Database::query($sql);
                 })
                     .done(function() {
                         $.ajax({
-                            url: Course.AJAX_URI + 'course/my_questions_review.php',
-                            data: { cid: currentCourseID }
+                            url: VLMS.URI + 'course/my_questions_review.php',
+                            data: { cid: window.currentCourseID }
                         })
                             .done(function(view) { $('#my-questions').html(view); });
                     });
             });
         };
         _appointmentTool = function(courseID) {
-          // update appointments by date
+          // UPDATE APPOINTMENTS BY DATE
           $.ajax({
-            url: this.AJAX_URI + 'course/appointments_by_date.php',
-            data: { uid: this.USER_ID, cid: courseID }
+            url: VLMS.URI + 'course/appointments_by_date.php',
+            data: { uid: VLMS.USER_ID, cid: courseID }
           })
             .done(function(view) { $('#appointments-by-date').html(view); });
-          // update appointments by tutor
+          // UPDATE APPOINTMENTS BY TUTOR
           $.ajax({
-            url: this.AJAX_URI + 'course/appointments_by_tutor.php',
-            data: { uid: this.USER_ID, cid: courseID }
+            url: VLMS.URI + 'course/appointments_by_tutor.php',
+            data: { uid: VLMS.USER_ID, cid: courseID }
           })
             .done(function(view) { $('#appointments-by-tutor').html(view); });
-          // update appoinments
+          // UPDATE APPOINMENTS
           $.ajax({
-            url: this.AJAX_URI + 'course/appointments.php',
-            data: { uid: this.USER_ID, cid: courseID }
+            url: VLMS.URI + 'course/appointments.php',
+            data: { uid: VLMS.USER_ID, cid: courseID }
           })
             .done(function(view) { $('#appointments').html(view); });
         };
         _reviewTool = function(courseID) {
-            // update review
+            // UPDATE REVIEW
             $.ajax({
-                url: this.AJAX_URI + '/course/review.php',
+                url: VLMS.URI + '/course/review.php',
                 data: { cid: courseID }
             })
                 .done(function(view) { $('#review .course-tool__body').html(view); });
         };
         _practiceTool = function(courseID) {
-            // update practice
+            // UPDATE PRACTICE
             $.ajax({
-                url: this.AJAX_URI + 'course/practice.php',
+                url: VLMS.URI + 'course/practice.php',
                 data: { cid: courseID }
             })
                 .done(function(view) { $('#practice .course-tool__body').html(view); });
@@ -416,7 +408,7 @@ $indicators = Database::query($sql);
         _unsubscribe = function(courseCode) {
             if (!$w.confirm("Cancelar suscripción")) return;
             $.ajax({
-                url: this.MAIN_AJAX_URI + 'auth/courses.php',
+                url: VLMS.MAIN_URI + 'auth/courses.php',
                 data: {
                     action: 'unsubscribe',
                     sec_token: '<?php echo Security::get_existing_token(); ?>',
@@ -424,44 +416,43 @@ $indicators = Database::query($sql);
                 }
             })
                 .done(function(view) {
-                    $.ajax({ url: this.AJAX_URI + 'course/subscribe.php' })
+                    $.ajax({ url: VLMS.URI + 'course/subscribe.php' })
                         .done(function(view) { $w.location.reload(); });
                 });
         };
         _switchTo = function(courseID) {
-            window.currentCourseCode = $('.course-tutoring.active').attr('data-course-code') || '';
-            window.currentCourseID = $('.course-tutoring.active').attr('data-course-id') || 0;
-            window.currentCourseForumID = $('.course-tutoring.active').attr('data-course-forum-id') || 0;
-            // refresh course session
+            VLMS.current.code = $('.course-tutoring.active').attr('data-course-code') || ''
+            VLMS.current.id = $('.course-tutoring.active').attr('data-course-id') || 0;
+            VLMS.current.forumID = $('.course-tutoring.active').attr('data-course-forum-id') || 0;
+            // REFRESH COURSE SESSION
             $.ajax({
                 async: false,
-                url: this.AJAX_URI + 'course/switch_course_session.php',
+                url: VLMS.URI + 'course/switch_course_session.php',
                 data: { cid: courseID }
             });
-            // hide tools
+            // HIDE TOOLS
             this.hideTools(courseID);
-            // update tools
-            $.each(this.toolsAllowed, function(i, tool) {
-              this.showTool(tool, courseID);
-            }.bind(this));
+            // UPDATE TOOLS
+            this.askTool(courseID);
+            this.appointmentTool(courseID);
+            this.reviewTool(courseID);
+            this.practiceTool(courseID);
         };
         return {
-            MAIN_AJAX_URI: _MAIN_AJAX_URI,
-            AJAX_URI: _AJAX_URI,
-            USER_ID: _USER_ID,
             init: _init,
-            toolsAllowed: _toolsAllowed,
+            // TOOLS
+            getTools: _getTools,
             showTool: _showTool,
+            hideTools: _hideTools,
             askTool: _askTool,
             appointmentTool: _appointmentTool,
             reviewTool: _reviewTool,
             practiceTool: _practiceTool,
-            toolsByCourse: _toolsByCourse,
-            hideTools: _hideTools,
+            // COURSE
             unsubscribe: _unsubscribe,
             switchTo: _switchTo
         };
-    })(jQuery, window);
+    })(jQuery);
 
     Course.init();
 </script>

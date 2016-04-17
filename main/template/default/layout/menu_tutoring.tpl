@@ -67,9 +67,6 @@
             </ul>
            {% if _u.logged == 1 %}
            <ul class="nav navbar-nav navbar-right">
-               {% if user_notifications is not null %}
-               <li><a href="{{ message_url }}">{{ user_notifications }}</a></li>
-               {% endif %}
                {% if _u.status != 6 %}
                 <li class="dropdown">
                     <a href="javascript:void(0);" title=":)" style="line-height: 34px; color: #fff; font-size: 18px;">

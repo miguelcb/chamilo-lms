@@ -1,4 +1,12 @@
 <script>
+window.VLMS = {
+  MAIN_URI: "{{ _p.web_main }}",
+  URI: "{{ _p.web_main ~ 'tutoring/alumn/' }}",
+  USER_ID: +"{{ _u.user_id }}",
+  TOOLS: ['ask', 'appointment', 'review', 'practice'],
+  current: {}
+};
+
 $.fn.boostrapTooltip = $.fn.tooltip.noConflict();
 $.fn.boostrapPopover = $.fn.popover.noConflict();
 // External plugins not part of the default Ckeditor package.

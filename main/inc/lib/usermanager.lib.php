@@ -1370,7 +1370,7 @@ class UserManager
         $id = intval($id);
         if (empty($userInfo)) {
             $user_table = Database:: get_main_table(TABLE_MAIN_USER);
-            $sql = "SELECT email, picture_uri FROM $user_table
+            $sql = "SELECT status, email, picture_uri FROM $user_table
                     WHERE id=".$id;
             $res = Database::query($sql);
 
@@ -1390,6 +1390,7 @@ class UserManager
             'dir' => $dir,
             'file' => $pictureFilename,
             'email' => $user['email'],
+            'status' => $user['status']
         );
     }
 
@@ -1459,9 +1460,10 @@ class UserManager
         $addRandomId = true,
         $userInfo = []
     ) {
-        $imageWebPath = self::get_user_picture_path_by_id($user_id, 'web', $userInfo);
+        $imageWebPath   = self::get_user_picture_path_by_id($user_id, 'web', $userInfo);
         $pictureWebFile = $imageWebPath['file'];
-        $pictureWebDir = $imageWebPath['dir'];
+        $pictureWebDir  = $imageWebPath['dir'];
+        $userStatus     = $imageWebPath['status'];
 
         $pictureAnonymous = 'icons/128/unknown.png';
         $gravatarSize = 22;
@@ -1526,12 +1528,16 @@ class UserManager
             }
         }
 
-        if (empty($picture)) {
+        if (empty($picture) && empty($pictureWebFile)) {
             return $anonymousPath;
         }
 
         if ($addRandomId) {
             $picture .= '?rand='.uniqid();
+        }
+
+        if (!empty($pictureWebFile) && $userStatus == '5') {
+            $picture = api_get_path(WEB_CODE_PATH).'img/avatars/'.$pictureWebFile;
         }
 
         return $picture;

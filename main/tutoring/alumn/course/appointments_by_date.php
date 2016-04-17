@@ -50,9 +50,9 @@ while ($row = Database::fetch_object($result)) {
         $('#appointments-by-date .vlms-datepicker .active').removeClass('active');
         $sup.addClass('active');
         $.ajax({
-            url: Course.AJAX_URI + 'course/appointments_by_date_availability.php',
+            url: VLMS.URI + 'course/appointments_by_date_availability.php',
             data: {
-                uid: Course.USER_ID,
+                uid: VLMS.USER_ID,
                 cid: '<?php echo $course_id; ?>',
                 d: $sup.attr('data-date')
             }

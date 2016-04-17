@@ -938,11 +938,21 @@ class Template
         if (api_is_student()) {
             $user_id = api_get_user_id();
 
-            $sql = "SELECT
-                        count(*)
-                    FROM c_item_property cip
+            // $sql = "SELECT COUNT(*) FROM c_item_property cip
+            //         INNER JOIN c_tool ct ON ct.c_id = cip.c_id AND ct.visibility = 1
+            //         WHERE cip.tool IN ('document', 'forum_thread', 'calendar_event') AND
+            //               cip.lastedit_date > (SELECT tla.access_date FROM track_e_lastaccess tla
+            //                                    WHERE tla.c_id = cip.c_id AND tla.access_user_id = $user_id
+            //                                    ORDER BY tla.access_date DESC
+            //                                    LIMIT 1) AND
+            //               cip.visibility = 1 AND
+            //               cip.c_id IN (SELECT c_id FROM course_rel_user cu WHERE cu.user_id = $user_id)
+            //         GROUP BY cip.tool
+            //         ORDER BY cip.lastedit_date DESC";
+
+            $sql = "SELECT COUNT(*) FROM c_item_property cip
                     INNER JOIN c_tool ct ON ct.c_id = cip.c_id AND ct.visibility = 1
-                    WHERE cip.tool IN ('document', 'forum_thread', 'calendar_event') AND
+                    WHERE cip.tool IN ('document') AND
                           cip.lastedit_date > (SELECT tla.access_date FROM track_e_lastaccess tla
                                                WHERE tla.c_id = cip.c_id AND tla.access_user_id = $user_id
                                                ORDER BY tla.access_date DESC
