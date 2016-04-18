@@ -58,15 +58,6 @@ $result = Database::query($sql);
 
 <script>
     $('[data-toggle=tooltip]').boostrapTooltip();
-<<<<<<< HEAD:main/tutoring/alumn/course/appointments_by_tutor_availability.php
-    $('[data-appointment-id]').click(function() {
-        if (!window.confirm("¿Desea reservar cita?")) return;
-        var $sup = $(this);
-        $.ajax({
-            url: Course.AJAX_URI + 'course/appointments_register.php',
-            data: {
-                uid: Course.USER_ID,
-=======
     $('#appointments-by-tutor-availability [data-appointment-id]').off().click(function() {
         if (!window.confirm("¿Desea reservar cita?")) return;
         var $sup = $(this);
@@ -74,58 +65,36 @@ $result = Database::query($sql);
             url: VLMS.URI + 'course/appointments_register.php',
             data: {
                 uid: VLMS.USER_ID,
->>>>>>> danilobrinu/winter16:main/tutoring/alumn/course/appointments_by_tutor_availability.php
                 aid: $sup.attr('data-appointment-id')
             }
         })
             .done(function() {
                 // update appointments by date
                 $.ajax({
-<<<<<<< HEAD:main/tutoring/alumn/course/appointments_by_tutor_availability.php
-                    url: Course.AJAX_URI + 'course/appointments_by_date_availability.php',
-                    data: {
-                        uid: Course.USER_ID,
-                        cid: '<?php echo $course_id; ?>',
-=======
                     url: VLMS.URI + 'course/appointments_by_date_availability.php',
                     data: {
                         uid: VLMS.USER_ID,
                         cid: VLMS.current.id,
->>>>>>> danilobrinu/winter16:main/tutoring/alumn/course/appointments_by_tutor_availability.php
                         d: $('#appointments-by-date .vlms-datepicker .vlms-datepicker__month .active').attr('data-date')
                     }
                   })
                     .done(function(view) { $('#appointments-by-date-availability').html(view); });
                 // update appointments by tutor
                 $.ajax({
-<<<<<<< HEAD:main/tutoring/alumn/course/appointments_by_tutor_availability.php
-                    url: Course.AJAX_URI + 'course/appointments_by_tutor_availability.php',
-                    data: {
-                        uid: Course.USER_ID,
-                        cid: '<?php echo $course_id; ?>',
-=======
                     url: VLMS.URI + 'course/appointments_by_tutor_availability.php',
                     data: {
                         uid: VLMS.USER_ID,
                         cid: VLMS.current.id,
->>>>>>> danilobrinu/winter16:main/tutoring/alumn/course/appointments_by_tutor_availability.php
                         tid: $('#appointment-tutor-picker .carousel-inner .active').attr('data-tutor-id')
                     }
                 })
                     .done(function(view) { $('#appointments-by-tutor-availability').html(view); });
                 // update appoinments
                 $.ajax({
-<<<<<<< HEAD:main/tutoring/alumn/course/appointments_by_tutor_availability.php
-                    url: Course.AJAX_URI + 'course/appointments.php',
-                    data: {
-                        uid: Course.USER_ID,
-                        cid: '<?php echo $course_id; ?>'
-=======
                     url: VLMS.URI + 'course/appointments.php',
                     data: {
                         uid: VLMS.USER_ID,
                         cid: VLMS.current.id
->>>>>>> danilobrinu/winter16:main/tutoring/alumn/course/appointments_by_tutor_availability.php
                     }
                 })
                     .done(function(view) { $('#appointments').html(view); });

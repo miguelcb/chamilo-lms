@@ -105,18 +105,12 @@ while ($row = Database::fetch_assoc($result)) {
 
 <script>
     (function() {
-<<<<<<< HEAD
-        var $e = $('#appointment-tutor-picker .item.active');
-        $.ajax({
-            url: Course.AJAX_URI + 'course/appointments_by_tutor_availability.php',
-=======
         console.log('ok');
         var $e = $('#appointment-tutor-picker');
         if (!$e.find('[data-tutor-id]').length) return;
         $.ajax({
             async: false,
             url: VLMS.URI + 'course/appointments_by_tutor_availability.php',
->>>>>>> danilobrinu/winter16
             data: {
                 cid: $e.find('.item.active').attr('data-course-id'),
                 uid: $e.find('.item.active').attr('data-user-id'),
@@ -129,11 +123,7 @@ while ($row = Database::fetch_assoc($result)) {
     $('#appointment-tutor-picker').off().on('slid.bs.carousel', function (e) {
         var $e = $(e.relatedTarget);
         $.ajax({
-<<<<<<< HEAD
-            url: Course.AJAX_URI + 'course/appointments_by_tutor_availability.php',
-=======
             url: VLMS.URI + 'course/appointments_by_tutor_availability.php',
->>>>>>> danilobrinu/winter16
             data: {
                 cid: $e.attr('data-course-id'),
                 uid: $e.attr('data-user-id'),

@@ -173,11 +173,7 @@ $indicators = Database::query($sql);
                 <!-- reserva por fechas -->
                 <div class="col-md-4" id="appointments-by-date">
                   <div class="vlms">
-<<<<<<< HEAD
-                    <div class="vlms-title-divider">Rerserva por fecha</div>
-=======
                     <div class="vlms-title-divider">Reserva por fecha</div>
->>>>>>> danilobrinu/winter16
                     <?php calendar_appointment([], 'style="margin-top: 24px;"'); ?>
 
                     <div class="text-center" style="margin-top: 16px;">
@@ -288,20 +284,11 @@ $indicators = Database::query($sql);
 <a href="#" title="Ir arriba" id="hook-top" class="fa fa-arrow-up"></a>
 
 <script>
-<<<<<<< HEAD
-    window.Course = (function($, $w) {
-        var _MAIN_AJAX_URI = '<?php echo api_get_path(WEB_CODE_PATH); ?>',
-            _AJAX_URI = '<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/',
-            _USER_ID = +'<?php echo api_get_user_id(); ?>',
-            _toolsAllowed = ['ask', 'appointment', 'review', 'practice'],
-            _init,
-=======
     $('[data-toggle=tooltip]').boostrapTooltip();
     $('[data-toggle=popover]').boostrapPopover();
 
     window.Course = (function($) {
         var _init,
->>>>>>> danilobrinu/winter16
             _unsubscribe,
             _switchTo,
             _tools,

@@ -125,11 +125,8 @@ function calendar_appointment($dates = [], $attributes = '') {
         'Sábado',
         'Domingo'
     ];
-<<<<<<< HEAD
-    $months        = [
-=======
+
     $months = [
->>>>>>> danilobrinu/winter16
         'Enero',
         'Febrero',
         'Marzo',
