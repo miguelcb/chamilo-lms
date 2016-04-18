@@ -5,13 +5,13 @@ function pretty_print($v) {
 }
 
 function human_readable_filesize($bytes) {
-    if ($bytes >= 1024 ** 3)
+    if ($bytes >= 1073741824)
     {
-        $bytes = number_format($bytes / 1024 ** 3, 2) . ' gb';
+        $bytes = number_format($bytes / 1073741824, 2) . ' gb';
     }
-    elseif ($bytes >= 1024 ** 2)
+    elseif ($bytes >= 1048576)
     {
-        $bytes = number_format($bytes / 1024 ** 2, 2) . ' mb';
+        $bytes = number_format($bytes / 1048576, 2) . ' mb';
     }
     elseif ($bytes >= 1024)
     {
