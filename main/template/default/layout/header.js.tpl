@@ -1,4 +1,6 @@
 <script>
+$.fn.boostrapTooltip = $.fn.tooltip.noConflict();
+$.fn.boostrapPopover = $.fn.popover.noConflict();
 // External plugins not part of the default Ckeditor package.
 var plugins = [
     'asciimath',

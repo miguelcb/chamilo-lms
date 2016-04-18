@@ -2,6 +2,8 @@
 
 include_once '../../helpers.inc.php';
 
+api_block_anonymous_users();
+
 $user_id   = is_null($_GET['uid']) ? '' : $_GET['uid'];
 $course_id = is_null($_GET['cid']) ? '' : $_GET['cid'];
 
@@ -79,7 +81,7 @@ while ($row = Database::fetch_assoc($result)) {
     <ul class="vlms-list vlms-list--horizontal" style="  justify-content: center;">
         <li class="vlms-list__item text-center" style="padding: 8px;">
             <svg aria-hidden="true" class="vlms-icon" style="fill: #555;">
-                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#event"></use>
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#groups"></use>
             </svg>
             <span class="vlms-badge vlms-badge--inverse" style="display: block;">Cita presencial</span>
         </li>
@@ -91,7 +93,7 @@ while ($row = Database::fetch_assoc($result)) {
         </li>
     </ul>
 
-    <div class="vlms-block" style="height: 300px; padding: 0; margin-top: 8px;" id="appointment-by-tutor-availability">
+    <div class="vlms-block" style="height: 300px; padding: 0; margin-top: 8px;" id="appointments-by-tutor-availability">
         <div class="vlms-scrollable vlms-scrollable--y">
             <ul class="vlms-list vlms-list--vertical vlms-has-dividers vlms-has-interactions">
                 <li class="vlms-title-divider">Disponibilidad</li>
@@ -104,28 +106,27 @@ while ($row = Database::fetch_assoc($result)) {
 <script>
     (function() {
         var $e = $('#appointment-tutor-picker .item.active');
-        console.log($e);
         $.ajax({
-            url: Course.AJAX_URI + 'course/appointment_by_tutor_availability.php',
+            url: Course.AJAX_URI + 'course/appointments_by_tutor_availability.php',
             data: {
                 cid: $e.attr('data-course-id'),
                 uid: $e.attr('data-user-id'),
                 tid: $e.attr('data-tutor-id')
             }
         })
-            .done(function(view) { $('#appointment-by-tutor-availability').html(view); });
+            .done(function(view) { $('#appointments-by-tutor-availability').html(view); });
     })();
 
     $('#appointment-tutor-picker').on('slid.bs.carousel', function (e) {
         var $e = $(e.relatedTarget);
         $.ajax({
-            url: Course.AJAX_URI + 'course/appointment_by_tutor_availability.php',
+            url: Course.AJAX_URI + 'course/appointments_by_tutor_availability.php',
             data: {
                 cid: $e.attr('data-course-id'),
                 uid: $e.attr('data-user-id'),
                 tid: $e.attr('data-tutor-id')
             }
         })
-            .done(function(view) { $('#appointment-by-tutor-availability').html(view); });
+            .done(function(view) { $('#appointments-by-tutor-availability').html(view); });
     });
 </script>

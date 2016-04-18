@@ -14,8 +14,8 @@ $table_forum_attachment = Database::get_course_table(TABLE_FORUM_ATTACHMENT);
 $all_questions = [];
 
 $sql = "SELECT *, (SELECT COUNT(*) FROM $table_forum_post fpr WHERE fpr.post_parent_id = fp.post_id) answered FROM $table_forum_post fp
-        INNER JOIN user u on u.user_id = fp.poster_id
-        WHERE fp.c_id = $cid and u.status = 5";
+        INNER JOIN user u ON u.user_id = fp.poster_id
+        WHERE fp.c_id = $cid AND u.status = 5 AND (SELECT COUNT(*) FROM $table_forum_post fpr WHERE fpr.post_parent_id = fp.post_id) > 0";
 
 $questions = Database::query($sql);
 

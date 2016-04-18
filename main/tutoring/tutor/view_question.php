@@ -91,14 +91,16 @@ $answer_attachments = Database::query($sql);
         <textarea name="question" id="question" rows="10" class="form-control" placeholder="Escribe tu respuesta aquí"></textarea>
     </div>
     <div class="clearfix">
-        <div class="pull-right">
-            <label class="btn btn-default fa fa-paperclip" title="Archivos adjuntos">
-                <input type="file" style="display: none;">
-            </label>
-        </div>
-        <div class="text-center">
-            <button type="button" class="btn btn-success" id="btn-ask">Responder</button>
-        </div>
+        <ul class="list-unstyled text-right course-tutoring__nav">
+            <li style="display: inline-block;">
+                <label class="btn btn-default fa fa-paperclip" title="Archivos adjuntos">
+                    <input type="file" style="display: none;">
+                </label>
+            </li>
+            <li style="display: inline-block;">
+                <button type="button" class="btn btn-success" id="btn-ask">Responder</button>
+            </li>
+        </ul>
     </div>
 </form>
 
