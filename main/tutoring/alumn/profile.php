@@ -35,7 +35,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['sec_token'])) {
 ?>
 
 <div class="text-center" style="padding: 16px 0;">
-    <!--<img src="<?php echo UserManager::getUserPicture(api_get_user_id(), USER_IMAGE_SIZE_ORIGINAL); ?>" alt="" width="100" height="100" class="img-circle">-->
     <img width="100" height="100" class="img-circle" role="button" src="<?php echo UserManager::getUserPicture(api_get_user_id(), USER_IMAGE_SIZE_ORIGINAL); ?>" data-avatar-path="<?php echo api_get_path(WEB_CODE_PATH).'img/avatars/'; ?>" data-avatar-id="<?php echo (empty($user_data['picture_uri']) ? '0' : str_replace('.png', '', $user_data['picture_uri'])) ?>" alt="" onclick="(function(e) {
         var n = (+$(e).attr('data-avatar-id') >= 12 ? 1 : +$(e).attr('data-avatar-id') + 1),
             filename = n + '.png';

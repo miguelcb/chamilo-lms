@@ -122,35 +122,39 @@ while($course = Database::fetch_assoc($courses)) {
 ?>
 <?php if (count($course_news) > 0): ?>
 <div class="vlms">
-    <ul class="vlms-list vlms-list--vertical vlms-has-dividers vlms-has-interactions">
-        <?php foreach ($course_news as $c_id => $new): ?>
-        <li class="vlms-title-divider"><?php echo api_get_course_info_by_id($c_id)['title']; ?></li>
-            <?php foreach($new as $row): ?>
-            <li class="vlms-list__item">
-                <div class="vlms-media">
-                    <div class="vlms-media__figure">
-                        <svg aria-hidden="true" class="vlms-icon" style="fill: #555;">
-                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#knowledge_base"></use>
-                        </svg>
-                    </div>
-                    <div class="vlms-media__body">
-                        <div class="vlms-media__body__title">
-                            <a href="javascript:void(0);">
-                                Se ha agregado nuevo material para <?php echo $row['tool'] == 'practice' ? 'practicar' : 'repasar'; ?>
-                            </a>
+    <div class="vlms-block">
+        <div class="vlms-scrollable vlms-scrollable--y">
+            <ul class="vlms-list vlms-list--vertical vlms-has-dividers vlms-has-interactions">
+                <?php foreach ($course_news as $c_id => $new): ?>
+                <li class="vlms-title-divider"><?php echo api_get_course_info_by_id($c_id)['title']; ?></li>
+                    <?php foreach($new as $row): ?>
+                    <li class="vlms-list__item">
+                        <div class="vlms-media">
+                            <div class="vlms-media__figure">
+                                <svg aria-hidden="true" class="vlms-icon" style="fill: #555;">
+                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#knowledge_base"></use>
+                                </svg>
+                            </div>
+                            <div class="vlms-media__body">
+                                <div class="vlms-media__body__title">
+                                    <a href="javascript:void(0);">
+                                        Se ha agregado nuevo material para <?php echo $row['tool'] == 'practice' ? 'practicar' : 'repasar'; ?>
+                                    </a>
+                                </div>
+                                <div class="vlms-media__body__detail">
+                                    <ul class="vlms-list vlms-list--vertical vlms-text--small">
+                                        <li class="vlms-list__item"><?php echo $row['description']; ?></li>
+                                        <li class="vlms-list__item"><?php echo date_to_str_ago($row['date']); ?></li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
-                        <div class="vlms-media__body__detail">
-                            <ul class="vlms-list vlms-list--vertical vlms-text--small">
-                                <li class="vlms-list__item"><?php echo $row['description']; ?></li>
-                                <li class="vlms-list__item"><?php echo date_to_str_ago($row['date']); ?></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <?php endforeach; ?>
-        <?php endforeach; ?>
-    </ul>
+                    </li>
+                    <?php endforeach; ?>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+    </div>
 </div>
 <?php else: ?>
 <div class="alert alert-info">No hay ninguna novedad</div>

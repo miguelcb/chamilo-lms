@@ -17,37 +17,41 @@ $result = Database::query($sql);
     <?php if (Database::num_rows($result) > 0): ?>
     <div class="col-md-4">
         <div class="vlms">
-            <ul class="vlms-list vlms-list--vertical vlms-has-dividers vlms-has-interactions messages-tutoring">
-                <li class="vlms-list__item">
-                    <button class="btn btn-block btn-danger" id="delete-all-messages"><?php echo get_lang('Borrar todos los mensajes'); ?></button>
-                </li>
-                <?php while($row = Database::fetch_assoc($result)): ?>
-                    <li class="vlms-list__item messages-tutoring__item" role="button" data-message-id="<?php echo $row['id']; ?>">
-                        <div class="vlms-media">
-                            <div class="vlms-media__body">
-                                <div class="vlms-media__body__title">
-                                    <a class="vlms-truncate vlms-pr--medium" href="javascript:void(0);"><?php echo $row['title']; ?></a>
-                                    <button class="vlms-list__item__action" data-message-delete-id="<?php echo $row['id']; ?>">
-                                        <svg aria-hidden="true" class="vlms-list__item__action__icon" data-toggle="tooltip" data-container="body" data-placement="left" title="Eliminar">
-                                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#close"></use>
-                                        </svg>
-                                        <span class="sr-only">Show More</span>
-                                    </button>
+            <div class="vlms-block">
+                <div class="vlms-scrollable vlms-scrollable--y">
+                    <ul class="vlms-list vlms-list--vertical vlms-has-dividers vlms-has-interactions messages-tutoring">
+                        <li class="vlms-list__item">
+                            <button class="btn btn-block btn-danger" id="delete-all-messages"><?php echo get_lang('Borrar todos los mensajes'); ?></button>
+                        </li>
+                        <?php while($row = Database::fetch_assoc($result)): ?>
+                            <li class="vlms-list__item messages-tutoring__item" role="button" data-message-id="<?php echo $row['id']; ?>">
+                                <div class="vlms-media">
+                                    <div class="vlms-media__body">
+                                        <div class="vlms-media__body__title">
+                                            <a class="vlms-truncate vlms-pr--medium" href="javascript:void(0);"><?php echo $row['title']; ?></a>
+                                            <button class="vlms-list__item__action message-tutoring__item__delete" data-message-delete-id="<?php echo $row['id']; ?>">
+                                                <svg aria-hidden="true" class="vlms-list__item__action__icon" data-toggle="tooltip" data-container="body" data-placement="left" title="Eliminar">
+                                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#close"></use>
+                                                </svg>
+                                                <span class="sr-only">Show More</span>
+                                            </button>
+                                        </div>
+                                        <div class="vlms-media__body__detail">
+                                            <ul class="vlms-list vlms-list--vertical vlms-text--small">
+                                                <li class="vlms-list__item"><?php echo date_to_str_ago($row['send_date']); ?></li>
+                                                <li class="vlms-list__item">
+                                                    <strong><?php echo $row['user_sender']; ?></strong>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="vlms-media__body__detail">
-                                    <ul class="vlms-list vlms-list--vertical vlms-text--small">
-                                        <li class="vlms-list__item"><?php echo date_to_str_ago($row['send_date']); ?></li>
-                                        <li class="vlms-list__item">
-                                            <strong><?php echo $row['user_sender']; ?></strong>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
 
-                    </li>
-                <?php endwhile; ?>
-            </ul>
+                            </li>
+                        <?php endwhile; ?>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
     <div class="col-md-8 message-tutoring">
@@ -67,7 +71,7 @@ $result = Database::query($sql);
         $('.messages-tutoring__item').removeClass('active');
         $sup.addClass('active');
         $.ajax({
-            url: '<?php echo api_get_path(WEB_CODE_PATH).'tutoring/alumn/message/view.php'; ?>',
+            url: VLMS.URI + 'message/view.php',
             data: { id: $sup.attr('data-message-id') }
         })
             .done(function(view) {
@@ -80,8 +84,11 @@ $result = Database::query($sql);
         var $sup = $(this);
 
         $.ajax({
-            url: '<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/message/inbox.php',
-            data: { action: 'deleteone', id: $sup.attr('data-message-delete-id') }
+            url: VLMS.URI + 'message/inbox.php',
+            data: {
+                action: 'deleteone',
+                id: $sup.attr('data-message-delete-id')
+            }
         })
             .done(function() {
                 $sup.closest('[data-message-id]').remove();
@@ -93,7 +100,7 @@ $result = Database::query($sql);
         if (!window.confirm('¿Eliminar todos los mensajes?')) return false;
 
         $.ajax({
-            url: '<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/message/inbox.php',
+            url: VLMS.URI + 'message/inbox.php',
             data: {
                 action: 'delete',
                 id: $.map($('[data-message-delete-id]'), function(m) {
