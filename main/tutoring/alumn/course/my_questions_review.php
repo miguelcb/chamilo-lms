@@ -14,13 +14,14 @@ $table_forum_post = Database::get_course_table(TABLE_FORUM_POST);
 $sql = "SELECT *, (SELECT COUNT(*) FROM $table_forum_post fpr WHERE fpr.post_parent_id = fp.post_id) answered FROM $table_forum_post fp
         INNER JOIN user u on u.user_id = fp.poster_id
         WHERE fp.c_id = $cid AND fp.poster_id = $user_id AND u.status = 5
-        LIMIT 3";
+        ORDER BY fp.post_date DESC
+        LIMIT 5";
 
 $questions = Database::query($sql);
 ?>
 
 <div class="vlms">
-    <div class="vlms-block">
+    <div class="vlms-block" style="height: auto;">
         <div class="vlms-scrollable vlms-scrollable--y">
             <ul class="vlms-list vlms-list--vertical vlms-has-dividers vlms-has-interactions">
                 <li class="vlms-title-divider">Mis preguntas en el curso</li>
@@ -35,10 +36,8 @@ $questions = Database::query($sql);
                                 </div>
                                 <div class="vlms-media__body">
                                     <div class="vlms-media__body__title">
-                                        <a class="vlms-truncate vlms-pr--medium" href="javascript:void(0);"><?php echo $row['post_title']; ?></a>
-                                        <span class="vlms-badge vlms-badge--inverse">
-                                            <?php echo $row['answered'] == '1' ? 'Atendida' : 'Sin atender'; ?>
-                                        </span>
+                                        <a class="vlms-truncate vlms-pr--medium" href="javascript:void(0);"><?php echo $row['post_text']; ?></a>
+                                        <span class="vlms-badge vlms-badge--inverse"><?php echo $row['answered'] == '1' ? 'Atendida' : 'Sin atender'; ?></span>
                                     </div>
                                     <div class="vlms-media__body__detail">
                                         <ul class="vlms-list vlms-list--horizontal vlms-has-dividers vlms-text--small">

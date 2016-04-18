@@ -25,7 +25,11 @@ while ($row = Database::fetch_object($result)) {
 ?>
 
 <div class="vlms">
+<<<<<<< HEAD
     <div class="vlms-title-divider">Rerserva por fecha</div>
+=======
+    <div class="vlms-title-divider">Reserva por fecha</div>
+>>>>>>> danilobrinu/winter16
     <?php calendar_appointment($dates, 'style="margin-top: 24px;"'); ?>
 
     <div class="text-center" style="margin-top: 16px;">
@@ -45,14 +49,24 @@ while ($row = Database::fetch_object($result)) {
 </div>
 
 <script>
+<<<<<<< HEAD
     $('#appointments-by-date .vlms-datepicker [data-date]').click(function() {
+=======
+    $('#appointments-by-date .vlms-datepicker [data-date]').click(function(e) {
+>>>>>>> danilobrinu/winter16
         var $sup = $(this);
         $('#appointments-by-date .vlms-datepicker .active').removeClass('active');
         $sup.addClass('active');
         $.ajax({
+<<<<<<< HEAD
             url: Course.AJAX_URI + 'course/appointments_by_date_availability.php',
             data: {
                 uid: Course.USER_ID,
+=======
+            url: VLMS.URI + 'course/appointments_by_date_availability.php',
+            data: {
+                uid: VLMS.USER_ID,
+>>>>>>> danilobrinu/winter16
                 cid: '<?php echo $course_id; ?>',
                 d: $sup.attr('data-date')
             }

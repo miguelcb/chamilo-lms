@@ -17,7 +17,7 @@ $user_data = api_get_user_info(api_get_user_id());
 $token = Security::get_token();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['sec_token'])) {
-    $POST = array_intersect_key($_POST, array('phone' => 0, 'pseudonym' => 0));
+    $POST = array_intersect_key($_POST, array('phone' => 0, 'pseudonym' => 0, 'picture_uri' => 0));
     $sql = sprintf(
         "UPDATE %s SET %s WHERE user_id = '%s'",
         Database::get_main_table(TABLE_MAIN_USER),
@@ -35,7 +35,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['sec_token'])) {
 ?>
 
 <div class="text-center" style="padding: 16px 0;">
-    <img src="<?php echo UserManager::getUserPicture(api_get_user_id(), USER_IMAGE_SIZE_ORIGINAL); ?>" alt="" width="100" height="100" class="img-circle">
+    <img width="100" height="100" class="img-circle" role="button" src="<?php echo UserManager::getUserPicture(api_get_user_id(), USER_IMAGE_SIZE_ORIGINAL); ?>" data-avatar-path="<?php echo api_get_path(WEB_CODE_PATH).'img/avatars/'; ?>" data-avatar-id="<?php echo (empty($user_data['picture_uri']) ? '0' : str_replace('.png', '', $user_data['picture_uri'])) ?>" alt="" onclick="(function(e) {
+        var n = (+$(e).attr('data-avatar-id') >= 12 ? 1 : +$(e).attr('data-avatar-id') + 1),
+            filename = n + '.png';
+        $(e)
+            .attr('data-avatar-id', n)
+            .attr('src', $(e).attr('data-avatar-path') + filename);
+        $(e).next().val(filename);
+    })(this)">
+    <input type="hidden" name="picture_uri" value="<?php echo $user_data['picture_uri']; ?>">
+    <span class="help-block">Haz click en la imagen para cambiar de avatar</span>
 </div>
 <div class="form-group">
     <label for="lastname" class="control-label"><?php echo get_lang('LastName'); ?></label>

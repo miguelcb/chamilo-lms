@@ -87,27 +87,27 @@ if (!api_is_allowed_to_edit(false, true) &&
 }
 
 // 3. new threads are not allowed and the user is not a course manager
-if (!api_is_allowed_to_edit(false, true) &&
-    $current_forum['allow_new_threads'] <> 1
-) {
-    api_not_allowed();
-}
+// if (!api_is_allowed_to_edit(false, true) &&
+//     $current_forum['allow_new_threads'] <> 1
+// ) {
+//     api_not_allowed();
+// }
 // 4. anonymous posts are not allowed and the user is not logged in
 if (!$_user['user_id'] AND $current_forum['allow_anonymous'] <> 1) {
     api_not_allowed();
 }
 
 // 5. Check user access
-if ($current_forum['forum_of_group'] != 0) {
-    $show_forum = GroupManager::user_has_access(
-        api_get_user_id(),
-        $current_forum['forum_of_group'],
-        GroupManager::GROUP_TOOL_FORUM
-    );
-    if (!$show_forum) {
-        api_not_allowed();
-    }
-}
+// if ($current_forum['forum_of_group'] != 0) {
+//     $show_forum = GroupManager::user_has_access(
+//         api_get_user_id(),
+//         $current_forum['forum_of_group'],
+//         GroupManager::GROUP_TOOL_FORUM
+//     );
+//     if (!$show_forum) {
+//         api_not_allowed();
+//     }
+// }
 
 // 6. Invited users can't create new threads
 if (api_is_invitee()) {
