@@ -363,7 +363,7 @@ $indicators = Database::query($sql);
                     .done(function() {
                         $.ajax({
                             url: VLMS.URI + 'course/my_questions_review.php',
-                            data: { cid: window.currentCourseID }
+                            data: { cid: VLMS.current.id }
                         })
                             .done(function(view) { $('#my-questions').html(view); });
                     });
