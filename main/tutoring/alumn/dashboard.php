@@ -242,7 +242,7 @@ $indicators = Database::query($sql);
                             <div class="vlms-scrollable vlms-scrollable--y">
                                 <ul class="vlms-list vlms-list--vertical vlms-has-dividers vlms-has-interactions">
                                     <li class="vlms-title-divider">Mis citas en el curso</li>
-                                    <li class="vlms-list__item">Sin vacantes</li>
+                                    <li class="vlms-list__item">No tengo citas</li>
                                 </ul>
                             </div>
                         </div>
