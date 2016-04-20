@@ -1464,7 +1464,7 @@ function get_forums(
     } else {
         $session_id = $sessionId;
     }
-    
+
     $sessionIdLink = ($session_id === 0) ? '' : 'AND threads.session_id = item_properties.session_id';
 
     $condition_session = api_get_session_condition(
@@ -1505,7 +1505,7 @@ function get_forums(
                 INNER JOIN ".$table_item_property." item_properties
                 ON (
                     threads.thread_id=item_properties.ref AND
-                    threads.c_id = item_properties.c_id 
+                    threads.c_id = item_properties.c_id
                     $sessionIdLink
                 )
                 WHERE
@@ -1554,7 +1554,7 @@ function get_forums(
                     INNER JOIN ".$table_item_property." item_properties
                     ON (
                         threads.thread_id=item_properties.ref AND
-                        threads.c_id = item_properties.c_id 
+                        threads.c_id = item_properties.c_id
                         $sessionIdLink
                     )
                     WHERE
@@ -2364,19 +2364,19 @@ function store_thread($current_forum, $values, $courseInfo = array(), $showMessa
         $last_thread_id = Database::insert(
             $table_threads,
             [
-                'c_id' => $course_id,
-                'thread_title' => $clean_post_title,
-                'forum_id' => $values['forum_id'],
-                'thread_poster_id' => $_user['user_id'],
-                'thread_poster_name' => stripslashes(isset($values['poster_name']) ? $values['poster_name'] : ''),
-                'thread_date' => $post_date,
-                'thread_sticky' => isset($values['thread_sticky']) ? $values['thread_sticky'] : '',
+                'c_id'                  => $course_id,
+                'thread_title'         => $clean_post_title,
+                'forum_id'             => $values['forum_id'],
+                'thread_poster_id'     => $_user['user_id'],
+                'thread_poster_name'   => stripslashes(isset($values['poster_name']) ? $values['poster_name'] : ''),
+                'thread_date'          => $post_date,
+                'thread_sticky'        => isset($values['thread_sticky']) ? $values['thread_sticky'] : '',
                 'thread_title_qualify' => isset($values['calification_notebook_title']) ? $values['calification_notebook_title'] : '',
-                'thread_qualify_max' => isset($values['numeric_calification']) ? $values['numeric_calification'] : '',
-                'thread_weight' => isset($values['weight_calification']) ? $values['weight_calification'] : '',
-                'thread_peer_qualify' => isset($values['thread_peer_qualify']) ? $values['thread_peer_qualify'] : '',
-                'session_id' => api_get_session_id(),
-                'lp_item_id' => isset($values['lp_item_id']) ? intval($values['lp_item_id']) : 0
+                'thread_qualify_max'   => isset($values['numeric_calification']) ? $values['numeric_calification'] : '',
+                'thread_weight'        => isset($values['weight_calification']) ? $values['weight_calification'] : '',
+                'thread_peer_qualify'  => isset($values['thread_peer_qualify']) ? $values['thread_peer_qualify'] : '',
+                'session_id'           => api_get_session_id(),
+                'lp_item_id'           => isset($values['lp_item_id']) ? intval($values['lp_item_id']) : 0
             ]
         );
 
@@ -2456,17 +2456,19 @@ function store_thread($current_forum, $values, $courseInfo = array(), $showMessa
 
         // We now store the content in the table_post table.
         $params = [
-            'c_id' => $course_id,
-            'post_title' => $clean_post_title,
-            'post_text' => $values['post_text'],
-            'thread_id' => $last_thread_id,
-            'forum_id' => $values['forum_id'],
-            'poster_id' => $_user['user_id'],
-            'poster_name' => isset($values['poster_name']) ? $values['poster_name'] : '',
-            'post_date' => $post_date,
+            'c_id'              => $course_id,
+            'post_title'        => $clean_post_title,
+            'post_text'         => $values['post_text'],
+            'thread_id'         => $last_thread_id,
+            'forum_id'          => $values['forum_id'],
+            'poster_id'         => $_user['user_id'],
+            'poster_name'       => isset($values['poster_name']) ? $values['poster_name'] : '',
+            'post_date'         => $post_date,
             'post_notification' => isset($values['post_notification']) ? $values['post_notification'] : '',
-            'post_parent_id' => 0,
-            'visible' => $visible,
+            'post_parent_id'    => 0,
+            'visible'           => $visible,
+            'tutor_id'          => isset($values['tutor_id']) ? $values['tutor_id'] : 0,
+            'public'            => isset($values['public']) ? $values['public'] : 0
         ];
         $last_post_id = Database::insert($table_posts, $params);
 
@@ -2596,6 +2598,8 @@ function show_add_post_form($current_forum, $forum_setting, $action = '', $id = 
     $form->addElement('hidden', 'forum_id', intval($my_forum));
     $form->addElement('hidden', 'thread_id', intval($myThread));
     $form->addElement('hidden', 'gradebook', $my_gradebook);
+    $form->addElement('hidden', 'tutor_id', 0);
+    $form->addElement('hidden', 'public', 0);
 
     // If anonymous posts are allowed we also display a form to allow the user to put his name or username in.
     if ($current_forum['allow_anonymous'] == 1 && !isset($_user['user_id'])) {
@@ -2721,11 +2725,12 @@ function show_add_post_form($current_forum, $forum_setting, $action = '', $id = 
         $form->addButtonCreate(get_lang('CreateThread'), 'SubmitPost');
     }
 
+
     if (!empty($form_values)) {
-        $defaults['post_title'] = prepare4display($form_values['post_title']);
-        $defaults['post_text'] = prepare4display($form_values['post_text']);
-        $defaults['post_notification'] = strval(intval($form_values['post_notification']));
-        $defaults['thread_sticky'] = strval(intval($form_values['thread_sticky']));
+        $defaults['post_title']          = prepare4display($form_values['post_title']);
+        $defaults['post_text']           = prepare4display($form_values['post_text']);
+        $defaults['post_notification']   = strval(intval($form_values['post_notification']));
+        $defaults['thread_sticky']       = strval(intval($form_values['thread_sticky']));
         $defaults['thread_peer_qualify'] = intval($form_values['thread_peer_qualify']);
     } else {
         $defaults['thread_peer_qualify'] = 0;
@@ -2759,24 +2764,24 @@ function show_add_post_form($current_forum, $forum_setting, $action = '', $id = 
 
     // Validation or display
     if ($form->validate()) {
-        $check = Security::check_token('post');
-        if ($check) {
-            $values = $form->exportValues();
-            if (isset($values['thread_qualify_gradebook']) &&
-                $values['thread_qualify_gradebook'] == '1' &&
-                empty($values['weight_calification'])
-            ) {
-                Display::display_error_message(
-                    get_lang('YouMustAssignWeightOfQualification').'&nbsp;<a href="javascript:window.history.go(-1);">'.get_lang('Back').'</a>',
-                    false
-                );
+        // $check = Security::check_token('post');
+        // if ($check) {
+        $values = $form->exportValues();
+        if (isset($values['thread_qualify_gradebook']) &&
+            $values['thread_qualify_gradebook'] == '1' &&
+            empty($values['weight_calification'])
+        ) {
+            Display::display_error_message(
+                get_lang('YouMustAssignWeightOfQualification').'&nbsp;<a href="javascript:window.history.go(-1);">'.get_lang('Back').'</a>',
+                false
+            );
 
-                return false;
-            }
-            Security::clear_token();
-
-            return $values;
+            return false;
         }
+        Security::clear_token();
+
+        return $values;
+        // }
     } else {
         $token = Security::get_token();
         $form->addElement('hidden', 'sec_token');

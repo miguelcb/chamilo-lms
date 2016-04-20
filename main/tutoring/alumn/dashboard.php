@@ -101,12 +101,14 @@ $indicators = Database::query($sql);
                     <form id="form-ask" action="">
                         <input type="hidden" name="post_title" value="Pregunta para responder">
                         <input type="hidden" name="_qf__thread">
-                        <input type="hidden" name="forum_id" value="1">
+                        <input type="hidden" name="forum_id" value="0">
                         <input type="hidden" name="thread_id" value="0">
                         <input type="hidden" name="gradebook" value="0">
                         <input type="hidden" name="MAX_FILE_SIZE" value="268435456">
                         <input type="hidden" name="sec_token" value="<?php echo Security::get_token(); ?>">
                         <input type="hidden" name="post_notification" value="1">
+                        <input type="hidden" name="calification_notebook_title" value="Índice de utilidad">
+                        <input type="hidden" name="numeric_calification" value="5">
                         <div class="form-group">
                             <span class="help-block">Te recomendamos que revises el <a href="javascript:void(0);" id="repository-questions-link" data-toggle="ajax-modal" data-target="#repository-questions-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/repository_questions.php?cid=1">repositorio de preguntas</a> para validar que tu consulta no se haya realizado antes.</span>
                             <textarea name="post_text" rows="10" class="form-control" placeholder="Escribe tu pregunta aquí"></textarea>
@@ -117,18 +119,16 @@ $indicators = Database::query($sql);
                                     <span class="help-block">¿Quieres que tu pregunta sea respondida por un tutor en especial?</span>
                                     <div class="btn-toolbar" role="toolbar" aria-label="..." style="margin: 0;">
                                         <div class="btn-group" role="group" aria-label="..." style="margin-left: 0;">
-                                            <select name="" id="ask-tutors" class="form-control">
-                                                <option value="asda">Sin preferencia (Tutor)</option>
-                                                <option value="asda">Mendoza Neudstald, Lorei</option>
-                                                <option value="asda">Quispe Zapata, Juan</option>
+                                            <select name="tutor_id" id="ask-tutors" class="form-control">
+                                                <option value="0">Sin preferencia (Tutor)</option>
                                            </select>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <span class="help-block">¿Quieres que tu pregunta sea compartida en el repositorio de preguntas?</span>
-                                    <input type="radio" name="public" id="public1" checked> Sí
-                                    <input type="radio" name="public" id="public2"> No
+                                    <input type="radio" name="public" id="public1" checked value="1"> Sí
+                                    <input type="radio" name="public" id="public2" value="0"> No
                                 </div>
                             </div>
                             <div class="pull-right">
@@ -334,6 +334,8 @@ $indicators = Database::query($sql);
         _askTool = function(courseID) {
             // UPDATE ACTION
             $('#form-ask').attr('action', VLMS.MAIN_URI + 'forum/newthread.php?forum=' + VLMS.current.forumID + '&gradebook=0&thread=0&post=0&cidReq=' + VLMS.current.code + '&id_session=0&gidReq=0&origin=');
+            // UPDATE FORUM ID
+            $('#form-ask [name=forum_id]').val(VLMS.current.forumID);
             // UPDATE TUTORS
             $.ajax({
                 url: VLMS.URI + 'course/ask_tutors.php',
@@ -421,9 +423,10 @@ $indicators = Database::query($sql);
                 });
         };
         _switchTo = function(courseID) {
-            VLMS.current.code = $('.course-tutoring.active').attr('data-course-code') || ''
-            VLMS.current.id = $('.course-tutoring.active').attr('data-course-id') || 0;
-            VLMS.current.forumID = $('.course-tutoring.active').attr('data-course-forum-id') || 0;
+            var $current = $('.course-tutoring.active');
+            VLMS.current.code = $current.attr('data-course-code') || '';
+            VLMS.current.id = $current.attr('data-course-id') || 0;
+            VLMS.current.forumID = $current.attr('data-course-forum-id') || 0;
             // REFRESH COURSE SESSION
             $.ajax({
                 async: false,

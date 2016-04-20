@@ -105,7 +105,6 @@ while ($row = Database::fetch_assoc($result)) {
 
 <script>
     (function() {
-        console.log('ok');
         var $e = $('#appointment-tutor-picker');
         if (!$e.find('[data-tutor-id]').length) return;
         $.ajax({
