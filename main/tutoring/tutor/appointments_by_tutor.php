@@ -7,3 +7,8 @@
 			<span class="vlms-badge vlms-bgc--emerald">presencial/virtual</span>
 		</div>
 	</div>
+	<script type="text/javascript">
+  $('[data-toggle=tooltip]').boostrapTooltip();
+    $('[data-toggle=popover]').boostrapPopover();
+
+</script>

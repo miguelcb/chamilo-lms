@@ -1,6 +1,6 @@
 <?php require_once '../../inc/global.inc.php';
 
-include 'helpers.inc.php';
+require_once '../helpers.inc.php';
 
 api_block_anonymous_users();
 
@@ -42,10 +42,7 @@ while ($question = Database::fetch_assoc($questions)) {
             <ul class="list-unstyled text-right course-tutoring__nav">
                 <li style="display: inline-block;">
                     <a href="javascript:void(0)" class="fa fa-list-alt fa-icon-size fa-icon-size--medium" style="color: #555; margin: 8px;" data-modal="ajax-modal" data-target="#recent-activities-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/tutor/activity_panel.php" data-toggle="tooltip" data-placement="bottom" data-container="body" title="" data-original-title="Actividades recientes"></a>
-                </li>
-                <li style="display: inline-block;">
-                    <a href="javascript:void(0)" class="fa fa-cog fa-icon-size fa-icon-size--medium" style="color: #555; margin: 8px;" data-modal="ajax-modal" data-target="#alert-settings-modal" data-source="http://104.131.109.28/tutorvirtual-winter16/main/tutoring/alumn/course/alert_settings.php?cid=1" data-toggle="tooltip" data-placement="bottom" data-container="body" title="" data-original-title="Alertas del curso"></a>
-                </li>
+                </li>                
             </ul>
         </div>
     </div>
@@ -85,6 +82,9 @@ while ($question = Database::fetch_assoc($questions)) {
 
 
 <script>
+    $('[data-toggle=tooltip]').boostrapTooltip();
+    $('[data-toggle=popover]').boostrapPopover();
+
     $('[data-question-id]').click(function() {
         var $sup = $(this);
         $('[data-question-id]').removeClass('active');
@@ -97,6 +97,7 @@ while ($question = Database::fetch_assoc($questions)) {
                 $('.question-tutoring').html(view);
             });
     });
+
 </script>
 
 <!-- START list group

@@ -8,7 +8,12 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="{{  _p.web_main }}tutoring/alumn/dashboard.php" class="navbar-brand">
+            {% if _u.status == 5 %}
+            {% set role = 'alumn' %}
+            {% elseif _u.status == 1 %}
+            {% set role = 'tutor' %}
+            {% endif %}
+            <a href="{{  _p.web_main }}tutoring/{{role}}/dashboard.php" class="navbar-brand">
               <span>TUTOR</span><br>
               <span>VIRTUAL</span>
             </a>
@@ -16,27 +21,33 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="menuone">
             <ul class="nav navbar-nav x-navbar__menu">
-                {% if _u.status != 5 %}
-                {{ menu }}
-                {% else %}
-                <li class="text-center">
-                  <a href="javascript:void(0)" title="Perfil" data-toggle="ajax-modal" data-target="#profile-modal" data-source="{{ _p.web_main }}tutoring/alumn/profile.php">
-                    <span class="fa fa-user"></span>Perfil
-                  </a>
-                </li>
-                <li class="text-center">
-                  <a href="javascript:void(0)" title="Novedades" data-toggle="ajax-modal" data-target="#news-modal" data-source="{{ _p.web_main }}tutoring/alumn/course/news.php">
-                    <span class="badge">{{ count_unread_news }}</span>
-                    <span class="fa fa-bell"></span>Novedades
-                  </a>
-                </li>
-                <li class="text-center">
-                  <a href="javascript:void(0)" title="Mensajes" data-toggle="ajax-modal" data-target="#messages-modal" data-source="{{ _p.web_main }}tutoring/alumn/message/inbox.php">
-                    <span class="badge">{{ count_unread_message }}</span>
-                    <span class="fa fa-comment"></span>Mensajes
-                  </a>
-                </li>
-                {% endif %}
+            {% if _u.status == 5%}
+            <li class="text-center">
+              <a href="javascript:void(0)" title="Perfil" data-toggle="ajax-modal" data-target="#profile-modal" data-source="{{ _p.web_main }}tutoring/alumn/profile.php">
+                <span class="fa fa-user"></span>Perfil
+              </a>
+            </li>
+            <li class="text-center">
+              <a href="javascript:void(0)" title="Novedades" data-toggle="ajax-modal" data-target="#news-modal" data-source="{{ _p.web_main }}tutoring/alumn/course/news.php">
+                <span class="badge">{{ count_unread_news }}</span>
+                <span class="fa fa-bell"></span>Novedades
+              </a>
+            </li>
+            <li class="text-center">
+              <a href="javascript:void(0)" title="Mensajes" data-toggle="ajax-modal" data-target="#messages-modal" data-source="{{ _p.web_main }}tutoring/alumn/message/inbox.php">
+                <span class="badge">{{ count_unread_message }}</span>
+                <span class="fa fa-comment"></span>Mensajes
+              </a>
+            </li>
+            {% elseif _u.status == 1 %}
+            <li class="text-center">
+              <a href="javascript:void(0)" title="Perfil" data-toggle="ajax-modal" data-target="#profile-modal" data-source="{{ _p.web_main }}tutoring/tutor/profile.php">
+                <span class="fa fa-user"></span>Perfil
+              </a>
+            </li>
+            {% else %}
+            {{ menu }}
+            {% endif %}
             </ul>
             <ul class="nav navbar-nav navbar-right">
               <li><a style="padding: 8px 0;" href="http://utp.edu.pe"><img src="{{ _p.web }}/web/css/themes/TutorVirtual/images/utp-blanco.png" alt="" height="48"></a></li>

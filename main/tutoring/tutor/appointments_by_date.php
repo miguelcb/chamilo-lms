@@ -1,6 +1,6 @@
 
                     <div class="vlms">
-                        <div class="vlms-block" style="height: 695px; padding: 0;">
+                        <div class="vlms-block" style="padding: 0;">
                             <div class="vlms-scrollable vlms-scrollable--y">
                                 <ul class="vlms-list vlms-list--vertical vlms-has-dividers vlms-has-interactions">
                                     <li class="vlms-title-divider">Disponibilidad</li>

@@ -166,6 +166,26 @@ footer {
   background-position: left bottom;
 }
 
+#ask_T {
+  position: relative;
+  background-color: #e2e4e7;
+  margin-top: 3px;
+  margin-bottom: 90px;
+}
+#ask_T:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 90px;
+  background-repeat: no-repeat;
+}
+#ask_T:after {
+  bottom: -90px;
+  background-image: url(images/diagonal-45-invert.png);
+  background-position: left bottom;
+}
+
 #appointment {
   position: relative;
   background-color: #fff;
@@ -191,6 +211,26 @@ footer {
   background-image: url(images/diagonal-white-45-invert.png);
   background-position: left bottom;
 }
+
+#appointment_T {
+  position: relative;
+  background-color: #fff;
+  margin-top: 90px;
+}
+#appointment_T:before{
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 90px;
+  background-repeat: no-repeat;
+}
+#appointment_T:before {
+  top: -90px;
+  background-image: url(images/diagonal-white-45.png);
+  background-position: left top;
+}
+
 
 #practice {
   position: relative;
