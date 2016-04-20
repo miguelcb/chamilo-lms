@@ -46,7 +46,7 @@ $result = Database::query($sql);
                     </li>
                     <?php endwhile; ?>
                 <?php else: ?>
-                    <li class="vlms-list__item">Sin vacantes</li>
+                    <li class="vlms-list__item">No tengo citas</li>
                 <?php endif; ?>
             </ul>
         </div>

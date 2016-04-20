@@ -711,6 +711,24 @@ class AddCourse
             'alert_tool_practice'    => ['default' => 1, 'category' => 'practice']
         ];
 
+        // SET FORUM CATEGORY AND FORUM TO SUPPORT FORUM THREAD's
+        require_once api_get_path(SYS_CODE_PATH).'forum/forumfunction.inc.php';
+
+        $forumCategoryId = store_forumcategory([
+            'forum_category_title'   => 'Categoría para preguntas en el curso',
+            'forum_category_comment' => ''
+        ], $courseInfo, false);
+        $forumId = store_forum([
+            'forum_category'                    => $forumCategoryId,
+            'forum_title'                      => 'Repositorio de preguntas en el curso',
+            'forum_comment'                    => '',
+            'default_view_type_group'          => ['default_view_type' => 'flat'],
+            'allow_new_threads_group'          => ['allow_new_threads' => 1],
+            'students_can_edit_group'          => ['students_can_edit' => 0],
+            'group_forum'                      => 0,
+            'public_private_group_forum_group' => ['public_private_group_forum' => 'private']
+        ], $courseInfo, true);
+
         $counter = 1;
         foreach ($settings as $variable => $setting) {
             Database::query(
@@ -763,377 +781,377 @@ class AddCourse
         }
 
         /*    Documents   */
-        if ($fill_with_exemplary_content) {
+        // if ($fill_with_exemplary_content) {
 
-            $files = [
-                ['path' => '/images', 'title' => get_lang('Images'), 'filetype' => 'folder', 'size' => 0],
-                ['path' => '/images/gallery', 'title' => get_lang('DefaultCourseImages'), 'filetype' => 'folder', 'size' => 0],
-                ['path' => '/audio', 'title' => get_lang('Audio'), 'filetype' => 'folder', 'size' => 0],
-                ['path' => '/flash', 'title' => get_lang('Flash'), 'filetype' => 'folder', 'size' => 0],
-                ['path' => '/video', 'title' => get_lang('Video'), 'filetype' => 'folder', 'size' => 0],
-                ['path' => '/certificates', 'title' => get_lang('Certificates'), 'filetype' => 'folder', 'size' => 0]
-            ];
+        //     $files = [
+        //         ['path' => '/images', 'title' => get_lang('Images'), 'filetype' => 'folder', 'size' => 0],
+        //         ['path' => '/images/gallery', 'title' => get_lang('DefaultCourseImages'), 'filetype' => 'folder', 'size' => 0],
+        //         ['path' => '/audio', 'title' => get_lang('Audio'), 'filetype' => 'folder', 'size' => 0],
+        //         ['path' => '/flash', 'title' => get_lang('Flash'), 'filetype' => 'folder', 'size' => 0],
+        //         ['path' => '/video', 'title' => get_lang('Video'), 'filetype' => 'folder', 'size' => 0],
+        //         ['path' => '/certificates', 'title' => get_lang('Certificates'), 'filetype' => 'folder', 'size' => 0]
+        //     ];
 
-            foreach ($files as $file) {
-                self::insertDocument($course_id, $counter, $file);
-                $counter++;
-            }
+        //     foreach ($files as $file) {
+        //         self::insertDocument($course_id, $counter, $file);
+        //         $counter++;
+        //     }
 
-            // FILL THE COURSE DOCUMENT WITH DEFAULT COURSE PICTURES
-            $folders_to_copy_from_default_course = array(
-                'images',
-                'audio',
-                'flash',
-                'video',
-                'certificates',
-            );
+        //     // FILL THE COURSE DOCUMENT WITH DEFAULT COURSE PICTURES
+        //     $folders_to_copy_from_default_course = array(
+        //         'images',
+        //         'audio',
+        //         'flash',
+        //         'video',
+        //         'certificates',
+        //     );
 
-            $default_course_path = api_get_path(SYS_CODE_PATH) . 'default_course_document/';
+        //     $default_course_path = api_get_path(SYS_CODE_PATH) . 'default_course_document/';
 
-            $default_document_array = array();
-            foreach ($folders_to_copy_from_default_course as $folder) {
-                $default_course_folder_path = $default_course_path . $folder . '/';
-                $files = self::browse_folders(
-                    $default_course_folder_path,
-                    array(),
-                    $folder
-                );
+        //     $default_document_array = array();
+        //     foreach ($folders_to_copy_from_default_course as $folder) {
+        //         $default_course_folder_path = $default_course_path . $folder . '/';
+        //         $files = self::browse_folders(
+        //             $default_course_folder_path,
+        //             array(),
+        //             $folder
+        //         );
 
-                $sorted_array = self::sort_pictures($files, 'dir');
-                $sorted_array = array_merge(
-                    $sorted_array,
-                    self::sort_pictures($files, 'file')
-                );
-                $default_document_array[$folder] = $sorted_array;
-            }
+        //         $sorted_array = self::sort_pictures($files, 'dir');
+        //         $sorted_array = array_merge(
+        //             $sorted_array,
+        //             self::sort_pictures($files, 'file')
+        //         );
+        //         $default_document_array[$folder] = $sorted_array;
+        //     }
 
-            //echo '<pre>'; print_r($default_document_array);exit;
+        //     //echo '<pre>'; print_r($default_document_array);exit;
 
-            //Light protection (adding index.html in every document folder)
-            $htmlpage = "<!DOCTYPE html>\n<html lang=\"en\">\n <head>\n <meta charset=\"utf-8\">\n <title>Not authorized</title>\n  </head>\n  <body>\n  </body>\n</html>";
+        //     //Light protection (adding index.html in every document folder)
+        //     $htmlpage = "<!DOCTYPE html>\n<html lang=\"en\">\n <head>\n <meta charset=\"utf-8\">\n <title>Not authorized</title>\n  </head>\n  <body>\n  </body>\n</html>";
 
-            $example_cert_id = 0;
-            if (is_array($default_document_array) && count(
-                    $default_document_array
-                ) > 0
-            ) {
-                foreach ($default_document_array as $media_type => $array_media) {
-                    $path_documents = "/$media_type/";
+        //     $example_cert_id = 0;
+        //     if (is_array($default_document_array) && count(
+        //             $default_document_array
+        //         ) > 0
+        //     ) {
+        //         foreach ($default_document_array as $media_type => $array_media) {
+        //             $path_documents = "/$media_type/";
 
-                    //hack until feature #5242 is implemented
-                    if ($media_type == 'images') {
-                        $media_type = 'images/gallery';
-                        $images_folder = $sys_course_path . $course_repository . "/document/images/";
+        //             //hack until feature #5242 is implemented
+        //             if ($media_type == 'images') {
+        //                 $media_type = 'images/gallery';
+        //                 $images_folder = $sys_course_path . $course_repository . "/document/images/";
 
-                        if (!is_dir($images_folder)) {
-                            //Creating index.html
-                            mkdir($images_folder, $perm);
-                            $fd = fopen($images_folder . 'index.html', 'w');
-                            fwrite($fd, $htmlpage);
-                            @chmod($images_folder . 'index.html', $perm_file);
-                        }
-                    }
+        //                 if (!is_dir($images_folder)) {
+        //                     //Creating index.html
+        //                     mkdir($images_folder, $perm);
+        //                     $fd = fopen($images_folder . 'index.html', 'w');
+        //                     fwrite($fd, $htmlpage);
+        //                     @chmod($images_folder . 'index.html', $perm_file);
+        //                 }
+        //             }
 
-                    $course_documents_folder = $sys_course_path . $course_repository . "/document/$media_type/";
-                    $default_course_path = api_get_path(SYS_CODE_PATH) . 'default_course_document' . $path_documents;
+        //             $course_documents_folder = $sys_course_path . $course_repository . "/document/$media_type/";
+        //             $default_course_path = api_get_path(SYS_CODE_PATH) . 'default_course_document' . $path_documents;
 
-                    if (!is_dir($course_documents_folder)) {
-                        // Creating index.html
-                        mkdir($course_documents_folder, $perm);
-                        $fd = fopen(
-                            $course_documents_folder . 'index.html',
-                            'w'
-                        );
-                        fwrite($fd, $htmlpage);
-                        @chmod(
-                            $course_documents_folder . 'index.html',
-                            $perm_file
-                        );
-                    }
+        //             if (!is_dir($course_documents_folder)) {
+        //                 // Creating index.html
+        //                 mkdir($course_documents_folder, $perm);
+        //                 $fd = fopen(
+        //                     $course_documents_folder . 'index.html',
+        //                     'w'
+        //                 );
+        //                 fwrite($fd, $htmlpage);
+        //                 @chmod(
+        //                     $course_documents_folder . 'index.html',
+        //                     $perm_file
+        //                 );
+        //             }
 
-                    if (is_array($array_media) && count($array_media) > 0) {
-                        foreach ($array_media as $key => $value) {
-                            if (isset($value['dir']) && !empty($value['dir'])) {
-                                if (!is_dir($course_documents_folder . $value['dir'])) {
-                                    //Creating folder
-                                    mkdir(
-                                        $course_documents_folder . $value['dir'],
-                                        $perm
-                                    );
+        //             if (is_array($array_media) && count($array_media) > 0) {
+        //                 foreach ($array_media as $key => $value) {
+        //                     if (isset($value['dir']) && !empty($value['dir'])) {
+        //                         if (!is_dir($course_documents_folder . $value['dir'])) {
+        //                             //Creating folder
+        //                             mkdir(
+        //                                 $course_documents_folder . $value['dir'],
+        //                                 $perm
+        //                             );
 
-                                    //Creating index.html (for light protection)
-                                    $index_html = $course_documents_folder . $value['dir'] . '/index.html';
-                                    $fd = fopen($index_html, 'w');
-                                    fwrite($fd, $htmlpage);
-                                    @chmod($index_html, $perm_file);
+        //                             //Creating index.html (for light protection)
+        //                             $index_html = $course_documents_folder . $value['dir'] . '/index.html';
+        //                             $fd = fopen($index_html, 'w');
+        //                             fwrite($fd, $htmlpage);
+        //                             @chmod($index_html, $perm_file);
 
-                                    //Inserting folder in the DB
-                                    $folder_path = substr(
-                                        $value['dir'],
-                                        0,
-                                        strlen($value['dir']) - 1
-                                    );
-                                    $temp = explode('/', $folder_path);
-                                    $title = $temp[count($temp) - 1];
+        //                             //Inserting folder in the DB
+        //                             $folder_path = substr(
+        //                                 $value['dir'],
+        //                                 0,
+        //                                 strlen($value['dir']) - 1
+        //                             );
+        //                             $temp = explode('/', $folder_path);
+        //                             $title = $temp[count($temp) - 1];
 
-                                    //hack until feature #5242 is implemented
-                                    if ($title == 'gallery') {
-                                        $title = get_lang(
-                                            'DefaultCourseImages'
-                                        );
-                                    }
+        //                             //hack until feature #5242 is implemented
+        //                             if ($title == 'gallery') {
+        //                                 $title = get_lang(
+        //                                     'DefaultCourseImages'
+        //                                 );
+        //                             }
 
-                                    if ($media_type == 'images/gallery') {
-                                        $folder_path = 'gallery/' . $folder_path;
-                                    }
+        //                             if ($media_type == 'images/gallery') {
+        //                                 $folder_path = 'gallery/' . $folder_path;
+        //                             }
 
-                                    Database::query(
-                                        "INSERT INTO $TABLETOOLDOCUMENT (c_id, path,title,filetype,size)
-                                        VALUES ($course_id,'$path_documents" . $folder_path . "','" . $title . "','folder','0')"
-                                    );
-                                    $image_id = Database:: insert_id();
+        //                             Database::query(
+        //                                 "INSERT INTO $TABLETOOLDOCUMENT (c_id, path,title,filetype,size)
+        //                                 VALUES ($course_id,'$path_documents" . $folder_path . "','" . $title . "','folder','0')"
+        //                             );
+        //                             $image_id = Database:: insert_id();
 
-                                    Database::query(
-                                        "INSERT INTO $TABLEITEMPROPERTY (c_id, tool,insert_user_id,insert_date,lastedit_date,ref,lastedit_type,lastedit_user_id,to_group_id,to_user_id,visibility)
-                                        VALUES ($course_id,'document',1,'$now','$now',$image_id,'DocumentAdded',1,NULL,NULL,0)"
-                                    );
-                                }
-                            }
+        //                             Database::query(
+        //                                 "INSERT INTO $TABLEITEMPROPERTY (c_id, tool,insert_user_id,insert_date,lastedit_date,ref,lastedit_type,lastedit_user_id,to_group_id,to_user_id,visibility)
+        //                                 VALUES ($course_id,'document',1,'$now','$now',$image_id,'DocumentAdded',1,NULL,NULL,0)"
+        //                             );
+        //                         }
+        //                     }
 
-                            if (isset($value['file']) && !empty($value['file'])) {
-                                if (!file_exists(
-                                    $course_documents_folder . $value['file']
-                                )
-                                ) {
-                                    //Copying file
-                                    copy(
-                                        $default_course_path . $value['file'],
-                                        $course_documents_folder . $value['file']
-                                    );
-                                    chmod(
-                                        $course_documents_folder . $value['file'],
-                                        $perm_file
-                                    );
-                                    //echo $default_course_path.$value['file']; echo ' - '; echo $course_documents_folder.$value['file']; echo '<br />';
-                                    $temp = explode('/', $value['file']);
-                                    $file_size = filesize(
-                                        $course_documents_folder . $value['file']
-                                    );
+        //                     if (isset($value['file']) && !empty($value['file'])) {
+        //                         if (!file_exists(
+        //                             $course_documents_folder . $value['file']
+        //                         )
+        //                         ) {
+        //                             //Copying file
+        //                             copy(
+        //                                 $default_course_path . $value['file'],
+        //                                 $course_documents_folder . $value['file']
+        //                             );
+        //                             chmod(
+        //                                 $course_documents_folder . $value['file'],
+        //                                 $perm_file
+        //                             );
+        //                             //echo $default_course_path.$value['file']; echo ' - '; echo $course_documents_folder.$value['file']; echo '<br />';
+        //                             $temp = explode('/', $value['file']);
+        //                             $file_size = filesize(
+        //                                 $course_documents_folder . $value['file']
+        //                             );
 
-                                    //hack until feature #5242 is implemented
-                                    if ($media_type == 'images/gallery') {
-                                        $value["file"] = 'gallery/' . $value["file"];
-                                    }
+        //                             //hack until feature #5242 is implemented
+        //                             if ($media_type == 'images/gallery') {
+        //                                 $value["file"] = 'gallery/' . $value["file"];
+        //                             }
 
-                                    //Inserting file in the DB
-                                    Database::query(
-                                        "INSERT INTO $TABLETOOLDOCUMENT (c_id, path,title,filetype,size)
-                                        VALUES ($course_id,'$path_documents" . $value["file"] . "','" . $temp[count($temp) - 1] . "','file','$file_size')"
-                                    );
-                                    $image_id = Database:: insert_id();
-                                    if ($image_id) {
+        //                             //Inserting file in the DB
+        //                             Database::query(
+        //                                 "INSERT INTO $TABLETOOLDOCUMENT (c_id, path,title,filetype,size)
+        //                                 VALUES ($course_id,'$path_documents" . $value["file"] . "','" . $temp[count($temp) - 1] . "','file','$file_size')"
+        //                             );
+        //                             $image_id = Database:: insert_id();
+        //                             if ($image_id) {
 
-                                        $sql = "UPDATE $TABLETOOLDOCUMENT SET id = iid WHERE iid = $image_id";
-                                        Database::query($sql);
+        //                                 $sql = "UPDATE $TABLETOOLDOCUMENT SET id = iid WHERE iid = $image_id";
+        //                                 Database::query($sql);
 
-                                        if ($path_documents . $value['file'] == '/certificates/default.html') {
-                                            $example_cert_id = $image_id;
-                                        }
-                                        Database::query(
-                                            "INSERT INTO $TABLEITEMPROPERTY (c_id, tool,insert_user_id,insert_date,lastedit_date,ref,lastedit_type,lastedit_user_id,to_group_id,to_user_id,visibility)
-                                            VALUES ($course_id,'document',1,'$now','$now',$image_id,'DocumentAdded',1,NULL,NULL,1)"
-                                        );
-                                        $docId = Database:: insert_id();
-                                        if ($docId) {
-                                            $sql = "UPDATE $TABLEITEMPROPERTY SET id = iid WHERE iid = $docId";
-                                            Database::query($sql);
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+        //                                 if ($path_documents . $value['file'] == '/certificates/default.html') {
+        //                                     $example_cert_id = $image_id;
+        //                                 }
+        //                                 Database::query(
+        //                                     "INSERT INTO $TABLEITEMPROPERTY (c_id, tool,insert_user_id,insert_date,lastedit_date,ref,lastedit_type,lastedit_user_id,to_group_id,to_user_id,visibility)
+        //                                     VALUES ($course_id,'document',1,'$now','$now',$image_id,'DocumentAdded',1,NULL,NULL,1)"
+        //                                 );
+        //                                 $docId = Database:: insert_id();
+        //                                 if ($docId) {
+        //                                     $sql = "UPDATE $TABLEITEMPROPERTY SET id = iid WHERE iid = $docId";
+        //                                     Database::query($sql);
+        //                                 }
+        //                             }
+        //                         }
+        //                     }
+        //                 }
+        //             }
+        //         }
+        //     }
 
-            $agenda = new Agenda();
-            $agenda->setType('course');
-            $agenda->set_course($courseInfo);
-            $agenda->addEvent(
-                $now,
-                $now,
-                0,
-                get_lang('AgendaCreationTitle'),
-                get_lang('AgendaCreationContenu')
-            );
+        //     $agenda = new Agenda();
+        //     $agenda->setType('course');
+        //     $agenda->set_course($courseInfo);
+        //     $agenda->addEvent(
+        //         $now,
+        //         $now,
+        //         0,
+        //         get_lang('AgendaCreationTitle'),
+        //         get_lang('AgendaCreationContenu')
+        //     );
 
-            /*  Links tool */
+        //     /*  Links tool */
 
-            $link = new Link();
-            $link->setCourse($courseInfo);
-            $links = [
-                [
-                    'c_id' => $course_id,
-                    'url' => 'http://www.google.com',
-                    'title' => 'Google',
-                    'description' => get_lang('Google') ,
-                    'category_id' => 0,
-                    'on_homepage' => 0,
-                    'target' => '_self',
-                    'session_id' => 0
-                ],
-                [
-                    'c_id' => $course_id,
-                    'url' => 'http://www.wikipedia.org',
-                    'title' => 'Wikipedia',
-                    'description' => get_lang('Wikipedia') ,
-                    'category_id' => 0,
-                    'on_homepage' => 0,
-                    'target' => '_self',
-                    'session_id' => 0
-                ]
-            ];
+        //     $link = new Link();
+        //     $link->setCourse($courseInfo);
+        //     $links = [
+        //         [
+        //             'c_id' => $course_id,
+        //             'url' => 'http://www.google.com',
+        //             'title' => 'Google',
+        //             'description' => get_lang('Google') ,
+        //             'category_id' => 0,
+        //             'on_homepage' => 0,
+        //             'target' => '_self',
+        //             'session_id' => 0
+        //         ],
+        //         [
+        //             'c_id' => $course_id,
+        //             'url' => 'http://www.wikipedia.org',
+        //             'title' => 'Wikipedia',
+        //             'description' => get_lang('Wikipedia') ,
+        //             'category_id' => 0,
+        //             'on_homepage' => 0,
+        //             'target' => '_self',
+        //             'session_id' => 0
+        //         ]
+        //     ];
 
-            foreach($links as $params) {
-                $link->save($params);
-            }
+        //     foreach($links as $params) {
+        //         $link->save($params);
+        //     }
 
-            /* Announcement tool */
-            AnnouncementManager::add_announcement(
-                get_lang('AnnouncementExampleTitle'),
-                get_lang('AnnouncementEx'),
-                ['everyone' => 'everyone'],
-                null,
-                null,
-                $now
-            );
+        //     /* Announcement tool */
+        //     AnnouncementManager::add_announcement(
+        //         get_lang('AnnouncementExampleTitle'),
+        //         get_lang('AnnouncementEx'),
+        //         ['everyone' => 'everyone'],
+        //         null,
+        //         null,
+        //         $now
+        //     );
 
-            $manager = Database::getManager();
+        //     $manager = Database::getManager();
 
-            /* Introduction text */
+        //     /* Introduction text */
 
-            $intro_text = '<p style="text-align: center;">
-                            <img src="' . api_get_path(REL_CODE_PATH) . 'img/mascot.png" alt="Mr. Chamilo" title="Mr. Chamilo" />
-                            <h2>' . self::lang2db(get_lang('IntroductionText')) . '</h2>
-                         </p>';
+        //     $intro_text = '<p style="text-align: center;">
+        //                     <img src="' . api_get_path(REL_CODE_PATH) . 'img/mascot.png" alt="Mr. Chamilo" title="Mr. Chamilo" />
+        //                     <h2>' . self::lang2db(get_lang('IntroductionText')) . '</h2>
+        //                  </p>';
 
-            $toolIntro = new Chamilo\CourseBundle\Entity\CToolIntro();
-            $toolIntro
-                ->setCId($course_id)
-                ->setId(TOOL_COURSE_HOMEPAGE)
-                ->setSessionId(0)
-                ->setIntroText($intro_text);
-            $manager->persist($toolIntro);
+        //     $toolIntro = new Chamilo\CourseBundle\Entity\CToolIntro();
+        //     $toolIntro
+        //         ->setCId($course_id)
+        //         ->setId(TOOL_COURSE_HOMEPAGE)
+        //         ->setSessionId(0)
+        //         ->setIntroText($intro_text);
+        //     $manager->persist($toolIntro);
 
-            $toolIntro = new Chamilo\CourseBundle\Entity\CToolIntro();
-            $toolIntro
-                ->setCId($course_id)
-                ->setId(TOOL_STUDENTPUBLICATION)
-                ->setSessionId(0)
-                ->setIntroText(get_lang('IntroductionTwo'));
-            $manager->persist($toolIntro);
+        //     $toolIntro = new Chamilo\CourseBundle\Entity\CToolIntro();
+        //     $toolIntro
+        //         ->setCId($course_id)
+        //         ->setId(TOOL_STUDENTPUBLICATION)
+        //         ->setSessionId(0)
+        //         ->setIntroText(get_lang('IntroductionTwo'));
+        //     $manager->persist($toolIntro);
 
 
-            $toolIntro = new Chamilo\CourseBundle\Entity\CToolIntro();
-            $toolIntro
-                ->setCId($course_id)
-                ->setId(TOOL_WIKI)
-                ->setSessionId(0)
-                ->setIntroText(get_lang('IntroductionWiki'));
-            $manager->persist($toolIntro);
+        //     $toolIntro = new Chamilo\CourseBundle\Entity\CToolIntro();
+        //     $toolIntro
+        //         ->setCId($course_id)
+        //         ->setId(TOOL_WIKI)
+        //         ->setSessionId(0)
+        //         ->setIntroText(get_lang('IntroductionWiki'));
+        //     $manager->persist($toolIntro);
 
-            $manager->flush();
+        //     $manager->flush();
 
-            /*  Exercise tool */
-            $exercise = new Exercise($course_id);
-            $exercise->exercise = get_lang('ExerciceEx');
-            $html = '<table width="100%" border="0" cellpadding="0" cellspacing="0">
-                        <tr>
-                        <td width="110" valign="top" align="left">
-                            <img src="' . api_get_path(WEB_CODE_PATH) . 'default_course_document/images/mr_dokeos/thinking.jpg">
-                        </td>
-                        <td valign="top" align="left">' . get_lang('Antique') . '</td></tr>
-                    </table>';
-            $exercise->type = 1;
-            $exercise->setRandom(0);
-            $exercise->active = 1;
-            $exercise->results_disabled = 0;
-            $exercise->description = $html;
-            $exercise->save();
+        //     /*  Exercise tool */
+        //     $exercise = new Exercise($course_id);
+        //     $exercise->exercise = get_lang('ExerciceEx');
+        //     $html = '<table width="100%" border="0" cellpadding="0" cellspacing="0">
+        //                 <tr>
+        //                 <td width="110" valign="top" align="left">
+        //                     <img src="' . api_get_path(WEB_CODE_PATH) . 'default_course_document/images/mr_dokeos/thinking.jpg">
+        //                 </td>
+        //                 <td valign="top" align="left">' . get_lang('Antique') . '</td></tr>
+        //             </table>';
+        //     $exercise->type = 1;
+        //     $exercise->setRandom(0);
+        //     $exercise->active = 1;
+        //     $exercise->results_disabled = 0;
+        //     $exercise->description = $html;
+        //     $exercise->save();
 
-            $exercise_id = $exercise->id;
+        //     $exercise_id = $exercise->id;
 
-            $question = new MultipleAnswer();
-            $question->question = get_lang('SocraticIrony');
-            $question->description = get_lang('ManyAnswers');
-            $question->weighting = 10;
-            $question->position = 1;
-            $question->course = $courseInfo;
-            $question->save($exercise_id);
-            $questionId = $question->id;
+        //     $question = new MultipleAnswer();
+        //     $question->question = get_lang('SocraticIrony');
+        //     $question->description = get_lang('ManyAnswers');
+        //     $question->weighting = 10;
+        //     $question->position = 1;
+        //     $question->course = $courseInfo;
+        //     $question->save($exercise_id);
+        //     $questionId = $question->id;
 
-            $answer = new Answer($questionId, $courseInfo['real_id']);
+        //     $answer = new Answer($questionId, $courseInfo['real_id']);
 
-            $answer->createAnswer(get_lang('Ridiculise'), 0, get_lang('NoPsychology'), -5, 1);
-            $answer->createAnswer(get_lang('AdmitError'), 0, get_lang('NoSeduction'), -5, 2);
-            $answer->createAnswer(get_lang('Force'), 1, get_lang('Indeed'), 5, 3);
-            $answer->createAnswer(get_lang('Contradiction'), 1, get_lang('NotFalse'), 5, 4);
+        //     $answer->createAnswer(get_lang('Ridiculise'), 0, get_lang('NoPsychology'), -5, 1);
+        //     $answer->createAnswer(get_lang('AdmitError'), 0, get_lang('NoSeduction'), -5, 2);
+        //     $answer->createAnswer(get_lang('Force'), 1, get_lang('Indeed'), 5, 3);
+        //     $answer->createAnswer(get_lang('Contradiction'), 1, get_lang('NotFalse'), 5, 4);
 
-            $answer->save();
+        //     $answer->save();
 
-            /* Forum tool */
+        //     /* Forum tool */
 
-            require_once api_get_path(SYS_CODE_PATH).'forum/forumfunction.inc.php';
+        //     require_once api_get_path(SYS_CODE_PATH).'forum/forumfunction.inc.php';
 
-            $params = [
-                'forum_category_title' => get_lang('ExampleForumCategory'),
-                'forum_category_comment' => ''
-            ];
+        //     $params = [
+        //         'forum_category_title' => get_lang('ExampleForumCategory'),
+        //         'forum_category_comment' => ''
+        //     ];
 
-            $forumCategoryId = store_forumcategory($params, $courseInfo, false);
+        //     $forumCategoryId = store_forumcategory($params, $courseInfo, false);
 
-            $params = [
-                'forum_category' => $forumCategoryId,
-                'forum_title' => get_lang('ExampleForum'),
-                'forum_comment' => '',
-                'default_view_type_group' => ['default_view_type' => 'flat'],
-            ];
+        //     $params = [
+        //         'forum_category' => $forumCategoryId,
+        //         'forum_title' => get_lang('ExampleForum'),
+        //         'forum_comment' => '',
+        //         'default_view_type_group' => ['default_view_type' => 'flat'],
+        //     ];
 
-            $forumId = store_forum($params, $courseInfo, true);
+        //     $forumId = store_forum($params, $courseInfo, true);
 
-            $forumInfo = get_forum_information($forumId, $courseInfo['real_id']);
+        //     $forumInfo = get_forum_information($forumId, $courseInfo['real_id']);
 
-            $params = [
-                'post_title' => get_lang('ExampleThread'),
-                'forum_id' => $forumId,
-                'post_text' => get_lang('ExampleThreadContent'),
-                'calification_notebook_title' => '',
-                'numeric_calification' => '',
-                'weight_calification' => '',
-                'forum_category' => $forumCategoryId,
-                'thread_peer_qualify' => 0,
-            ];
+        //     $params = [
+        //         'post_title' => get_lang('ExampleThread'),
+        //         'forum_id' => $forumId,
+        //         'post_text' => get_lang('ExampleThreadContent'),
+        //         'calification_notebook_title' => '',
+        //         'numeric_calification' => '',
+        //         'weight_calification' => '',
+        //         'forum_category' => $forumCategoryId,
+        //         'thread_peer_qualify' => 0,
+        //     ];
 
-            store_thread($forumInfo, $params, $courseInfo, false);
+        //     store_thread($forumInfo, $params, $courseInfo, false);
 
-            /* Gradebook tool */
-            $course_code = $courseInfo['code'];
-            // father gradebook
-            Database::query(
-                "INSERT INTO $TABLEGRADEBOOK (name, description, user_id, course_code, parent_id, weight, visible, certif_min_score, session_id, document_id)
-                VALUES ('$course_code','',1,'$course_code',0,100,0,75,NULL,$example_cert_id)"
-            );
-            $gbid = Database:: insert_id();
-            Database::query(
-                "INSERT INTO $TABLEGRADEBOOK (name, description, user_id, course_code, parent_id, weight, visible, certif_min_score, session_id, document_id)
-                VALUES ('$course_code','',1,'$course_code',$gbid,100,1,75,NULL,$example_cert_id)"
-            );
-            $gbid = Database:: insert_id();
-            Database::query(
-                "INSERT INTO $TABLEGRADEBOOKLINK (type, ref_id, user_id, course_code, category_id, created_at, weight, visible, locked)
-                VALUES (1,$exercise_id,1,'$course_code',$gbid,'$now',100,1,0)"
-            );
-        }
+        //     /* Gradebook tool */
+        //     $course_code = $courseInfo['code'];
+        //     // father gradebook
+        //     Database::query(
+        //         "INSERT INTO $TABLEGRADEBOOK (name, description, user_id, course_code, parent_id, weight, visible, certif_min_score, session_id, document_id)
+        //         VALUES ('$course_code','',1,'$course_code',0,100,0,75,NULL,$example_cert_id)"
+        //     );
+        //     $gbid = Database:: insert_id();
+        //     Database::query(
+        //         "INSERT INTO $TABLEGRADEBOOK (name, description, user_id, course_code, parent_id, weight, visible, certif_min_score, session_id, document_id)
+        //         VALUES ('$course_code','',1,'$course_code',$gbid,100,1,75,NULL,$example_cert_id)"
+        //     );
+        //     $gbid = Database:: insert_id();
+        //     Database::query(
+        //         "INSERT INTO $TABLEGRADEBOOKLINK (type, ref_id, user_id, course_code, category_id, created_at, weight, visible, locked)
+        //         VALUES (1,$exercise_id,1,'$course_code',$gbid,'$now',100,1,0)"
+        //     );
+        // }
 
         //Installing plugins in course
         $app_plugin = new AppPlugin();
