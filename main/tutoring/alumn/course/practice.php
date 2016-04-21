@@ -24,6 +24,22 @@ while ($row = Database::fetch_assoc($result)) {
             LIMIT 1";
 
     $row['file_info'] = Database::fetch_assoc(Database::query($sql));
+
+    switch ($row['item_type']) {
+        case 'document':
+            $row['file_info']['type'] = pathinfo($row['file_info']['path'], PATHINFO_EXTENSION);
+            break;
+        case 'link':
+            $row['file_info']['type'] = 'link';
+            break;
+        case 'quiz':
+            $row['file_info']['type'] = 'box_notes';
+            break;
+        default:
+            $row['file_info']['type'] = '';
+            break;
+    }
+
     $resources[] = $row;
 }
 ?>
@@ -44,7 +60,7 @@ while ($row = Database::fetch_assoc($result)) {
                                 <div class="vlms-media">
                                     <div class="vlms-media__figure">
                                       <svg aria-hidden="true" class="vlms-icon">
-                                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#<?php echo extension_icon(empty($row['file_info']) ? '' : pathinfo($row['file_info']['path'], PATHINFO_EXTENSION)); ?>"></use>
+                                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#<?php echo extension_icon($row['file_info']['type']); ?>"></use>
                                       </svg>
                                     </div>
                                     <div class="vlms-media__body">
