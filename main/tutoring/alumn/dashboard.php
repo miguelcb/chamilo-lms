@@ -98,7 +98,7 @@ $indicators = Database::query($sql);
         <section class="container">
             <div class="row" style="padding: 32px 0;">
                 <div class="col-md-6">
-                    <form id="form-ask" action="">
+                    <form class="vlms" id="form-ask" action="">
                         <input type="hidden" name="post_title" value="Pregunta para responder">
                         <input type="hidden" name="_qf__thread">
                         <input type="hidden" name="forum_id" value="0">
@@ -113,6 +113,7 @@ $indicators = Database::query($sql);
                             <span class="help-block">Te recomendamos que revises el <a href="javascript:void(0);" id="repository-questions-link" data-toggle="ajax-modal" data-target="#repository-questions-modal" data-source="<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/alumn/course/repository_questions.php?cid=1">repositorio de preguntas</a> para validar que tu consulta no se haya realizado antes.</span>
                             <textarea name="post_text" rows="10" class="form-control" placeholder="Escribe tu pregunta aquí"></textarea>
                         </div>
+                        <div id="wrapper-files"></div>
                         <div class="clearfix">
                             <div class="pull-left">
                                 <div class="form-group" style="margin-top: 24px;">
@@ -369,6 +370,26 @@ $indicators = Database::query($sql);
                         })
                             .done(function(view) { $('#my-questions').html(view); });
                     });
+            });
+            // SHOW FILE SELECTED
+            $('#form-ask [name=user_upload]').change(function(e) {
+                if (!window.File || !window.FileReader || !window.FileList || !window.Blob) {
+                  alert('El File APIs no esta soportado por el navegador.');
+                  return;
+                }
+
+                if (!e.target.files.length) return;
+
+                var $self = $(this);
+                var t = '<div class="alert alert-info alert-dismissible" role="alert" style="margin-bottom: 8px;">' +
+                        '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>' +
+                        '<div class="vlms-media"><div class="vlms-media__figure">' +
+                        '<svg aria-hidden="true" class="vlms-icon vlms-icon--small" style="fill: #555;" data-toggle="tooltip" data-container="body" data-placement="bottom" title="Elegir un tutor">' +
+                        '<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#attachment"></use></svg></div>' +
+                        '<div class="vlms-media__body"><a href="javascript:void(0)">' + e.target.files[0].name + '</a></div></div></div>';
+
+                $('#wrapper-files').html(t);
+                $('#wrapper-files .close').click(function() { $self.val(''); });
             });
         };
         _appointmentTool = function(courseID) {

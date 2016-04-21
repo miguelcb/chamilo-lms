@@ -166,6 +166,8 @@ footer {
   background-position: left bottom;
 }
 
+[name=public]:not(:checked) + svg { fill: #999 !important; }
+
 #appointment {
   position: relative;
   background-color: #fff;
@@ -368,6 +370,8 @@ footer {
  * Virtual Learning Management System => VLMS
  */
 .vlms { color: #333; }
+.vlms img,
+.vlms svg { vertical-align: middle; }
 
 /* palette */
 .vlms-bgc,
@@ -447,6 +451,18 @@ footer {
 .vlms .vlms-pr--small { padding-right: 4px; }
 .vlms .vlms-pr--medium { padding-right: 8px; }
 .vlms .vlms-pr--large { padding-right: 16px; }
+.vlms .vlms-textarea {
+  padding: 12px 16px;
+  height: 160px;
+  max-height: 210px;
+  resize: vertical;
+}
+.vlms .vlms-textarea:focus {
+  outline: 0;
+  border-color: #1589ee;
+  background-color: #fff;
+  box-shadow: 0 0 3px #0070d2;
+}
 
 /* badge */
 .vlms .vlms-badge {
@@ -545,12 +561,48 @@ footer {
   border-color: #e4e4e9;
 }
 
+/* button icon container */
+.vlms .vlms-button {
+  position: relative;
+  display: inline-block;
+  padding: 0;
+  background: 0 0;
+  background-clip: padding-box;
+  border: 0;
+  border-radius: .25rem;
+  color: #0070d2;
+  font-size: inherit;
+  line-height: 2.125rem;
+  text-decoration: none;
+  -webkit-appearance: none;
+  white-space: normal;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  transition: color 50ms linear,background-color 50ms linear;
+}
+.vlms .vlms-button:focus,
+.vlms .vlms-button:active {
+  outline: 0;
+  box-shadow: 0 0 3px #0070d2;
+}
+.vlms .vlms-button--icon-container {
+  width: 36px;
+  height: 36px;
+}
+
 /* icon */
 .vlms .vlms-icon {
   width: 32px;
   height: 32px;
   border-radius: 4px;
   fill: #fff;
+}
+.vlms .vlms-icon--small {
+  line-height: 1;
+  width: 24px;
+  height: 24px;
 }
 .vlms .vlms-icon--x-small {
   line-height: 1;
