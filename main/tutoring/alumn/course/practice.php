@@ -48,8 +48,8 @@ while ($row = Database::fetch_assoc($result)) {
                                       </svg>
                                     </div>
                                     <div class="vlms-media__body">
-                                      <div class="vlms-media__body__title vlms-truncate">
-                                        <a href="javascript:void(0);"><?php echo $row['title']; ?></a>
+                                      <div class="vlms-media__body__title">
+                                        <a href="javascript:void(0); vlms-truncate" title="<?php echo $row['title']; ?>"><?php echo $row['title']; ?></a>
                                       </div>
                                       <ul class="vlms-media__body__detail vlms-list vlms-list--horizontal vlms-has-dividers vlms-text--small">
                                         <li class="vlms-list__item"><?php echo api_convert_and_format_date($row['file_info']['date'], '%b %d, %Y'); ?></li>

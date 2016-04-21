@@ -31,7 +31,7 @@ $result = Database::query($sql);
                             </div>
                             <div class="vlms-media__body">
                                 <div class="vlms-media__body__title">
-                                    <a href="javascript:void(0);"><?php echo api_convert_and_format_date($row->date, '%A, %d de %B del %Y'); ?></a>
+                                    <a href="javascript:void(0);" class="vlms-truncate" title="<?php echo api_convert_and_format_date($row->date, '%A, %d de %B del %Y'); ?>"><?php echo api_convert_and_format_date($row->date, '%A, %d de %B del %Y'); ?></a>
                                 </div>
                                 <div class="vlms-media__body__detail">
                                     <ul class="vlms-list vlms-list--vertical vlms-text--small">

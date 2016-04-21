@@ -137,7 +137,7 @@ while($course = Database::fetch_assoc($courses)) {
                             </div>
                             <div class="vlms-media__body">
                                 <div class="vlms-media__body__title">
-                                    <a href="javascript:void(0);">
+                                    <a href="javascript:void(0);" class="vlms-truncate"> title="Se ha agregado nuevo material para <?php echo $row['tool'] == 'practice' ? 'practicar' : 'repasar'; ?>">
                                         Se ha agregado nuevo material para <?php echo $row['tool'] == 'practice' ? 'practicar' : 'repasar'; ?>
                                     </a>
                                 </div>

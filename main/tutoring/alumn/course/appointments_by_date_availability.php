@@ -29,7 +29,7 @@ $result = Database::query($sql);
                     </div>
                     <div class="vlms-media__body">
                         <div class="vlms-media__body__title">
-                            <a class="vlms-truncate vlms-pr--medium" href="javascript:void(0);"><?php echo api_convert_and_format_date($row->date, '%A, %d de %B del %Y'); ?></a>
+                            <a class="vlms-truncate vlms-pr--medium" href="javascript:void(0);" title="<?php echo api_convert_and_format_date($row->date, '%A, %d de %B del %Y'); ?>"><?php echo api_convert_and_format_date($row->date, '%A, %d de %B del %Y'); ?></a>
                             <button type="button" class="vlms-list__item__action pull-right" data-appointment-id="<?php echo $row->id; ?>">
                                 <svg aria-hidden="true" class="vlms-list__item__action__icon" data-toggle="tooltip" data-container="body" data-placement="left" title="Reservar">
                                     <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#add"></use>

@@ -51,8 +51,8 @@ while ($question = Database::fetch_assoc($questions)) {
                                         </svg>
                                     </div>
                                     <div class="vlms-media__body">
-                                        <div class="vlms-media__body__title vlms-truncate">
-                                            <a href="javascript:void(0);"><?php echo $question['post_title']; ?></a>
+                                        <div class="vlms-media__body__title">
+                                            <a href="javascript:void(0);" class="vlms-truncate" title="<?php echo $question['post_title']; ?>"><?php echo $question['post_title']; ?></a>
                                         </div>
                                         <div class="vlms-media__body__detail">
                                             <ul class="vlms-list vlms-list--horizontal vlms-has-dividers vlms-text--small">
