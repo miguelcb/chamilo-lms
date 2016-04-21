@@ -364,6 +364,7 @@ $indicators = Database::query($sql);
                     type: 'POST'
                 })
                     .done(function() {
+                        alert("Se ha realizado su pregunta satisfactoriamente.");
                         $.ajax({
                             url: VLMS.URI + 'course/my_questions_review.php',
                             data: { cid: VLMS.current.id }
