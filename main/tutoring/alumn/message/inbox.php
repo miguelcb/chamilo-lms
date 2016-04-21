@@ -64,7 +64,6 @@ $result = Database::query($sql);
 
 <script>
     $('[data-toggle=tooltip]').boostrapTooltip();
-    $('[data-toggle=popover]').boostrapPopover();
 
     $('.messages-tutoring__item').click(function() {
         var $sup = $(this);
@@ -80,6 +79,7 @@ $result = Database::query($sql);
     });
 
     $('.message-tutoring__item__delete').click(function (e) {
+        $('[data-toggle=tooltip]').boostrapTooltip('hide');
         e.stopPropagation();
         var $sup = $(this);
 
