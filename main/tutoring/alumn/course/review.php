@@ -10,7 +10,7 @@ $user_id = api_get_user_id();
 $resources = [];
 
 $sql = "SELECT * FROM c_lp_item lpi
-        WHERE lpi.c_id = $cid AND lpi.lp_id = (SELECT lp.id FROM c_lp lp WHERE lp.category_id = (SELECT iid FROM c_lp_category WHERE name = 'Repasar' LIMIT 1) LIMIT 1)
+        WHERE lpi.c_id = $cid AND lpi.lp_id = (SELECT lp.id FROM c_lp lp WHERE lp.category_id = (SELECT iid FROM c_lp_category lc WHERE lc.c_id = $cid AND lc.name = 'Repasar' LIMIT 1) LIMIT 1)
         ORDER BY lpi.display_order";
 
 $result = Database::query($sql);
