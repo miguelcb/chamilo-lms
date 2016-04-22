@@ -36,7 +36,7 @@ $questions = Database::query($sql);
                                 </div>
                                 <div class="vlms-media__body">
                                     <div class="vlms-media__body__title">
-                                        <a class="vlms-truncate vlms-pr--medium" href="javascript:void(0);"><?php echo $row['post_text']; ?></a>
+                                        <a class="vlms-truncate vlms-pr--medium" href="javascript:void(0);" title="<?php echo $row['post_text']; ?>"><?php echo $row['post_text']; ?></a>
                                         <span class="vlms-badge vlms-badge--inverse"><?php echo $row['answered'] == '1' ? 'Atendida' : 'Sin atender'; ?></span>
                                     </div>
                                     <div class="vlms-media__body__detail">

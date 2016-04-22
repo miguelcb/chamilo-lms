@@ -1,4 +1,4 @@
-<?php include_once '../../../inc/global.inc.php';
+<?php require_once '../../../inc/global.inc.php';
 
 api_block_anonymous_users();
 
@@ -18,12 +18,13 @@ $c_id    = is_null($_GET['cid']) ? '' : $_GET['cid'];
 $lp_id   = is_null($_GET['lpid']) ? '' : $_GET['lpid'];
 $id      = is_null($_GET['id']) ? '' : $_GET['id'];
 $user_id = api_get_user_id();
+$course  = api_get_course_info_by_id($c_id);
+$c_code  = $course['code'];
 
-$lp      = new learnpath(api_get_course_info_by_id($c_id)['code'], $lp_id, $user_id);
+$lp      = new learnpath($c_code, $lp_id, $user_id);
 
 $sql = "SELECT * FROM c_lp_item lpi WHERE c_id = $c_id AND id = $id LIMIT 1";
 $resource = Database::fetch_assoc(Database::query($sql));
-
 ?>
 
 <div class="panel panel-default text-left">
@@ -38,9 +39,9 @@ $resource = Database::fetch_assoc(Database::query($sql));
         <li><a href="javascript:void(0);" data-link="http://localhost:90/chamilo-lms/main/inc/ajax/course.ajax.php?a=add_course_vote&amp;course_id=1&amp;star=5" title="0 estrellas de 5" class="five-stars">5</a></li>
     </ul>
 </div>
-  <div class="panel-body">
+  <div class="panel-body vlms" style="height: 458px;">
     <p><?php echo $resource['description']; ?></p>
-    <?php echo $lp->display_document($resource['path'], true, true); ?>
+    <iframe id="content_id" name="content_name" src="<?php echo api_get_path(WEB_CODE_PATH).'newscorm/lp_controller.php?action=content&lp_id='.$lp_id.'&item_id='.$id.'&cidReq='.$c_code.'&id_session=0'; ?>" border="0" frameborder="0" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" style="width: 100%; height: 100%;"></iframe>
   </div>
 </div>
 

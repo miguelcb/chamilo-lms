@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['sec_token'])) {
 }
 ?>
 
-<div class="text-center" style="padding: 16px 0;">
+<div class="text-center">
     <img width="100" height="100" class="img-circle" role="button" src="<?php echo UserManager::getUserPicture(api_get_user_id(), USER_IMAGE_SIZE_ORIGINAL); ?>" data-avatar-path="<?php echo api_get_path(WEB_CODE_PATH).'img/avatars/'; ?>" data-avatar-id="<?php echo (empty($user_data['picture_uri']) ? '0' : str_replace('.png', '', $user_data['picture_uri'])) ?>" alt="" onclick="(function(e) {
         var n = (+$(e).attr('data-avatar-id') >= 12 ? 1 : +$(e).attr('data-avatar-id') + 1),
             filename = n + '.png';
@@ -47,12 +47,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['sec_token'])) {
     <span class="help-block">Haz click en la imagen para cambiar de avatar</span>
 </div>
 <div class="form-group">
-    <label for="lastname" class="control-label"><?php echo get_lang('LastName'); ?></label>
-    <input type="text" name="lastname" id="lastname" class="form-control"  value="<?php echo $user_data['lastname']; ?>" readonly>
-</div>
-<div class="form-group">
-    <label for="firstname" class="control-label"><?php echo get_lang('FirstName'); ?></label>
-    <input type="text" name="firstname" id="firstname" class="form-control"  value="<?php echo $user_data['firstname']; ?>" readonly>
+    <label for="fullname" class="control-label">Apellidos y Nombres</label>
+    <input type="text" name="fullname" id="fullname" class="form-control"  value="<?php echo $user_data['lastname'] . ', ' . $user_data['firstname']; ?>" readonly>
 </div>
 <div class="form-group">
     <label for="email" class="control-label"><?php echo get_lang('Email'); ?></label>
@@ -71,6 +67,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['sec_token'])) {
     <div class="help-block"></div>
 </div>
 <input type="hidden" name="sec_token" value="<?php echo $token ?>">
-<div class="alert alert-info">
-    asdasda <strong>dasdasd</strong> adas
-</div>
+

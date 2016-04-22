@@ -84,6 +84,7 @@ function extension_icon($ext) {
         case 'link':
         case 'exe':
         case 'rtf':
+        case 'box_notes':
             $ext = $ext;
             break;
 

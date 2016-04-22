@@ -10,7 +10,7 @@ $user_id = api_get_user_id();
 $resources = [];
 
 $sql = "SELECT * FROM c_lp_item lpi
-        WHERE lpi.c_id = $cid AND lpi.lp_id = (SELECT lp.id FROM c_lp lp WHERE lp.category_id = (SELECT iid FROM c_lp_category WHERE name = 'Practicar' LIMIT 1) LIMIT 1)
+        WHERE lpi.c_id = $cid AND lpi.lp_id = (SELECT lp.id FROM c_lp lp WHERE lp.category_id = (SELECT iid FROM c_lp_category lc WHERE lc.c_id = $cid AND lc.name = 'Practicar' LIMIT 1) LIMIT 1)
         ORDER BY lpi.display_order";
 
 $result = Database::query($sql);
@@ -24,6 +24,22 @@ while ($row = Database::fetch_assoc($result)) {
             LIMIT 1";
 
     $row['file_info'] = Database::fetch_assoc(Database::query($sql));
+
+    switch ($row['item_type']) {
+        case 'document':
+            $row['file_info']['type'] = pathinfo($row['file_info']['path'], PATHINFO_EXTENSION);
+            break;
+        case 'link':
+            $row['file_info']['type'] = 'link';
+            break;
+        case 'quiz':
+            $row['file_info']['type'] = 'box_notes';
+            break;
+        default:
+            $row['file_info']['type'] = '';
+            break;
+    }
+
     $resources[] = $row;
 }
 ?>
@@ -44,12 +60,12 @@ while ($row = Database::fetch_assoc($result)) {
                                 <div class="vlms-media">
                                     <div class="vlms-media__figure">
                                       <svg aria-hidden="true" class="vlms-icon">
-                                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#<?php echo extension_icon(empty($row['file_info']) ? '' : pathinfo($row['file_info']['path'], PATHINFO_EXTENSION)); ?>"></use>
+                                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#<?php echo extension_icon($row['file_info']['type']); ?>"></use>
                                       </svg>
                                     </div>
                                     <div class="vlms-media__body">
-                                      <div class="vlms-media__body__title vlms-truncate">
-                                        <a href="javascript:void(0);"><?php echo $row['title']; ?></a>
+                                      <div class="vlms-media__body__title">
+                                        <a href="javascript:void(0); vlms-truncate" title="<?php echo $row['title']; ?>"><?php echo $row['title']; ?></a>
                                       </div>
                                       <ul class="vlms-media__body__detail vlms-list vlms-list--horizontal vlms-has-dividers vlms-text--small">
                                         <li class="vlms-list__item"><?php echo api_convert_and_format_date($row['file_info']['date'], '%b %d, %Y'); ?></li>

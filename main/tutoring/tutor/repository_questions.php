@@ -53,12 +53,12 @@ while ($question = Database::fetch_assoc($questions)) {
 <div class="row" style="padding: 32px 0;">
     <div class="col-md-4">
         <ul class="list-group">
-            <li class="list-group-item">
+            <!-- <li class="list-group-item">
                 <div class="input-group">
                     <input type="text" class="form-control" aria-describedby="basic-addon1">
                     <span class="input-group-addon fa fa-search" role="button"></span>
                 </div>
-            </li>
+            </li> -->
             <?php foreach ($all_questions as $question): ?>              
                 <li class="list-group-item" role="button" data-question-id="<?php echo $question['post_id']; ?>">
                     <h4 class="list-group-item-heading clearfix">
@@ -91,7 +91,7 @@ while ($question = Database::fetch_assoc($questions)) {
         $sup.addClass('active');
         $.ajax({
             url: '<?php echo api_get_path(WEB_CODE_PATH); ?>tutoring/tutor/view_question.php',
-            data: { id: $sup.attr('data-question-id') }
+            data: { id: $sup.attr('data-question-id'), course_code: '<?php echo $question['code']; ?>' , course_id:'<?php echo $question['id']; ?>'}
         })
             .done(function(view) {
                 $('.question-tutoring').html(view);
