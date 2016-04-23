@@ -25,10 +25,10 @@ api_block_anonymous_users();
     <section class="container">
       <div class="row" style="padding: 32px 0;">
         <div class="col-sm-4">
-          <?php include_once 'appointments_by_tutor.php';?>
+          <?php include_once 'appointments_by_date.php';?>
         </div>
         <div class="col-sm-4">
-          <?php include_once 'appointments_by_date.php';?>
+          <?php include_once 'appointments_by_course.php';?>
         </div>
         <!-- <div class="col-sm-4">
           

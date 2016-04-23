@@ -11,26 +11,6 @@ $post_id = is_null($_GET['id']) ? "" : $_GET['id'];
 $course_code = is_null($_GET['course_code']) ? "" : $_GET['course_code'];
 $course_id = is_null($_GET['course_id']) ? "" : $_GET['course_id'];
 
-if (!empty($course_id)) {
-    \System\Session::erase('_real_cid');
-    \System\Session::erase('_cid');
-    \System\Session::erase('_course');
-    \System\Session::erase('coursesAlreadyVisited');
-    \System\Session::erase('is_allowed_in_course');
-
-    $_course = api_get_course_info_by_id($course_id);
-    $_cid = $_course['code'];
-
-    \System\Session::write('_real_cid', $cid);
-    \System\Session::write('_cid', $_cid);
-    \System\Session::write('_course', $_course);
-    \System\Session::write('coursesAlreadyVisited', [$_cid => 1]);
-    \System\Session::write('is_allowed_in_course', 1);
-}
-
-
-
-
 $table_forum_post       = Database::get_course_table(TABLE_FORUM_POST);
 $table_forum_attachment = Database::get_course_table(TABLE_FORUM_ATTACHMENT);
 
@@ -53,6 +33,30 @@ $post_answer_id = isset($question['answer']['post_id']) ? $question['answer']['p
 $sql = "SELECT * FROM $table_forum_attachment fa WHERE fa.c_id = $c_id AND fa.post_id = $post_answer_id";
 
 $answer_attachments = Database::query($sql);
+
+if (!empty($course_id)) {
+    \System\Session::erase('_real_cid');
+    \System\Session::erase('_cid');
+    \System\Session::erase('_course');
+    \System\Session::erase('coursesAlreadyVisited');
+    \System\Session::erase('is_allowed_in_course');
+
+    $_course = api_get_course_info_by_id($course_id);
+    $_cid = $_course['code'];
+
+    \System\Session::write('_real_cid', $course_id);
+    \System\Session::write('_cid', $_cid);
+    \System\Session::write('_course', $_course);
+    \System\Session::write('coursesAlreadyVisited', [$_cid => 1]);
+    \System\Session::write('is_allowed_in_course', 1);
+
+    $_forum_notification = $_SESSION['forum_notification'];
+    $_forum_notification['forum'][] = $question['answer']['forum_id'];
+
+    \System\Session::write('forum_notification', $_forum_notification);
+}
+
+
 ?>
 
 
@@ -153,7 +157,8 @@ $answer_attachments = Database::query($sql);
             VLMS.current.threadID = $current.attr('data-course-thread') || 0;
             VLMS.current.postID = $current.attr('data-course-post') || 0
 
-            $('#form-ask').attr('action', VLMS.MAIN_URI + 'forum/reply.php?forum=' + VLMS.current.forumID + '&gradebook=0&thread='+VLMS.current.threadID+'&post='+VLMS.current.postID+'&cidReq=' + VLMS.current.code + '&id_session=0&gidReq=0&origin=');
+            $('#form-ask').attr('action', VLMS.MAIN_URI + 'forum/reply.php?forum=' + VLMS.current.forumID + '&gradebook=0&thread='+VLMS.current.threadID+'&post='+VLMS.current.postID+'&action=replymessage&cidReq=' + VLMS.current.code + '&id_session=0&gidReq=0&origin=');
+
             // UPDATE FORUM ID
             // $('#form-ask [name=forum_id]').val(VLMS.current.forumID);
             // // UPDATE TUTORS
@@ -174,7 +179,6 @@ $answer_attachments = Database::query($sql);
             // $('#my-questions-link').attr('data-source', VLMS.URI + 'course/my_questions.php?cid=' + courseID);
             // // FORM ASK
             $('#form-ask button').off().click(function(e) {
-                console.log("gg");
                 $.ajax({
                     url: $('#form-ask').attr('action'),
                     data: new FormData($('#form-ask')[0]),
@@ -186,9 +190,9 @@ $answer_attachments = Database::query($sql);
                     .done(function() {
                         $.ajax({
                             url: VLMS.MAIN_URI + 'tutoring/tutor/view_question.php',
-                            data: { cid: VLMS.current.id }
+                            data: { id: '<?php echo $post_id ?>', course_code: '<?php echo $course_code ?>' , course_id:'<?php echo $course_id ?>' }
                         })
-                            .done(function(view) { $('#my-questions').html(view); });
+                            .done(function(view) { $('.question-tutoring').html(view); });
                     });
             });
         
